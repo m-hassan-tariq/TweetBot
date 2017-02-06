@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tweet.Model
+namespace Tweet.Service
 {
     public class TwitterApi
     {

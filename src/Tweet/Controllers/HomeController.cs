@@ -8,7 +8,6 @@ using System.Collections;
 using System.Net;
 using System.IO;
 using HtmlAgilityPack;
-using Tweet.Model;
 using Tweet.Entities;
 
 namespace Tweet.Controllers
@@ -19,7 +18,7 @@ namespace Tweet.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //news-api key = 2ebe11785ab349feb113416f738080bb
+            //news - api key = 2ebe11785ab349feb113416f738080bb
             //await GetNewsAsync("the-verge", "top", "450e3b01a89e427ab0f92fdb1cff27cb");
             //var twitter = new TwitterApi("KDNP8m1dTxettIJHF1AfqHcjE", "ZuJH7JiFU05hE8rrnpoPOK8V7bN5Es5a54tjmWzuQfzpteiH9N",
             //    "33008585-KtgQYIRn92HHq8xZ3yUpNbuzdoOOrtyNMVpRVoxTi", "aoDO9klJzjWKZDETVuVeNn0CxiJBF7019qh6TD0LZRaBc");
