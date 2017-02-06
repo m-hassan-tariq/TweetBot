@@ -5,6 +5,5 @@ C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\Tweet.Entities\obj\D
 C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\Tweet.Entities\obj\Debug\Tweet.Entities.pdb
 C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\Tweet.Entities\bin\Debug\Tweet.Entities.dll
 C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\Tweet.Entities\bin\Debug\Tweet.Entities.pdb
-C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\Tweet.Entities\obj\Debug\Tweet.Entities.csprojResolveAssemblyReference.cache
 C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\Tweet.Entities\obj\Debug\Tweet.Entities.dll
 C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\Tweet.Entities\obj\Debug\Tweet.Entities.pdb
