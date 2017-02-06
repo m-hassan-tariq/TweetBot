@@ -8,8 +8,8 @@
 -debug:full
 -nostdlib
 -nologo
-"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\obj\Debug\net452\dotnet-compile.assemblyinfo.cs"
--out:"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\bin\Debug\net452\Tweet.exe"
+"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\obj\Debug\net452\dotnet-compile.assemblyinfo.cs"
+-out:"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\bin\Debug\net452\Tweet.exe"
 -r:"C:\Users\Hassan\.nuget\packages\HtmlAgilityPack\1.4.9.5\lib\Net45\HtmlAgilityPack.dll"
 -r:"C:\Users\Hassan\.nuget\packages\Microsoft.AspNet.WebApi.Client\5.2.3\lib\net45\System.Net.Http.Formatting.dll"
 -r:"C:\Users\Hassan\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.1\lib\net451\Microsoft.AspNetCore.Antiforgery.dll"
@@ -134,7 +134,7 @@
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Threading.dll"
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Threading.Tasks.dll"
 -r:"C:\Users\Hassan\.nuget\packages\System.Threading.Tasks.Extensions\4.0.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll"
--r:"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\Tweet.Entities\bin\Debug\Tweet.Entities.dll"
+-r:"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\Tweet.Entities\bin\Debug\Tweet.Entities.dll"
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\mscorlib.dll"
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll"
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll"
@@ -149,8 +149,8 @@
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.ServiceModel.dll"
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Diagnostics.Tracing.dll"
 -r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Reflection.Primitives.dll"
--resource:"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\obj\Debug\net452\Tweetdotnet-compile.deps.json",Tweet.deps.json
-"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\Program.cs"
-"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\Startup.cs"
-"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\Controllers\HomeController.cs"
-"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\Model\TwitterApi.cs"
+-resource:"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\obj\Debug\net452\Tweetdotnet-compile.deps.json",Tweet.deps.json
+"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\Program.cs"
+"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\Startup.cs"
+"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\Controllers\HomeController.cs"
+"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\Model\TwitterApi.cs"

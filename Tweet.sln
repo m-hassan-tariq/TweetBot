@@ -14,10 +14,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tweet", "src\Tweet\Tweet.xp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweet.Entities", "Tweet.Entities\Tweet.Entities.csproj", "{D89F06D9-7988-4B3F-8CEC-58826A21A326}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweet.DAL", "Tweet.DAL\Tweet.DAL.csproj", "{63F0A7EA-68A1-4DBC-B116-9E88BC2FFD1F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweet.Service", "Tweet.Service\Tweet.Service.csproj", "{63C9EDDC-B3D4-4362-97AE-0B74F10DC6DE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,14 +28,6 @@ Global
 		{D89F06D9-7988-4B3F-8CEC-58826A21A326}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D89F06D9-7988-4B3F-8CEC-58826A21A326}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D89F06D9-7988-4B3F-8CEC-58826A21A326}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63F0A7EA-68A1-4DBC-B116-9E88BC2FFD1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63F0A7EA-68A1-4DBC-B116-9E88BC2FFD1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63F0A7EA-68A1-4DBC-B116-9E88BC2FFD1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63F0A7EA-68A1-4DBC-B116-9E88BC2FFD1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63C9EDDC-B3D4-4362-97AE-0B74F10DC6DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63C9EDDC-B3D4-4362-97AE-0B74F10DC6DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63C9EDDC-B3D4-4362-97AE-0B74F10DC6DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63C9EDDC-B3D4-4362-97AE-0B74F10DC6DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
