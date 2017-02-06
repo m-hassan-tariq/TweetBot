@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Tweet
 {
@@ -47,6 +49,8 @@ namespace Tweet
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            ServeFromDirectory(app, env, "node_modules");
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -54,6 +58,17 @@ namespace Tweet
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
+        public void ServeFromDirectory(IApplicationBuilder app, IHostingEnvironment env, string path)
+        {
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, path)
+                ),
+                RequestPath = "/" + path
             });
         }
     }

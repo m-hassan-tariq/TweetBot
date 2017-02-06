@@ -1,0 +1,83 @@
+﻿<div class="wrapper">
+    <div class="sidebar" data-background-color="black" data-active-color="danger">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    VMDB
+                </a>
+            </div>
+            <ul class="nav">
+                <li routerLinkActive="active">
+                    <a routerLink="dashboard/home">
+                        <i class="ti-panel"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-panel">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">{{header}}</a>
+                </div>
+            </div>
+            <p-breadcrumb [model]="objBreadcrumbs"></p-breadcrumb>
+        </nav>
+
+        <div class="content">
+
+            <div class="slds-notify_container">
+                <ngl-notification *ngIf="objAlert.show" type="alert" severity="error" (nglNotificationClose)="onCloseAlert($event)" timeout="5000" class="slds-theme--alert-texture">
+                    <h2>{{objAlert.message}}</h2>
+                </ngl-notification>
+            </div>
+
+            <p-growl [value]="objToaster"></p-growl>
+
+            <div *ngIf="objLoaderStatus">
+                <ngl-spinner size="large" type="brand" container="true"></ngl-spinner>
+            </div>
+
+            <router-outlet>
+            </router-outlet>
+
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="https://hassantariqblog.wordpress.com/">
+                                Muhammad Hassan Tariq
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://hassantariqblog.wordpress.com/">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://hassantariqblog.wordpress.com/">
+                                Twitter
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    2016
+                    &copy;
+                    Angular2 + TypeScript + ASP.NET MVC / Web API 
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
