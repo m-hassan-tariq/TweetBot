@@ -1,5 +1,5 @@
---temp-output:C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\obj\Debug\net452\
---out:C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\bin\Debug\net452\Tweet.exe
+--temp-output:C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\obj\Debug\net452\
+--out:C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\bin\Debug\net452\Tweet.exe
 --define:DEBUG
 --define:TRACE
 --define:NET452
@@ -138,7 +138,7 @@
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Threading.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Threading.Tasks.dll
 --reference:C:\Users\Hassan\.nuget\packages\System.Threading.Tasks.Extensions\4.0.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll
---reference:C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\Tweet.Entities\bin\Debug\Tweet.Entities.dll
+--reference:C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\Tweet.Entities\bin\Debug\Tweet.Entities.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\mscorlib.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll
@@ -153,8 +153,8 @@
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.ServiceModel.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Diagnostics.Tracing.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Reflection.Primitives.dll
---resource:"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\obj\Debug\net452\Tweetdotnet-compile.deps.json",Tweet.deps.json
-C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\Program.cs
-C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\Startup.cs
-C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\Controllers\HomeController.cs
-C:\Users\Hassan\Documents\Visual Studio 2015\Projects\Tweet\src\Tweet\Model\TwitterApi.cs
+--resource:"C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\obj\Debug\net452\Tweetdotnet-compile.deps.json",Tweet.deps.json
+C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\Program.cs
+C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\Startup.cs
+C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\Controllers\HomeController.cs
+C:\Users\Hassan\Documents\Visual Studio 2015\Projects\TweetBot\src\Tweet\Model\TwitterApi.cs
