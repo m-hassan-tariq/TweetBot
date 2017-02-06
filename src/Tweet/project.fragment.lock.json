@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "exports": {
+    "Tweet.Entities/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Debug/Tweet.Entities.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/Tweet.Entities.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Tweet.Entities.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}
