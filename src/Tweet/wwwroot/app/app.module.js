@@ -11,9 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var platform_browser_1 = require('@angular/platform-browser');
-var primeng_1 = require('primeng/primeng');
-var primeng_2 = require('primeng/primeng');
-var ng_lightning_1 = require('ng-lightning/ng-lightning');
 var dashboard_module_1 = require('./dashboard/dashboard.module');
 var app_component_1 = require('./app.component');
 var app_routing_1 = require('./app.routing');
@@ -28,9 +25,6 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 http_1.HttpModule,
                 //ui module
-                ng_lightning_1.NglModule.forRoot(),
-                primeng_1.GrowlModule,
-                primeng_2.BreadcrumbModule,
                 //application feature module
                 dashboard_module_1.DashboardMainModule,
                 app_routing_1.AppRoutingModule

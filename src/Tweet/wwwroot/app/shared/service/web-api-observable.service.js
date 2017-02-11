@@ -22,13 +22,9 @@ require('rxjs/add/operator/do');
 require('rxjs/add/operator/filter');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/switchMap');
-var alert_service_1 = require('./alert.service');
-var loader_service_1 = require('./loader.service');
 var WebApiObservableService = (function () {
-    function WebApiObservableService(http, toasterService, loaderService) {
+    function WebApiObservableService(http) {
         this.http = http;
-        this.toasterService = toasterService;
-        this.loaderService = loaderService;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.options = new http_1.RequestOptions({ headers: this.headers });
     }
@@ -114,13 +110,11 @@ var WebApiObservableService = (function () {
         var errMsg = (error.message) ? error.message :
             error.status ? error.status + " - " + error.statusText : 'Server error';
         console.error(errMsg);
-        this.toasterService.showToaster('error', 'Oops!! An error occurred', errMsg);
-        this.loaderService.displayLoader(false);
         return Observable_1.Observable.throw(errMsg);
     };
     WebApiObservableService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, alert_service_1.ToasterService, loader_service_1.LoaderService])
+        __metadata('design:paramtypes', [http_1.Http])
     ], WebApiObservableService);
     return WebApiObservableService;
 }());

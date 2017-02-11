@@ -11,13 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
-var alert_service_1 = require('./alert.service');
-var loader_service_1 = require('./loader.service');
 var WebApiPromiseService = (function () {
-    function WebApiPromiseService(http, toasterService, loaderService) {
+    function WebApiPromiseService(http) {
         this.http = http;
-        this.toasterService = toasterService;
-        this.loaderService = loaderService;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.options = new http_1.RequestOptions({ headers: this.headers });
     }
@@ -110,13 +106,11 @@ var WebApiPromiseService = (function () {
     };
     WebApiPromiseService.prototype.handleError = function (error) {
         console.error('An error occurred', error);
-        this.toasterService.showToaster('error', 'Oops!! An error occurred', error);
-        this.loaderService.displayLoader(false);
         return Promise.reject(error.message || error);
     };
     WebApiPromiseService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, alert_service_1.ToasterService, loader_service_1.LoaderService])
+        __metadata('design:paramtypes', [http_1.Http])
     ], WebApiPromiseService);
     return WebApiPromiseService;
 }());
