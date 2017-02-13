@@ -6,8 +6,11 @@
     <base href="/">
     <title>@ViewData["Title"] - Tweet</title>
 
+    @{ var lib = "@angular"; }
+
     <environment names="Development">
-        <link href="~/css/indigo-pink.css" rel="stylesheet" />
+        <link href="~/node_modules/@lib/material/core/theming/prebuilt/indigo-pink.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </environment>
     <environment names="Staging,Production">
     </environment>
