@@ -2,6 +2,9 @@
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MaterialModule } from '@angular/material';
+import 'node_modules/hammerjs/hammer.js';
+
 import { DashboardMainModule } from './dashboard/dashboard.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule  } from './app.routing';
@@ -14,6 +17,7 @@ import { APP_PROVIDERS } from './app.provider';
         HttpModule,
 
         //ui module
+        MaterialModule.forRoot(),
 
         //application feature module
         DashboardMainModule,

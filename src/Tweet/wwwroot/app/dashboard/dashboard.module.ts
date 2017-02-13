@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashbaordRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import { DialogResultExampleDialog } from './dashboard.component';
 
 @NgModule({
     imports: [
@@ -12,7 +13,11 @@ import { DashboardComponent } from './dashboard.component';
         DashbaordRoutingModule
     ],
     declarations: [
-        DashboardComponent
+        DashboardComponent,
+        DialogResultExampleDialog
+    ],
+    entryComponents: [
+        DialogResultExampleDialog
     ]
 })
 

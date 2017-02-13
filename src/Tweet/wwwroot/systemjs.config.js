@@ -22,6 +22,7 @@
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
             // other libraries
+            '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
             'lodash': 'npm:lodash',
             'rxjs': 'npm:rxjs'
         },

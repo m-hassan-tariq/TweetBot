@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
 import { NewsModel } from './shared/model/news.model'
 import { WebApiObservableService } from '../shared/service/web-api-observable.service';
@@ -11,21 +12,27 @@ import { WebApiPromiseService } from '../shared/service/web-api-promise.service'
 })
 
 export class DashboardComponent implements OnInit {
-    newsList: NewsModel[];
 
     constructor(
-        private webApiObservableService: WebApiObservableService) {
-        this.newsList = [];
+        private webApiObservableService: WebApiObservableService,
+        public dialog: MdDialog) {
+    }
+
+    openDialog() {
+        let dialogRef = this.dialog.open(DialogResultExampleDialog);
     }
 
     ngOnInit() {
-        this.populateNewsData();
     }
 
-    populateNewsData() {
+    get diagnostic(): string {
+        return JSON.stringify("testing");
     }
+}
 
-    get diagnostic() : string {
-        return JSON.stringify(this.newsList);
-    }
+@Component({
+    selector: 'dialog-result-example-dialog',
+    template: 'Testing',
+})
+export class DialogResultExampleDialog {
 }

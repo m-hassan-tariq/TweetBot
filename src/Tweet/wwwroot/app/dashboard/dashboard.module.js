@@ -13,6 +13,7 @@ var forms_1 = require('@angular/forms');
 var common_1 = require('@angular/common');
 var dashboard_routing_module_1 = require('./dashboard-routing.module');
 var dashboard_component_1 = require('./dashboard.component');
+var dashboard_component_2 = require('./dashboard.component');
 var DashboardMainModule = (function () {
     function DashboardMainModule() {
     }
@@ -24,7 +25,11 @@ var DashboardMainModule = (function () {
                 dashboard_routing_module_1.DashbaordRoutingModule
             ],
             declarations: [
-                dashboard_component_1.DashboardComponent
+                dashboard_component_1.DashboardComponent,
+                dashboard_component_2.DialogResultExampleDialog
+            ],
+            entryComponents: [
+                dashboard_component_2.DialogResultExampleDialog
             ]
         }), 
         __metadata('design:paramtypes', [])
