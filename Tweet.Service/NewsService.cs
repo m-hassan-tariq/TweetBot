@@ -18,16 +18,16 @@ namespace Tweet.Service
             client = new HttpClient();
         }
 
-        public async Task<News> GetNewsAsync(string sortBy, string source)
+        public async Task<New> GetNewsAsync(string sortBy, string source)
         {
             try
             {
-                News result = null;
+                New result = null;
                 string newsUrl = composeUrl(sortBy, source);
                 HttpResponseMessage response = await client.GetAsync(newsUrl);
                 if (response.IsSuccessStatusCode)
                 {
-                    result = await response.Content.ReadAsAsync<News>();
+                    result = await response.Content.ReadAsAsync<New>();
                 }
                 return result;
             }

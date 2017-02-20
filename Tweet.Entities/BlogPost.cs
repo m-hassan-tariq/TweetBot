@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tweet.Entities
 {
-    class blog
+    class BlogPost
     {
         public string header { get; set; }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tweet.Entities
 {
-    public class News
+    public class New
     {
         public string status { get; set; }
         public string source { get; set; }
