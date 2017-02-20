@@ -21,8 +21,9 @@
 bld/
 [Bb]in/
 [Oo]bj/
-bin/
-obj/
+
+# Config
+*.Config
 
 # Visual Studio 2015 cache/options directory
 .vs/
