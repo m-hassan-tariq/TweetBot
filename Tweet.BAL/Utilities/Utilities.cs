@@ -19,7 +19,7 @@ namespace Tweet.BAL
         {
             foreach (string term in filterTerms)
             {
-                if (data.Contains(term))
+                if (data.ToLower().Contains(term))
                     return true;
             }
             return false;
@@ -29,7 +29,7 @@ namespace Tweet.BAL
         {
             foreach (string term in filterTerms)
             {
-                if (data.Contains(term))
+                if (data.ToLower().Contains(term))
                     return data.Replace(term, '#' + term);
             }
             return data;
