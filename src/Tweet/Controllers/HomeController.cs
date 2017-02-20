@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Collections;
 using System.Net;
-using System.IO;
-using HtmlAgilityPack;
 using Tweet.Entities;
 
 namespace Tweet.Controllers

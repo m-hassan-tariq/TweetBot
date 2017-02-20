@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "HtmlAgilityPack": "1.4.9.5",
     "Microsoft.AspNet.WebApi.Client": "5.2.3",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.1",
