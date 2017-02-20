@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Tweet.Entities;
 
 namespace Tweet.Service
 {
@@ -21,7 +22,7 @@ namespace Tweet.Service
         /// <summary>
         /// Sends a tweet with the supplied text and returns the response from the Twitter API.
         /// </summary>
-        public Task<string> Tweet(string tweetContent)
+        public Task<TwitterResponse> Tweet(string tweetContent)
         {
             var data = new Dictionary<string, string> {
                 { "status", tweetContent },
@@ -31,7 +32,7 @@ namespace Tweet.Service
             return SendRequest(data);
         }
 
-        Task<string> SendRequest(Dictionary<string, string> data)
+        Task<TwitterResponse> SendRequest(Dictionary<string, string> data)
         {
             var fullUrl = ServiceConfig.TwitterApiUrl + ServiceConfig.SendTweetApiPath;
 
@@ -98,14 +99,14 @@ namespace Tweet.Service
         /// <summary>
         /// Send HTTP Request and return the response.
         /// </summary>
-        async Task<string> SendRequest(string fullUrl, string oAuthHeader, FormUrlEncodedContent formData)
+        async Task<TwitterResponse> SendRequest(string fullUrl, string oAuthHeader, FormUrlEncodedContent formData)
         {
             using (var http = new HttpClient())
             {
                 http.DefaultRequestHeaders.Add("Authorization", oAuthHeader);
 
                 var httpResp = await http.PostAsync(fullUrl, formData);
-                var respBody = await httpResp.Content.ReadAsStringAsync();
+                var respBody = await httpResp.Content.ReadAsAsync<TwitterResponse>();
 
                 return respBody;
             }

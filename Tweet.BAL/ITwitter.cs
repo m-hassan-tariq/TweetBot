@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Tweet.Entities;
 
-namespace Tweet.Service
+namespace Tweet.BAL
 {
-    public interface INewsService
+    public interface ITwitter
     {
-        Task<News> GetNewsAsync(string sortBy, string source);
+        Task<TwitterResponse> PostTweetAsync(string tweet);
     }
 }

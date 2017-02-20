@@ -12,7 +12,6 @@ namespace Tweet.Service
         private static string _consumerKeySecret;
         private static string _accessToken;
         private static string _accessTokenSecret;
-        private static bool? _enableErrorLog;
 
         public static string NewsMainUrl
         {

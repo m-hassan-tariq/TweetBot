@@ -11,23 +11,22 @@ namespace Tweet.Service
     public class NewsService : INewsService
     {
         static HttpClient client;
-        static string mainURL;
 
         public NewsService()
         {
             client = new HttpClient();
         }
 
-        public async Task<New> GetNewsAsync(string sortBy, string source)
+        public async Task<News> GetNewsAsync(string sortBy, string source)
         {
             try
             {
-                New result = null;
+                News result = null;
                 string newsUrl = composeUrl(sortBy, source);
                 HttpResponseMessage response = await client.GetAsync(newsUrl);
                 if (response.IsSuccessStatusCode)
                 {
-                    result = await response.Content.ReadAsAsync<New>();
+                    result = await response.Content.ReadAsAsync<News>();
                 }
                 return result;
             }

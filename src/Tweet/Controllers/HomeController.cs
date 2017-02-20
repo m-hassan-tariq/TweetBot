@@ -24,15 +24,15 @@ namespace Tweet.Controllers
             return View();
         }
 
-        public async Task<New> GetNewsAsync(string source, string sortBy, string apiKey)
+        public async Task<News> GetNewsAsync(string source, string sortBy, string apiKey)
         {
             try
             {
-                New result = null;
+                News result = null;
                 HttpResponseMessage response = await client.GetAsync("https://newsapi.org/v1/articles?source=" + source + "&sortBy=" + sortBy + "&apiKey=" + apiKey);
                 if (response.IsSuccessStatusCode)
                 {
-                    result = await response.Content.ReadAsAsync<New>();
+                    result = await response.Content.ReadAsAsync<News>();
                 }
                 return result;
             }

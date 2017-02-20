@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlogPost.cs" />
-    <Compile Include="New.cs" />
+    <Compile Include="News.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TwitterResponse.cs" />
   </ItemGroup>

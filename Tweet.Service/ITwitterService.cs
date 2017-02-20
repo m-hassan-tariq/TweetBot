@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tweet.Entities;
 
 namespace Tweet.Service
 {
-    interface ITwitterService
+    public interface ITwitterService
     {
-        Task<string> Tweet(string tweetContent);
+        Task<TwitterResponse> Tweet(string tweetContent);
     }
 }
