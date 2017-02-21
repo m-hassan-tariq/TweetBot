@@ -73,7 +73,6 @@
     <Compile Include="ITwitterRepository.cs" />
     <Compile Include="NewsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BALConfig.cs" />
     <Compile Include="TwitterRepository.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
@@ -90,7 +89,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="App.config" />
-    <None Include="Utilities\BlogPosts.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

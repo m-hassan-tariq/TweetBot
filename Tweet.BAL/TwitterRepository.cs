@@ -42,7 +42,7 @@ namespace Tweet.BAL
                 {
                     if (!articleEntity.title.ContainsAny(filterTerms))
                     {
-                        response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags().LimitTo(150) + " " + articleEntity.url);
+                        response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags(hashtagTerms).LimitTo(100) + " " + articleEntity.url);
                     }
 
                 }
@@ -61,7 +61,7 @@ namespace Tweet.BAL
                 {
                     if (!articleEntity.title.ContainsAny(filterTerms))
                     {
-                        response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags().LimitTo(150) + " " + articleEntity.url);
+                        response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags(hashtagTerms).LimitTo(100) + " " + articleEntity.url);
                     }
 
                 }
@@ -93,7 +93,7 @@ namespace Tweet.BAL
             {
                 if (!postEntity.header.ContainsAny(filterTerms))
                 {
-                    response = await _twitterService.Tweet(postEntity.header.ReplaceKeywordsWithHashtags().LimitTo(150) + " " + postEntity.url);
+                    response = await _twitterService.Tweet(postEntity.header.ReplaceKeywordsWithHashtags(hashtagTerms).LimitTo(100) + " " + postEntity.url);
                 }
 
             }

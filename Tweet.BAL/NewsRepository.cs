@@ -34,7 +34,7 @@ namespace Tweet.BAL
 
             foreach (var sourceEntity in _balSettings.Value.Source.Split(';'))
             {
-                News result = await _newsService.GetNewsAsync(sortBy, sourceEntity.Trim());
+                News result = await _newsService.GetNewsAsync(sourceEntity.Trim(), sortBy);
                 if(result != null)
                 {
                     newsItem.AddRange(result.articles);
@@ -48,7 +48,7 @@ namespace Tweet.BAL
         {
             List<BlogPost> result = new List<BlogPost>();
 
-            using (StreamReader data = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Utilities/BlogPosts.json")))
+            using (StreamReader data = new StreamReader("BlogPosts.json"))
             {
                 string json = data.ReadToEnd();
                 result = JsonConvert.DeserializeObject<List<BlogPost>>(json);

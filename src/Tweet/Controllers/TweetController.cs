@@ -38,14 +38,14 @@ namespace Tweet.Controllers
         [Route("TopNews")]
         public async Task<News> GetTopNews(string source)
         {
-            return await _newsData.GetNewsAsync("top", source);
+            return await _newsData.GetNewsAsync(source, "top");
         }
 
         [HttpGet]
         [Route("LatestNews")]
         public async Task<News> GetLastestNews(string source)
         {
-            return await _newsData.GetNewsAsync("latest", source);
+            return await _newsData.GetNewsAsync(source, "latest");
         }
 
         [HttpGet]

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Tweet.BAL
@@ -19,7 +20,7 @@ namespace Tweet.BAL
         {
             foreach (string term in filterTerms)
             {
-                var item = term.Trim();
+                var item = term.Trim().ToLower();
                 if (!string.IsNullOrEmpty(item))
                 {
                     if (data.ToLower().Contains(term))
@@ -33,11 +34,13 @@ namespace Tweet.BAL
         {
             foreach (string term in filterTerms)
             {
-                var item = term.Trim();
+                var item = term.Trim().ToLower();
                 if (!string.IsNullOrEmpty(item))
                 {
                     if (data.ToLower().Contains(item))
-                        return data.Replace(item, '#' + item);
+                    {
+                        data = Regex.Replace(data, item, '#' + item, RegexOptions.IgnoreCase);
+                    }  
                 }
             }
             return data;
