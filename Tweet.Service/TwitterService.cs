@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -13,10 +14,12 @@ namespace Tweet.Service
     {
         readonly HMACSHA1 sigHasher;
         readonly DateTime epochUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private readonly IOptions<ServiceSettings> _serviceSettings;
 
-        public TwitterService()
+        public TwitterService(IOptions<ServiceSettings> serviceSettings)
         {
-            sigHasher = new HMACSHA1(new ASCIIEncoding().GetBytes(string.Format("{0}&{1}", ServiceConfig.ConsumerKeySecret, ServiceConfig.AccessTokenSecret)));
+            _serviceSettings = serviceSettings;
+            sigHasher = new HMACSHA1(new ASCIIEncoding().GetBytes(string.Format("{0}&{1}", _serviceSettings.Value.ConsumerKeySecret, _serviceSettings.Value.AccessTokenSecret)));
         }
 
         /// <summary>
@@ -34,17 +37,17 @@ namespace Tweet.Service
 
         Task<TwitterResponse> SendRequest(Dictionary<string, string> data)
         {
-            var fullUrl = ServiceConfig.TwitterApiUrl + ServiceConfig.SendTweetApiPath;
+            var fullUrl = _serviceSettings.Value.TwitterApiUrl + _serviceSettings.Value.SendTweetApiPath;
 
             // Timestamps are in seconds since 1/1/1970.
             var timestamp = (int)((DateTime.UtcNow - epochUtc).TotalSeconds);
 
             // Add all the OAuth headers we'll need to use when constructing the hash.
-            data.Add("oauth_consumer_key", ServiceConfig.ConsumerKey);
+            data.Add("oauth_consumer_key", _serviceSettings.Value.ConsumerKey);
             data.Add("oauth_signature_method", "HMAC-SHA1");
             data.Add("oauth_timestamp", timestamp.ToString());
             data.Add("oauth_nonce", "a"); // Required, but Twitter doesn't appear to use it, so "a" will do.
-            data.Add("oauth_token", ServiceConfig.AccessToken);
+            data.Add("oauth_token", _serviceSettings.Value.AccessToken);
             data.Add("oauth_version", "1.0");
 
             // Generate the OAuth signature and add it to our payload.

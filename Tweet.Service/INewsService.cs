@@ -9,6 +9,6 @@ namespace Tweet.Service
 {
     public interface INewsService
     {
-        Task<News> GetNewsAsync(string sortBy, string source);
+        Task<News> GetNewsAsync(string source, string sortBy);
     }
 }

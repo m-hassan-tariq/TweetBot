@@ -19,8 +19,12 @@ namespace Tweet.BAL
         {
             foreach (string term in filterTerms)
             {
-                if (data.ToLower().Contains(term))
-                    return true;
+                var item = term.Trim();
+                if (!string.IsNullOrEmpty(item))
+                {
+                    if (data.ToLower().Contains(term))
+                        return true;
+                }
             }
             return false;
         }
@@ -29,11 +33,14 @@ namespace Tweet.BAL
         {
             foreach (string term in filterTerms)
             {
-                if (data.ToLower().Contains(term))
-                    return data.Replace(term, '#' + term);
+                var item = term.Trim();
+                if (!string.IsNullOrEmpty(item))
+                {
+                    if (data.ToLower().Contains(item))
+                        return data.Replace(item, '#' + item);
+                }
             }
             return data;
         }
-
     }
 }

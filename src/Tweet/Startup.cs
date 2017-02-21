@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using Tweet.BAL;
+using Tweet.Service;
+using Tweet.Entities;
 
 namespace Tweet
 {
@@ -31,6 +34,14 @@ namespace Tweet
         {
             // Add framework services.
             services.AddMvc();
+
+            services.Configure<BALSettings>(Configuration.GetSection("BALSettings"));
+            services.Configure<ServiceSettings>(Configuration.GetSection("ServiceSettings"));
+
+            services.AddTransient<INewsRepository, NewsRepository>();
+            services.AddTransient<ITwitterRepository, TwitterRepository>();
+            services.AddTransient<INewsService, NewsService>();
+            services.AddTransient<ITwitterService, TwitterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

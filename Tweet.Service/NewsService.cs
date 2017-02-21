@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -11,18 +12,20 @@ namespace Tweet.Service
     public class NewsService : INewsService
     {
         static HttpClient client;
+        private readonly IOptions<ServiceSettings> _serviceSettings;
 
-        public NewsService()
+        public NewsService(IOptions<ServiceSettings> serviceSettings)
         {
+            _serviceSettings = serviceSettings;
             client = new HttpClient();
         }
 
-        public async Task<News> GetNewsAsync(string sortBy, string source)
+        public async Task<News> GetNewsAsync(string source, string sortBy)
         {
             try
             {
                 News result = null;
-                string newsUrl = composeUrl(sortBy, source);
+                string newsUrl = composeUrl(source, sortBy);
                 HttpResponseMessage response = await client.GetAsync(newsUrl);
                 if (response.IsSuccessStatusCode)
                 {
@@ -37,9 +40,9 @@ namespace Tweet.Service
             }
         }
 
-        public string composeUrl(string sortBy, string source)
+        public string composeUrl(string source, string sortBy)
         {
-            return ServiceConfig.NewsMainUrl + source + "&sortBy=" + sortBy + "&apiKey=" + ServiceConfig.ApiKey;
+            return _serviceSettings.Value.NewsMainUrl + source + "&sortBy=" + sortBy + "&apiKey=" + _serviceSettings.Value.NewsApiKey;
         }
     }
 }

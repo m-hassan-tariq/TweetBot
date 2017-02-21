@@ -20,13 +20,13 @@ namespace Tweet.BAL
             }
         }
 
-        public static char SourceSplitter
+        public static string SourceSplitter
         {
             get
             {
-                if (string.IsNullOrEmpty(_sourceSplitter.ToString()))
+                if (string.IsNullOrEmpty(_sourceSplitter))
                     _sourceSplitter = ConfigurationManager.AppSettings["SourceSplitter"];
-                return char.Parse(_sourceSplitter);
+                return _sourceSplitter;
             }
         }
 

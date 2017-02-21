@@ -3,42 +3,98 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Tweet.BAL;
+using Tweet.Entities;
 
 namespace Tweet.Controllers
 {
     [Route("api/[controller]")]
     public class TweetController : Controller
     {
-        // GET: api/values
+        private readonly INewsRepository _newsData;
+        private readonly ITwitterRepository _twitter;
+
+        public TweetController(INewsRepository newsData, ITwitterRepository twitter)
+        {
+            _newsData = newsData;
+            _twitter = twitter;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("AllTopNews")]
+        public async Task<IEnumerable<Article>> GetAllTopNews()
         {
-            return new string[] { "value1", "value2" };
+            return await _newsData.GetAllNewsAsync("top");
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet]
+        [Route("AllLatestNews")]
+        public async Task<IEnumerable<Article>> GetAllLatestNews()
         {
-            return "value";
+            return await _newsData.GetAllNewsAsync("latest");
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpGet]
+        [Route("TopNews")]
+        public async Task<News> GetTopNews(string source)
         {
+            return await _newsData.GetNewsAsync("top", source);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpGet]
+        [Route("LatestNews")]
+        public async Task<News> GetLastestNews(string source)
         {
+            return await _newsData.GetNewsAsync("latest", source);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet]
+        [Route("PostTweet")]
+        public async Task<TwitterResponse> PostTweet(string content)
         {
+            return await _twitter.PostTweetAsync(content);
+        }
+
+        [HttpGet]
+        [Route("TweetLatestNews")]
+        public async Task<TwitterResponse> PostLatestNewsTweet(string source)
+        {
+            return await _twitter.PostNewsTweetAsync(source, "latest");
+        }
+
+        [HttpGet]
+        [Route("TweetTopNews")]
+        public async Task<TwitterResponse> PostTopNewsTweet(string source)
+        {
+            return await _twitter.PostNewsTweetAsync(source, "top");
+        }
+
+        [HttpGet]
+        [Route("TweetAllLatestNews")]
+        public async Task<TwitterResponse> PostAllLatestNewsTweet()
+        {
+            return await _twitter.PostAllNewsTweetAsync("latest");
+        }
+
+        [HttpGet]
+        [Route("TweetAllTopNews")]
+        public async Task<TwitterResponse> PostAllTopNewsTweet()
+        {
+            return await _twitter.PostAllNewsTweetAsync("top");
+        }
+
+        [HttpGet]
+        [Route("TweetAllPost")]
+        public async Task<TwitterResponse> PostAllBlogTweet()
+        {
+            return await _twitter.PostAllBlogTweetAsync();
+        }
+
+        [HttpGet]
+        [Route("TweetPostByCategory")]
+        public async Task<TwitterResponse> PostBlogTweetByCategoryAsync(string category)
+        {
+            return await _twitter.PostBlogTweetByCategoryAsync(category);
         }
     }
 }

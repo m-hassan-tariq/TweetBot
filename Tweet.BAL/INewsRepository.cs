@@ -7,10 +7,12 @@ using Tweet.Entities;
 
 namespace Tweet.BAL
 {
-    public interface INewsData
+    public interface INewsRepository
     {
-        Task<News> GetNewsAsync(string mode, string source);
+        Task<News> GetNewsAsync(string source, string sortBy);
 
         Task<List<Article>> GetAllNewsAsync(string mode);
+
+        List<BlogPost> LoadBlogPostsData();
     }
 }
