@@ -48,7 +48,7 @@ namespace Tweet.BAL
         {
             List<BlogPost> result = new List<BlogPost>();
 
-            using (StreamReader data = new StreamReader("BlogPosts.json"))
+            using (StreamReader data = new StreamReader("blogPosts.json"))
             {
                 string json = data.ReadToEnd();
                 result = JsonConvert.DeserializeObject<List<BlogPost>>(json);
