@@ -9,5 +9,7 @@
 /// <reference path="app/dashboard/shared/model/news.model.js" />
 /// <reference path="app/shared/service/web-api-observable.service.js" />
 /// <reference path="app/shared/service/web-api-promise.service.js" />
+/// <reference path="js/bootstrap.js" />
+/// <reference path="js/jquery.js" />
 /// <reference path="main.js" />
 /// <reference path="systemjs.config.js" />
