@@ -41,7 +41,7 @@ var WebApiObservableService = (function () {
             .catch(this.handleError);
     };
     WebApiObservableService.prototype.getServiceWithFixedQueryString = function (url, param) {
-        this.options = new http_1.RequestOptions({ headers: this.headers, search: 'query=' + param });
+        this.options = new http_1.RequestOptions({ headers: this.headers, search: 'content=' + param });
         return this.http
             .get(url, this.options)
             .map(this.extractData)

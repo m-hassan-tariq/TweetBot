@@ -1,15 +1,18 @@
 ﻿<div class="row">
-    <div class="col-xl-2 col-lg-2">
+    <div class="col-xl-3 col-lg-3">
+        <button type="button" class="btn center-block btn-md btn-info" (click)="sendAllTweet()">
+            <i class="fa fa-twitter-square">&nbsp; Tweet All Latest News</i>
+        </button>
     </div>
-    <div class="col-xl-8 col-lg-8">
+    <div class="col-xl-7 col-lg-7">
         <span *ngFor="let item of sourceList">
             <button type="button" class="btn-sm btn-success" (click)="sourceName = item;">
                 <i class="fa fa-database">&nbsp; {{item}}</i> 
             </button>&nbsp;&nbsp;&nbsp;
         </span>
     </div>
-</div>
-<div class="col-xl-2 col-lg-2">
+    <div class="col-xl-2 col-lg-2">
+    </div>
 </div>
 <br />
 <div class="row">
@@ -30,7 +33,7 @@
                 <tbody>
                     <tr *ngFor="let item of articleList | searchfilter: 'source' : sourceName">
                         <td class="col-xl-1 col-lg-1">
-                            <button type="button" class="center-block btn-xs btn-info">
+                            <button type="button" class="center-block btn-xs btn-info" (click)="sendTweet(item)">
                                 <i class="fa fa-twitter"></i>
                             </button>
                         </td>

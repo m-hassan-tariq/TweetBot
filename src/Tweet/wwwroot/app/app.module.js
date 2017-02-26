@@ -13,13 +13,7 @@ var http_1 = require('@angular/http');
 var platform_browser_1 = require('@angular/platform-browser');
 var material_1 = require('@angular/material');
 require('node_modules/hammerjs/hammer.js');
-var dashboard_component_1 = require('./dashboard/dashboard.component');
-var tweet_component_1 = require('./tweet/tweet.component');
-var latest_news_component_1 = require('./news/latest-news.component');
-var top_news_component_1 = require('./news/top-news.component');
-var blog_component_1 = require('./blog/blog.component');
 var app_component_1 = require('./app.component');
-var searchfilter_pipe_1 = require('./shared/service/searchfilter.pipe');
 var app_routing_1 = require('./app.routing');
 var app_provider_1 = require('./app.provider');
 var AppModule = (function () {
@@ -38,15 +32,11 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                dashboard_component_1.DashboardComponent,
-                tweet_component_1.TweetComponent,
-                latest_news_component_1.LatestNewsComponent,
-                top_news_component_1.TopNewsComponent,
-                blog_component_1.BlogComponent,
-                searchfilter_pipe_1.SearchFilterPipe
+                app_provider_1.All_Components,
+                app_provider_1.All_Filters
             ],
             providers: [
-                app_provider_1.APP_PROVIDERS
+                app_provider_1.All_Services
             ],
             bootstrap: [
                 app_component_1.AppComponent

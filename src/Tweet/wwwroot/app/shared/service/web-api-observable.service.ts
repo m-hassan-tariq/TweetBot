@@ -40,7 +40,7 @@ export class WebApiObservableService {
     }
 
     getServiceWithFixedQueryString(url: string, param: any): Observable<any> {
-        this.options = new RequestOptions({ headers: this.headers, search: 'query=' + param });
+        this.options = new RequestOptions({ headers: this.headers, search: 'content=' + param });
         return this.http
             .get(url, this.options)
             .map(this.extractData)

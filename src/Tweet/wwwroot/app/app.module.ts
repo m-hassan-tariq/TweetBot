@@ -5,17 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from '@angular/material';
 import 'node_modules/hammerjs/hammer.js';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TweetComponent } from './tweet/tweet.component';
-import { LatestNewsComponent } from './news/latest-news.component';
-import { TopNewsComponent } from './news/top-news.component';
-import { BlogComponent } from './blog/blog.component';
 import { AppComponent } from './app.component';
-
-import { SearchFilterPipe } from './shared/service/searchfilter.pipe';
-
 import { AppRoutingModule  } from './app.routing';
-import { APP_PROVIDERS } from './app.provider';
+import { All_Services, All_Components, All_Filters } from './app.provider';
 
 @NgModule({
     imports: [
@@ -31,16 +23,12 @@ import { APP_PROVIDERS } from './app.provider';
     ],
     declarations: [
         AppComponent,
-        DashboardComponent,
-        TweetComponent,
-        LatestNewsComponent,
-        TopNewsComponent,
-        BlogComponent,
+        All_Components,
 
-        SearchFilterPipe
+        All_Filters
     ],
     providers: [
-        APP_PROVIDERS
+        All_Services
     ],
     bootstrap: [
         AppComponent

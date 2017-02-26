@@ -9,11 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var tweet_service_1 = require('../shared/service/tweet.service');
 var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
-var _ = require("lodash");
+var toaster_service_1 = require('../shared/service/toaster.service');
+//import * as _ from "lodash";
 var LatestNewsComponent = (function () {
-    function LatestNewsComponent(webApiObservableService) {
+    function LatestNewsComponent(toasterService, webApiObservableService, tweetService) {
+        this.toasterService = toasterService;
         this.webApiObservableService = webApiObservableService;
+        this.tweetService = tweetService;
         this.sourceList = [];
         this.sourceName = 'All';
     }
@@ -23,14 +27,22 @@ var LatestNewsComponent = (function () {
             .getService('api/Tweet/AllLatestNews')
             .subscribe(function (result) {
             if (result) {
-                _this.sourceList = _.uniq(_.map(result, 'source'));
+                _this.sourceList = result.map(function (item) { return item.source; })
+                    .filter(function (value, index, self) { return self.indexOf(value) === index; });
                 _this.sourceList.push('All');
                 _this.sourceList.sort();
                 _this.articleList = result;
+                _this.toasterService.showToaster('Latest News have been loaded');
             }
         }, function (error) {
             console.log(error);
         });
+    };
+    LatestNewsComponent.prototype.sendTweet = function (item) {
+        this.tweetService.postNewsTweet(item.title, item.url);
+    };
+    LatestNewsComponent.prototype.sendAllTweet = function () {
+        this.tweetService.postAllNewsTweet('latest');
     };
     Object.defineProperty(LatestNewsComponent.prototype, "diagnostic", {
         get: function () {
@@ -44,7 +56,7 @@ var LatestNewsComponent = (function () {
             selector: 'latest-news',
             templateUrl: './app/news/latest-news.component.html'
         }), 
-        __metadata('design:paramtypes', [web_api_observable_service_1.WebApiObservableService])
+        __metadata('design:paramtypes', [toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService, tweet_service_1.TweetService])
     ], LatestNewsComponent);
     return LatestNewsComponent;
 }());
