@@ -4,11 +4,11 @@ import { WebApiObservableService } from '../shared/service/web-api-observable.se
 import { WebApiPromiseService } from '../shared/service/web-api-promise.service';
 
 @Component({
-    selector: 'dashboard',
-    templateUrl: './app/dashboard/dashboard.component.html'
+    selector: 'latest-news',
+    templateUrl: './app/news/latest-news.component.html'
 })
 
-export class DashboardComponent implements OnInit {
+export class LatestNewsComponent implements OnInit {
 
     constructor(
         private webApiObservableService: WebApiObservableService) {

@@ -10,27 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
-var DashboardComponent = (function () {
-    function DashboardComponent(webApiObservableService) {
+var BlogComponent = (function () {
+    function BlogComponent(webApiObservableService) {
         this.webApiObservableService = webApiObservableService;
     }
-    DashboardComponent.prototype.ngOnInit = function () {
+    BlogComponent.prototype.ngOnInit = function () {
     };
-    Object.defineProperty(DashboardComponent.prototype, "diagnostic", {
+    Object.defineProperty(BlogComponent.prototype, "diagnostic", {
         get: function () {
             return JSON.stringify("testing");
         },
         enumerable: true,
         configurable: true
     });
-    DashboardComponent = __decorate([
+    BlogComponent = __decorate([
         core_1.Component({
-            selector: 'dashboard',
-            templateUrl: './app/dashboard/dashboard.component.html'
+            selector: 'blog',
+            templateUrl: './app/blog/blog.component.html'
         }), 
         __metadata('design:paramtypes', [web_api_observable_service_1.WebApiObservableService])
-    ], DashboardComponent);
-    return DashboardComponent;
+    ], BlogComponent);
+    return BlogComponent;
 }());
-exports.DashboardComponent = DashboardComponent;
-//# sourceMappingURL=dashboard.component.js.map
+exports.BlogComponent = BlogComponent;
+//# sourceMappingURL=blog.component.js.map

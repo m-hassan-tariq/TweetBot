@@ -9,11 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var AppComponent = (function () {
-    function AppComponent() {
-        this.objLoaderStatus = false;
+    function AppComponent(router, route) {
+        this.router = router;
+        this.route = route;
     }
     AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.router.events
+            .filter(function (event) { return event instanceof router_1.NavigationEnd; })
+            .subscribe(function () {
+            var root = _this.router.routerState.snapshot.root;
+            while (root) {
+                if (root.children && root.children.length) {
+                    root = root.children[0];
+                }
+                else if (root.data && root.data["title"]) {
+                    _this.pageTitle = root.data["title"];
+                    return;
+                }
+                else {
+                    return;
+                }
+            }
+        });
     };
     AppComponent.prototype.onCloseAlert = function (reason) {
     };
@@ -28,7 +48,7 @@ var AppComponent = (function () {
             selector: 'my-app',
             templateUrl: './app/app.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute])
     ], AppComponent);
     return AppComponent;
 }());

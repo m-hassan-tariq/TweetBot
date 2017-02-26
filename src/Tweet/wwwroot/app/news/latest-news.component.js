@@ -10,27 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
-var DashboardComponent = (function () {
-    function DashboardComponent(webApiObservableService) {
+var LatestNewsComponent = (function () {
+    function LatestNewsComponent(webApiObservableService) {
         this.webApiObservableService = webApiObservableService;
     }
-    DashboardComponent.prototype.ngOnInit = function () {
+    LatestNewsComponent.prototype.ngOnInit = function () {
     };
-    Object.defineProperty(DashboardComponent.prototype, "diagnostic", {
+    Object.defineProperty(LatestNewsComponent.prototype, "diagnostic", {
         get: function () {
             return JSON.stringify("testing");
         },
         enumerable: true,
         configurable: true
     });
-    DashboardComponent = __decorate([
+    LatestNewsComponent = __decorate([
         core_1.Component({
-            selector: 'dashboard',
-            templateUrl: './app/dashboard/dashboard.component.html'
+            selector: 'latest-news',
+            templateUrl: './app/news/latest-news.component.html'
         }), 
         __metadata('design:paramtypes', [web_api_observable_service_1.WebApiObservableService])
-    ], DashboardComponent);
-    return DashboardComponent;
+    ], LatestNewsComponent);
+    return LatestNewsComponent;
 }());
-exports.DashboardComponent = DashboardComponent;
-//# sourceMappingURL=dashboard.component.js.map
+exports.LatestNewsComponent = LatestNewsComponent;
+//# sourceMappingURL=latest-news.component.js.map

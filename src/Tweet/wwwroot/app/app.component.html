@@ -20,25 +20,40 @@
         <div class="collapse navbar-collapse navbar-toggleable-sm navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav list-group">
                 <li routerLinkActive="list-group-item">
-                    <a routerLink="dashboard/home"><i class="fa fa-fw fa-dashboard"></i>Dashboard</a>
+                    <a routerLink="dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
-                <li class="list-group-item">
-                    <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                <li routerLinkActive="list-group-item">
+                    <a routerLink="tweet"><i class="fa fa-fw fa-retweet"></i> Tweet</a>
                 </li>
-                <li class="list-group-item">
-                    <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
+                <li routerLinkActive="list-group-item">
+                    <a routerLink="latest-news"><i class="fa fa-fw fa-newspaper-o"></i> Latest News</a>
                 </li>
-                <li class="list-group-item">
-                    <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                <li routerLinkActive="list-group-item">
+                    <a routerLink="top-news"><i class="fa fa-fw fa-desktop"></i> Top News</a>
                 </li>
-                <li class="list-group-item">
-                    <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                <li routerLinkActive="list-group-item">
+                    <a routerLink="blog"><i class="fa fa-fw fa-wordpress"></i> Blog</a>
                 </li>
             </ul>
         </div>
     </nav>
     <div id="page-wrapper">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        {{pageTitle}} <small>Overview</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i><a routerLink="dashboard">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-folder-open-o"></i> {{pageTitle}}
+                        </li>
+                    </ol>
+                </div>
+            </div>
             <router-outlet></router-outlet>
         </div>
     </div>

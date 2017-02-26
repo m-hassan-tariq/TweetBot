@@ -10,27 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
-var DashboardComponent = (function () {
-    function DashboardComponent(webApiObservableService) {
+var TweetComponent = (function () {
+    function TweetComponent(webApiObservableService) {
         this.webApiObservableService = webApiObservableService;
     }
-    DashboardComponent.prototype.ngOnInit = function () {
+    TweetComponent.prototype.ngOnInit = function () {
     };
-    Object.defineProperty(DashboardComponent.prototype, "diagnostic", {
+    Object.defineProperty(TweetComponent.prototype, "diagnostic", {
         get: function () {
             return JSON.stringify("testing");
         },
         enumerable: true,
         configurable: true
     });
-    DashboardComponent = __decorate([
+    TweetComponent = __decorate([
         core_1.Component({
-            selector: 'dashboard',
-            templateUrl: './app/dashboard/dashboard.component.html'
+            selector: 'tweet',
+            templateUrl: './app/tweet/tweet.component.html'
         }), 
         __metadata('design:paramtypes', [web_api_observable_service_1.WebApiObservableService])
-    ], DashboardComponent);
-    return DashboardComponent;
+    ], TweetComponent);
+    return TweetComponent;
 }());
-exports.DashboardComponent = DashboardComponent;
-//# sourceMappingURL=dashboard.component.js.map
+exports.TweetComponent = TweetComponent;
+//# sourceMappingURL=tweet.component.js.map
