@@ -2,6 +2,8 @@
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
+import { ToasterService } from './toaster.service';
+
 // Observable class extensions
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
@@ -20,7 +22,8 @@ export class WebApiObservableService {
     headers: Headers;
     options: RequestOptions;
 
-    constructor(private http: Http) {
+    constructor(private http: Http,
+        private toasterService: ToasterService) {
         this.headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.options = new RequestOptions({ headers: this.headers });
     }
@@ -116,7 +119,7 @@ export class WebApiObservableService {
     private handleError(error: any) {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg);
+        this.toasterService.showToaster(errMsg);
         return Observable.throw(errMsg);
     }
 }

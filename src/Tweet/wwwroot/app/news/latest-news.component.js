@@ -35,7 +35,7 @@ var LatestNewsComponent = (function () {
                 _this.toasterService.showToaster('Latest News have been loaded');
             }
         }, function (error) {
-            console.log(error);
+            _this.toasterService.showToaster(error);
         });
     };
     LatestNewsComponent.prototype.sendTweet = function (item) {

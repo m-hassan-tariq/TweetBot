@@ -41,7 +41,7 @@ export class LatestNewsComponent implements OnInit {
                 }
             },
             error => {
-                console.log(<any>error);
+                this.toasterService.showToaster(<any>error);
             }
         );
     }

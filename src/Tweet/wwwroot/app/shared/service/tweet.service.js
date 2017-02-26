@@ -10,35 +10,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var web_api_observable_service_1 = require('./web-api-observable.service');
+var toaster_service_1 = require('./toaster.service');
 var TweetService = (function () {
-    function TweetService(webApiObservableService) {
+    function TweetService(toasterService, webApiObservableService) {
+        this.toasterService = toasterService;
         this.webApiObservableService = webApiObservableService;
     }
     TweetService.prototype.postNewsTweet = function (title, url) {
-        var content = title.substring(0, 100) + ' - ' + url;
-        console.log(content);
+        var _this = this;
+        var content = title.substring(0, 100) + ' ' + url;
         this.webApiObservableService
             .getServiceWithFixedQueryString('api/Tweet/PostTweet', content)
             .subscribe(function (result) {
-            console.log(result);
+            _this.toasterService.showToaster("Post with title: " + title + " is tweeted");
         }, function (error) {
-            console.log(error);
+            _this.toasterService.showToaster(error);
         });
     };
     TweetService.prototype.postAllNewsTweet = function (sortBy) {
-        var url = sortBy == 'latest' ? 'PostAllLatestNewsTweet' : 'PostAllTopNewsTweet';
+        var _this = this;
+        var url = sortBy == 'latest' ? 'TweetAllLatestNews' : 'TweetAllTopNews';
         console.log(url);
         this.webApiObservableService
             .getService('api/Tweet/' + url)
             .subscribe(function (result) {
-            console.log(result);
+            _this.toasterService.showToaster("All latest news posts are tweeted");
         }, function (error) {
-            console.log(error);
+            _this.toasterService.showToaster(error);
         });
     };
     TweetService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [web_api_observable_service_1.WebApiObservableService])
+        __metadata('design:paramtypes', [toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService])
     ], TweetService);
     return TweetService;
 }());
