@@ -19,6 +19,7 @@ var latest_news_component_1 = require('./news/latest-news.component');
 var top_news_component_1 = require('./news/top-news.component');
 var blog_component_1 = require('./blog/blog.component');
 var app_component_1 = require('./app.component');
+var searchfilter_pipe_1 = require('./shared/service/searchfilter.pipe');
 var app_routing_1 = require('./app.routing');
 var app_provider_1 = require('./app.provider');
 var AppModule = (function () {
@@ -41,7 +42,8 @@ var AppModule = (function () {
                 tweet_component_1.TweetComponent,
                 latest_news_component_1.LatestNewsComponent,
                 top_news_component_1.TopNewsComponent,
-                blog_component_1.BlogComponent
+                blog_component_1.BlogComponent,
+                searchfilter_pipe_1.SearchFilterPipe
             ],
             providers: [
                 app_provider_1.APP_PROVIDERS

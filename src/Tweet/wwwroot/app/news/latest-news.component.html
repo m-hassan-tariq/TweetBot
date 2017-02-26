@@ -1,1 +1,64 @@
-﻿Latest News
+﻿<div class="row">
+    <div class="col-xl-2 col-lg-2">
+    </div>
+    <div class="col-xl-8 col-lg-8">
+        <span *ngFor="let item of sourceList">
+            <button type="button" class="btn-sm btn-success" (click)="sourceName = item;">
+                <i class="fa fa-database">&nbsp; {{item}}</i> 
+            </button>&nbsp;&nbsp;&nbsp;
+        </span>
+    </div>
+</div>
+<div class="col-xl-2 col-lg-2">
+</div>
+<br />
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th class="col-xl-1 col-lg-1 text-md-center">Tweet</th>
+                        <th class="col-xl-3 col-lg-3">Title</th>
+                        <th class="col-xl-4 col-lg-4">Description</th>
+                        <th class="col-xl-1 col-lg-1">Image</th>
+                        <th class="col-xl-1 col-lg-1">Source</th>
+                        <th class="col-xl-1 col-lg-1">Author</th>
+                        <th class="col-xl-1 col-lg-1">Post Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of articleList | searchfilter: 'source' : sourceName">
+                        <td class="col-xl-1 col-lg-1">
+                            <button type="button" class="center-block btn-xs btn-info">
+                                <i class="fa fa-twitter"></i>
+                            </button>
+                        </td>
+                        <td class="col-xl-3 col-lg-3">
+                            <a target="_blank" href="{{item.url}}">
+                                <span class="label label-warning" style="margin-bottom:4px;white-space: normal;">{{item.title}}</span>
+                            </a>
+                        </td>
+                        <td class="col-xl-4 col-lg-4">
+                            <span class="label label-default" style="margin-bottom:4px;white-space: normal;">{{item.description}}</span>
+                        </td>
+                        <td class="col-xl-1 col-lg-1">
+                            <a target="_blank" href="{{item.url}}">
+                                <img width="32" height="32" src="{{item.urlToImage == '' ? '../../images/Image-not-found.gif' : item.urlToImage}}" />
+                            </a>
+                        </td>
+                        <td class="col-xl-1 col-lg-1">
+                            <span class="label label-warning">{{item.source}}</span>
+                        </td>
+                        <td class="col-xl-1 col-lg-1">
+                            <span class="label label-default" style="margin-bottom:4px;white-space: normal;">{{item.author}}</span>
+                        </td>
+                        <td class="col-xl-1 col-lg-1">
+                            <span class="label label-default">{{item.publishedAt | date: 'short'}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

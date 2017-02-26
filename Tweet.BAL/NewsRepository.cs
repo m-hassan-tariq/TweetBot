@@ -35,8 +35,13 @@ namespace Tweet.BAL
             foreach (var sourceEntity in _balSettings.Value.Source.Split(';'))
             {
                 News result = await _newsService.GetNewsAsync(sourceEntity.Trim(), sortBy);
+                               
                 if(result != null)
                 {
+                    foreach (var item in result.articles)
+                    {
+                        item.source = result.source;
+                    }
                     newsItem.AddRange(result.articles);
                 }
             }

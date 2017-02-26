@@ -11,6 +11,9 @@ import { LatestNewsComponent } from './news/latest-news.component';
 import { TopNewsComponent } from './news/top-news.component';
 import { BlogComponent } from './blog/blog.component';
 import { AppComponent } from './app.component';
+
+import { SearchFilterPipe } from './shared/service/searchfilter.pipe';
+
 import { AppRoutingModule  } from './app.routing';
 import { APP_PROVIDERS } from './app.provider';
 
@@ -32,7 +35,9 @@ import { APP_PROVIDERS } from './app.provider';
         TweetComponent,
         LatestNewsComponent,
         TopNewsComponent,
-        BlogComponent
+        BlogComponent,
+
+        SearchFilterPipe
     ],
     providers: [
         APP_PROVIDERS

@@ -10,11 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
+var _ = require("lodash");
 var LatestNewsComponent = (function () {
     function LatestNewsComponent(webApiObservableService) {
         this.webApiObservableService = webApiObservableService;
+        this.sourceList = [];
+        this.sourceName = 'All';
     }
     LatestNewsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.webApiObservableService
+            .getService('api/Tweet/AllLatestNews')
+            .subscribe(function (result) {
+            if (result) {
+                _this.sourceList = _.uniq(_.map(result, 'source'));
+                _this.sourceList.push('All');
+                _this.sourceList.sort();
+                _this.articleList = result;
+            }
+        }, function (error) {
+            console.log(error);
+        });
     };
     Object.defineProperty(LatestNewsComponent.prototype, "diagnostic", {
         get: function () {

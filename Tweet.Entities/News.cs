@@ -22,5 +22,6 @@ namespace Tweet.Entities
         public string url { get; set; }
         public string urlToImage { get; set; }
         public string publishedAt { get; set; }
+        public string source { get; set; }
     }
 }

@@ -41,9 +41,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">
-                        {{pageTitle}} <small>Overview</small>
-                    </h1>
+                    <span class="label label-primary">
+                        <h1 class="page-header">
+                            {{pageTitle}} <small>Overview</small>
+                        </h1>
+                    </span>
+                    <br />
+                    <br />
                     <ol class="breadcrumb">
                         <li>
                             <i class="fa fa-dashboard"></i><a routerLink="dashboard">Dashboard</a>
@@ -54,6 +58,7 @@
                     </ol>
                 </div>
             </div>
+            <br />
             <router-outlet></router-outlet>
         </div>
     </div>
