@@ -1,1 +1,96 @@
-﻿Top News
+﻿<div class="row">
+    <div class="col-xl-4 col-lg-4">
+        <span mdTooltip="Click to update latest news" mdTooltipPosition="above">
+            <button md-raised-button class="btn btn-info" (click)="getAllTestNews()">
+                <i class="fa fa-newspaper-o">&nbsp; Update News</i>
+            </button>
+        </span>
+        <span mdTooltip="Click to post selected latest news to twitter" mdTooltipPosition="above">
+            <button md-raised-button class="btn btn-info" (click)="sendSelectedTweet()">
+                <i class="fa fa-twitter">&nbsp; Tweet Selected News</i>
+                <md-chip selected="true" color="warn">
+                    {{selectCounter}}
+                </md-chip>
+            </button>
+        </span>
+        <span mdTooltip="Click to post all latest news to twitter" mdTooltipPosition="above">
+            <button md-raised-button class="btn btn-info" (click)="sendAllTweet()">
+                <i class="fa fa-twitter-square">&nbsp; Tweet All News</i>
+            </button>
+        </span>
+    </div>
+    <div class="col-xl-7 col-lg-7">
+        <span *ngFor="let item of sourceList">
+            <span class="example-tooltip-host" mdTooltip="Click to filter latest news to source: {{item}}" mdTooltipPosition="above">
+                <button type="button" class="btn-sm btn-success" (click)="sourceName = item;">
+                    <i class="fa fa-database">&nbsp; {{item}}</i>
+                </button>&nbsp;&nbsp;&nbsp;
+            </span>
+        </span>
+    </div>
+    <div class="col-xl-1 col-lg-1">
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="thead-default">
+                    <tr>
+                        <th class="col-xl-1 col-lg-1">
+                            <span mdTooltip="Click to select/unselect all news" mdTooltipPosition="above">
+                                <md-checkbox [checked]="selectAllFlag" (change)="selectAll()"></md-checkbox>
+                            </span>
+                        </th>
+                        <th class="col-xl-3 col-lg-3">Title</th>
+                        <th class="col-xl-4 col-lg-4">Description</th>
+                        <th class="col-xl-1 col-lg-1">Image</th>
+                        <th class="col-xl-1 col-lg-1">Source</th>
+                        <th class="col-xl-1 col-lg-1">Author</th>
+                        <th class="col-xl-1 col-lg-1">Post Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of articleList | searchfilter: 'source' : sourceName">
+                        <td class="col-xl-1 col-lg-1">
+                            <span mdTooltip="Select to add this news to tweet list" mdTooltipPosition="above">
+                                <md-checkbox [checked]="item.selected" (change)="selectOneItem(item)"></md-checkbox>
+                            </span>
+                            &nbsp;&nbsp;
+                            <span mdTooltip="Click to post this news to twitter" mdTooltipPosition="above">
+                                <button type="button" class="btn-xs btn-info" (click)="sendTweet(item)">
+                                    <i class="fa fa-twitter"></i>
+                                </button>
+                            </span>
+                        </td>
+                        <td class="col-xl-3 col-lg-3">
+                            <span class="example-tooltip-host" mdTooltip="Click to open news link in new window" mdTooltipPosition="above">
+                                <a target="_blank" href="{{item.url}}">
+                                    <span class="label label-warning" style="margin-bottom:4px;white-space: normal;">{{item.title}}</span>
+                                </a>
+                            </span>
+                        </td>
+                        <td class="col-xl-4 col-lg-4">
+                            <span class="label label-default" style="margin-bottom:4px;white-space: normal;">{{item.description}}</span>
+                        </td>
+                        <td class="col-xl-1 col-lg-1">
+                            <a target="_blank" href="{{item.url}}">
+                                <img width="32" height="32" src="{{item.urlToImage == '' ? '../../images/Image-not-found.gif' : item.urlToImage}}" />
+                            </a>
+                        </td>
+                        <td class="col-xl-1 col-lg-1">
+                            <span class="label label-warning">{{item.source}}</span>
+                        </td>
+                        <td class="col-xl-1 col-lg-1">
+                            <span class="label label-default" style="margin-bottom:4px;white-space: normal;">{{item.author}}</span>
+                        </td>
+                        <td class="col-xl-1 col-lg-1">
+                            <span class="label label-default">{{item.publishedAt | date: 'short'}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,12 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
+import { Article } from '../shared/model/article';
+import { TweetService } from '../shared/service/tweet.service';
+import { LoaderService } from '../shared/service/loader.service';
 import { WebApiObservableService } from '../shared/service/web-api-observable.service';
 import { WebApiPromiseService } from '../shared/service/web-api-promise.service';
+import { ToasterService } from '../shared/service/toaster.service';
+//import * as _ from "lodash";
 
 @Component({
     selector: 'top-news',
@@ -9,12 +14,99 @@ import { WebApiPromiseService } from '../shared/service/web-api-promise.service'
 })
 
 export class TopNewsComponent implements OnInit {
+    articleList: Article[];
+    selectedArticleList: Article[];
+    sourceList: string[];
+    sourceName: string;
+    selectAllFlag: boolean;
+    selectCounter: number;
 
     constructor(
-        private webApiObservableService: WebApiObservableService) {
+        private loaderService: LoaderService,
+        private toasterService: ToasterService,
+        private webApiObservableService: WebApiObservableService,
+        private tweetService: TweetService) {
+        this.articleList = [];
+        this.selectedArticleList = [];
+        this.sourceList = [];
+        this.sourceName = 'All';
+        this.selectAllFlag = false;
+        this.selectCounter = 0;
     }
 
     ngOnInit() {
+        this.getAllTestNews();
+    }
+
+    getAllTestNews() {
+        this.articleList = [];
+        this.sourceList = [];
+        this.webApiObservableService
+            .getService('api/Tweet/AllTopNews')
+            .subscribe(
+            (result: Article[]) => {
+                if (result) {
+                    this.sourceList = result.map(item => item.source).filter((value, index, self) => self.indexOf(value) === index);
+                    this.sourceList.push('All');
+                    this.sourceList.sort();
+
+                    result.forEach((v, i) => {
+                        v.selected = false;
+                    });
+
+                    this.articleList = result;
+                    this.loaderService.display(false);
+                    this.toasterService.showToaster('Top News have been loaded');
+                }
+            },
+            error => {
+                this.loaderService.display(false);
+                this.toasterService.showToaster(<any>error);
+            }
+            );
+    }
+
+    selectAll() {
+        this.selectCounter = 0;
+        this.selectAllFlag = !this.selectAllFlag;
+
+        this.articleList.forEach((v, i) => {
+            this.selectCounter = this.selectAllFlag == true ? this.selectCounter + 1 : 0;
+            v.selected = this.selectAllFlag;
+        });
+    }
+
+    selectOneItem(item: Article) {
+        item.selected = !item.selected;
+        if (item.selected == true) {
+            this.selectCounter = this.selectCounter + 1
+        } else {
+            this.selectCounter = this.selectCounter - 1;
+            this.selectAllFlag = false;
+        };
+    }
+
+    sendTweet(item: Article) {
+        this.tweetService.postNewsTweet(item.title, item.url);
+    }
+
+    sendAllTweet() {
+        this.tweetService.postAllNewsTweet('top');
+    }
+
+    sendSelectedTweet() {
+        this.selectedArticleList = [];
+        this.articleList.forEach((v, i) => {
+            if (v.selected == true) {
+                this.selectedArticleList.push(this.articleList[i]);
+                v.selected = false;
+            }
+        });
+
+        if (this.selectedArticleList.length > 0) {
+            this.tweetService.postSelectedNewsTweet(this.selectedArticleList);
+            this.selectCounter = 0;
+        }
     }
 
     get diagnostic(): string {
