@@ -23,7 +23,8 @@ var LatestNewsComponent = (function () {
         this.articleList = [];
         this.sourceList = [];
         this.sourceName = 'All';
-        this.selectAllStatus = false;
+        this.selectAllFlag = false;
+        this.selectCounter = 0;
     }
     LatestNewsComponent.prototype.ngOnInit = function () {
         this.getAllTestNews();
@@ -36,12 +37,12 @@ var LatestNewsComponent = (function () {
             .getService('api/Tweet/AllLatestNews')
             .subscribe(function (result) {
             if (result) {
-                _this.sourceList =
-                    result
-                        .map(function (item) { return item.source; })
-                        .filter(function (value, index, self) { return self.indexOf(value) === index; });
+                _this.sourceList = result.map(function (item) { return item.source; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
                 _this.sourceList.push('All');
                 _this.sourceList.sort();
+                result.forEach(function (v, i) {
+                    v.selected = false;
+                });
                 _this.articleList = result;
                 _this.loaderService.display(false);
                 _this.toasterService.showToaster('Latest News have been loaded');
@@ -53,10 +54,24 @@ var LatestNewsComponent = (function () {
     };
     LatestNewsComponent.prototype.selectAll = function () {
         var _this = this;
-        console.log('hassan');
+        this.selectCounter = 0;
+        this.selectAllFlag = !this.selectAllFlag;
         this.articleList.forEach(function (v, i) {
-            v.selected = _this.selectAllStatus;
+            _this.selectCounter = _this.selectAllFlag == true ? _this.selectCounter + 1 : 0;
+            v.selected = _this.selectAllFlag;
         });
+    };
+    LatestNewsComponent.prototype.selectOneItem = function (item) {
+        console.log(item.selected);
+        item.selected = !item.selected;
+        if (item.selected == true) {
+            this.selectCounter = this.selectCounter + 1;
+        }
+        else {
+            this.selectCounter = this.selectCounter - 1;
+            this.selectAllFlag = false;
+        }
+        ;
     };
     LatestNewsComponent.prototype.sendTweet = function (item) {
         this.tweetService.postNewsTweet(item.title, item.url);

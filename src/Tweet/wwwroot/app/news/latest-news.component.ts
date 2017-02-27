@@ -17,7 +17,8 @@ export class LatestNewsComponent implements OnInit {
     articleList: Article[];
     sourceList: string[];
     sourceName: string;
-    selectAllStatus: boolean;
+    selectAllFlag: boolean;
+    selectCounter: number;
 
     constructor(
         private loaderService: LoaderService,
@@ -27,7 +28,8 @@ export class LatestNewsComponent implements OnInit {
         this.articleList = [];
         this.sourceList = [];
         this.sourceName = 'All';
-        this.selectAllStatus = false;
+        this.selectAllFlag = false;
+        this.selectCounter = 0;
     }
 
     ngOnInit() {
@@ -42,12 +44,14 @@ export class LatestNewsComponent implements OnInit {
             .subscribe(
             (result: Article[]) => {
                 if (result) {
-                    this.sourceList =
-                        result
-                            .map(item => item.source)
-                            .filter((value, index, self) => self.indexOf(value) === index);
+                    this.sourceList = result.map(item => item.source).filter((value, index, self) => self.indexOf(value) === index);
                     this.sourceList.push('All');
                     this.sourceList.sort();
+
+                    result.forEach((v, i) => {
+                        v.selected = false;
+                    });
+
                     this.articleList = result;
                     this.loaderService.display(false);
                     this.toasterService.showToaster('Latest News have been loaded');
@@ -61,10 +65,24 @@ export class LatestNewsComponent implements OnInit {
     }
 
     selectAll() {
-        console.log('hassan');
+        this.selectCounter = 0;
+        this.selectAllFlag = !this.selectAllFlag;
+        
         this.articleList.forEach((v, i) => {
-            v.selected = this.selectAllStatus;
+            this.selectCounter = this.selectAllFlag == true ? this.selectCounter + 1 : 0;
+            v.selected = this.selectAllFlag;
         });
+    }
+
+    selectOneItem(item: Article) {
+        console.log(item.selected);
+        item.selected = !item.selected;
+        if (item.selected == true) {
+            this.selectCounter = this.selectCounter + 1
+        } else {
+            this.selectCounter = this.selectCounter - 1;
+            this.selectAllFlag = false;
+        };
     }
 
     sendTweet(item: Article) {
