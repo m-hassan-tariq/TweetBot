@@ -35,10 +35,10 @@ export class LatestNewsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getAllTestNews();
+        this.getAllLatestNews();
     }
 
-    getAllTestNews() {
+    getAllLatestNews() {
         this.articleList = [];
         this.sourceList = [];
         this.webApiObservableService

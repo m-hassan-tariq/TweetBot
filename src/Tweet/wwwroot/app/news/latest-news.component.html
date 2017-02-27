@@ -1,11 +1,11 @@
 ﻿<div class="row">
     <div class="col-xl-4 col-lg-4">
-        <span mdTooltip="Click to update latest news" mdTooltipPosition="above">
-            <button md-raised-button class="btn btn-info" (click)="getAllTestNews()">
+        <span mdTooltip="Click to update latest news" mdTooltipPosition="right">
+            <button md-raised-button class="btn btn-info" (click)="getAllLatestNews()">
                 <i class="fa fa-newspaper-o">&nbsp; Update News</i>
             </button>
         </span>
-        <span mdTooltip="Click to post selected latest news to twitter" mdTooltipPosition="above">
+        <span mdTooltip="Click to tweet selected latest news" mdTooltipPosition="above">
             <button md-raised-button class="btn btn-info" (click)="sendSelectedTweet()">
                 <i class="fa fa-twitter">&nbsp; Tweet Selected News</i>
                 <md-chip selected="true" color="warn">
@@ -13,7 +13,7 @@
                 </md-chip>
             </button>
         </span>
-        <span mdTooltip="Click to post all latest news to twitter" mdTooltipPosition="above">
+        <span mdTooltip="Click to tweet all latest news" mdTooltipPosition="above">
             <button md-raised-button class="btn btn-info" (click)="sendAllTweet()">
                 <i class="fa fa-twitter-square">&nbsp; Tweet All News</i>
             </button>
@@ -39,7 +39,7 @@
                 <thead class="thead-default">
                     <tr>
                         <th class="col-xl-1 col-lg-1">
-                            <span mdTooltip="Click to select/unselect all news" mdTooltipPosition="above">
+                            <span mdTooltip="Click to select/unselect all news" mdTooltipPosition="right">
                                 <md-checkbox [checked]="selectAllFlag" (change)="selectAll()"></md-checkbox>
                             </span>
                         </th>
@@ -58,7 +58,7 @@
                                 <md-checkbox [checked]="item.selected" (change)="selectOneItem(item)"></md-checkbox>
                             </span>
                             &nbsp;&nbsp;
-                            <span mdTooltip="Click to post this news to twitter" mdTooltipPosition="above">
+                            <span mdTooltip="Click to tweet this news" mdTooltipPosition="above">
                                 <button type="button" class="btn-xs btn-info" (click)="sendTweet(item)">
                                     <i class="fa fa-twitter"></i>
                                 </button>

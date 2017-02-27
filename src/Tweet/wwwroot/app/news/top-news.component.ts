@@ -35,10 +35,10 @@ export class TopNewsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getAllTestNews();
+        this.getAllTopNews();
     }
 
-    getAllTestNews() {
+    getAllTopNews() {
         this.articleList = [];
         this.sourceList = [];
         this.webApiObservableService

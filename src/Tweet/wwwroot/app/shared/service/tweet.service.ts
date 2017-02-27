@@ -38,7 +38,7 @@ export class TweetService {
             .subscribe(
             (result: any) => {
                 this.loaderService.display(false);
-                this.toasterService.showToaster("All " + sortBy + " news posts are tweeted");
+                this.toasterService.showToaster("All " + sortBy + " news posts have been tweeted");
             },
             error => {
                 this.handleError(error);
@@ -49,6 +49,20 @@ export class TweetService {
     postSelectedNewsTweet(articleList: Article[]) {
         this.webApiObservableService
             .createService('api/Tweet/PostSelectedTweets', articleList)
+            .subscribe(
+            (result: any) => {
+                this.loaderService.display(false);
+                this.toasterService.showToaster("All selected news posts have been tweeted");
+            },
+            error => {
+                this.handleError(error);
+            }
+            );
+    }
+
+    postAllBlogTweet() {
+        this.webApiObservableService
+            .getService('api/Tweet/TweetAllPost')
             .subscribe(
             (result: any) => {
                 this.loaderService.display(false);

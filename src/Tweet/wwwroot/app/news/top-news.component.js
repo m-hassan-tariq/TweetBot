@@ -28,9 +28,9 @@ var TopNewsComponent = (function () {
         this.selectCounter = 0;
     }
     TopNewsComponent.prototype.ngOnInit = function () {
-        this.getAllTestNews();
+        this.getAllTopNews();
     };
-    TopNewsComponent.prototype.getAllTestNews = function () {
+    TopNewsComponent.prototype.getAllTopNews = function () {
         var _this = this;
         this.articleList = [];
         this.sourceList = [];

@@ -3,12 +3,35 @@
     "header": "C#: ERROR – ‘SYSTEM.NET.HTTP.HTTPCONTENT’ DOES NOT CONTAIN A DEFINITION FOR ‘READASASYNC’ AND NO EXTENSION METHOD",
     "url": "https://hassantariqblog.wordpress.com/2017/02/19/c-error-system-net-http-httpcontent-does-not-contain-a-definition-for-readasasync-and-no-extension-method/",
     "category": "C#",
-    "tag": ""
+    "tag": "",
+    "createdDate": "2017/01/01"
   },
   {
-    "header": "ANGULAR2: STEP BY STEP GUIDE OF USING ANGULAR MATERIAL 2 WITH ANGULAR2 & TYPESCRIPT FOR ASP.NET CORE IN VISUAL STUDIO 2015",
-    "url": "https://hassantariqblog.wordpress.com/2017/02/12/angular2-step-by-step-guide-of-using-angular-material-2-with-angular2-typescript-for-asp-net-core-in-visual-studio-2015/",
+    "header": "ANGULAR2: RETRIEVE DATA PROPERTY FROM ANGULAR2 ROUTES",
+    "url": "https://hassantariqblog.wordpress.com/2017/02/26/angular2-retrieve-data-property-from-angular2-routes/",
     "category": "angular2",
-    "tag": ""
+    "tag": "",
+    "createdDate": "2016/01/01"
+  },
+  {
+    "header": "ASP.NET CORE: REGISTER ANGULAR2 ROUTES WITH CORE MVC ROUTES",
+    "url": "https://hassantariqblog.wordpress.com/2017/02/26/asp-net-core-register-angular2-routes-with-mvc-routes/",
+    "category": "angular2",
+    "tag": "",
+    "createdDate": "2016/11/01"
+  },
+  {
+    "header": "ASP.NET CORE: STEP BY STEP GUIDE TO ACCESS APPSETTINGS.JSON IN WEB PROJECT AND CLASS LIBRARY",
+    "url": "https://hassantariqblog.wordpress.com/2017/02/20/asp-net-core-step-by-step-guide-to-access-appsettings-json-in-web-project-and-class-library/",
+    "category": "core",
+    "tag": "",
+    "createdDate": "2017/02/01"
+  },
+  {
+    "header": "C#: EXTENSION METHOD TO APPEND SPECIFIC CHARACTER AT START OF EACH MATCHING WORD IN STRING",
+    "url": "https://hassantariqblog.wordpress.com/2017/02/20/c-extension-method-to-append-specific-character-at-start-of-each-matching-word-in-string/",
+    "category": "C#",
+    "tag": "",
+    "createdDate": "2016/09/01"
   }
 ]
