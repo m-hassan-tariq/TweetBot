@@ -2,12 +2,12 @@
     <div class="col-xl-4 col-lg-4">
         <span mdTooltip="Click to update blog posts" mdTooltipPosition="right">
             <button md-raised-button class="btn btn-info" (click)="getAllBlogPosts()">
-                <i class="fa fa-newspaper-o">&nbsp; Update News</i>
+                <i class="fa fa-newspaper-o">&nbsp; Update Posts</i>
             </button>
         </span>
         <span mdTooltip="Click to tweet selected blog posts" mdTooltipPosition="above">
             <button md-raised-button class="btn btn-info" (click)="sendSelectedTweet()">
-                <i class="fa fa-twitter">&nbsp; Tweet Selected News</i>
+                <i class="fa fa-twitter">&nbsp; Tweet Selected Posts</i>
                 <md-chip selected="true" color="warn">
                     {{selectCounter}}
                 </md-chip>
@@ -15,7 +15,7 @@
         </span>
         <span mdTooltip="Click to tweet all blog posts" mdTooltipPosition="above">
             <button md-raised-button class="btn btn-info" (click)="sendAllTweet()">
-                <i class="fa fa-twitter-square">&nbsp; Tweet All News</i>
+                <i class="fa fa-twitter-square">&nbsp; Tweet All Posts</i>
             </button>
         </span>
     </div>
@@ -43,11 +43,11 @@
                                 <md-checkbox [checked]="selectAllFlag" (change)="selectAll()"></md-checkbox>
                             </span>
                         </th>
-                        <th class="col-xl-3 col-lg-5">Title</th>
+                        <th class="col-xl-5 col-lg-5">Title</th>
                         <th class="col-xl-3 col-lg-3">Url</th>
                         <th class="col-xl-1 col-lg-1">Category</th>
                         <th class="col-xl-1 col-lg-1">Tag</th>
-                        <th class="col-xl-1 col-lg-1">Publishing Date</th>
+                        <th class="col-xl-1 col-lg-1">Created Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,10 +74,10 @@
                             <span class="label label-default" style="margin-bottom:4px;white-space: normal;">{{item.url}}</span>
                         </td>
                         <td class="col-xl-1 col-lg-1">
-                            <span class="label label-warning" style="margin-bottom:4px;white-space: normal;">{{item.Category}}</span>
+                            <span class="label label-warning" style="margin-bottom:4px;white-space: normal;">{{item.category}}</span>
                         </td>
                         <td class="col-xl-1 col-lg-1">
-                            <span class="label label-default" style="margin-bottom:4px;white-space: normal;">{{item.tag}}</span>
+                            <span class="label label-default" style="margin-bottom:4px;white-space: normal;">{{item.tag.length <= 0 ? 'No Tag Available' : item.tag}}</span>
                         </td>
                         <td class="col-xl-1 col-lg-1">
                             <span class="label label-default">{{item.createdDate | date: 'short'}}</span>
