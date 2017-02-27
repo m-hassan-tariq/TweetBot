@@ -10,8 +10,7 @@ export class ToasterService {
 
     showToaster(msg: string) {
         this.snackBar.open(msg, null, {
-            duration: 5000,
+            duration: 3000,
         });
     }
-
 }

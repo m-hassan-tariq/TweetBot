@@ -9,21 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var material_1 = require('@angular/material');
-var ToasterService = (function () {
-    function ToasterService(snackBar) {
-        this.snackBar = snackBar;
+var BehaviorSubject_1 = require('rxjs/BehaviorSubject');
+var LoaderService = (function () {
+    function LoaderService() {
+        this.status = new BehaviorSubject_1.BehaviorSubject(false);
     }
-    ToasterService.prototype.showToaster = function (msg) {
-        this.snackBar.open(msg, null, {
-            duration: 3000,
-        });
+    LoaderService.prototype.display = function (value) {
+        this.status.next(value);
     };
-    ToasterService = __decorate([
+    LoaderService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [material_1.MdSnackBar])
-    ], ToasterService);
-    return ToasterService;
+        __metadata('design:paramtypes', [])
+    ], LoaderService);
+    return LoaderService;
 }());
-exports.ToasterService = ToasterService;
-//# sourceMappingURL=toaster.service.js.map
+exports.LoaderService = LoaderService;
+//# sourceMappingURL=loader.service.js.map

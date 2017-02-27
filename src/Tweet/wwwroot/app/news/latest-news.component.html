@@ -1,14 +1,23 @@
 ﻿<div class="row">
     <div class="col-xl-3 col-lg-3">
-        <button type="button" class="btn center-block btn-md btn-info" (click)="sendAllTweet()">
-            <i class="fa fa-twitter-square">&nbsp; Tweet All Latest News</i>
-        </button>
+        <span mdTooltip="Click to update latest news" mdTooltipPosition="above">
+            <button md-raised-button class="btn btn-info" (click)="getAllTestNews()">
+                <i class="fa fa-newspaper-o">&nbsp; Update News</i>
+            </button>
+        </span>
+        <span mdTooltip="Click to post all latest news to twitter" mdTooltipPosition="above">
+            <button md-raised-button class="btn btn-info" (click)="sendAllTweet()">
+                <i class="fa fa-twitter-square">&nbsp; Tweet All Latest News</i>
+            </button>
+        </span>
     </div>
     <div class="col-xl-7 col-lg-7">
         <span *ngFor="let item of sourceList">
-            <button type="button" class="btn-sm btn-success" (click)="sourceName = item;">
-                <i class="fa fa-database">&nbsp; {{item}}</i> 
-            </button>&nbsp;&nbsp;&nbsp;
+            <span class="example-tooltip-host" mdTooltip="Click to filter latest news to source: {{item}}" mdTooltipPosition="above">
+                <button type="button" class="btn-sm btn-success" (click)="sourceName = item;">
+                    <i class="fa fa-database">&nbsp; {{item}}</i>
+                </button>&nbsp;&nbsp;&nbsp;
+            </span>
         </span>
     </div>
     <div class="col-xl-2 col-lg-2">
@@ -19,7 +28,7 @@
     <div class="col-xl-12 col-lg-12">
         <div class="table-responsive">
             <table class="table table-hover">
-                <thead class="thead-inverse">
+                <thead class="thead-default">
                     <tr>
                         <th class="col-xl-1 col-lg-1 text-md-center">Tweet</th>
                         <th class="col-xl-3 col-lg-3">Title</th>
@@ -33,14 +42,18 @@
                 <tbody>
                     <tr *ngFor="let item of articleList | searchfilter: 'source' : sourceName">
                         <td class="col-xl-1 col-lg-1">
-                            <button type="button" class="center-block btn-xs btn-info" (click)="sendTweet(item)">
-                                <i class="fa fa-twitter"></i>
-                            </button>
+                            <span mdTooltip="Click to post this news to twitter" mdTooltipPosition="above">
+                                <button type="button" class="center-block btn-xs btn-info" (click)="sendTweet(item)">
+                                    <i class="fa fa-twitter"></i>
+                                </button>
+                            </span>
                         </td>
                         <td class="col-xl-3 col-lg-3">
-                            <a target="_blank" href="{{item.url}}">
-                                <span class="label label-warning" style="margin-bottom:4px;white-space: normal;">{{item.title}}</span>
-                            </a>
+                            <span class="example-tooltip-host" mdTooltip="Click to open news link in new window" mdTooltipPosition="above">
+                                <a target="_blank" href="{{item.url}}">
+                                    <span class="label label-warning" style="margin-bottom:4px;white-space: normal;">{{item.title}}</span>
+                                </a>
+                            </span>
                         </td>
                         <td class="col-xl-4 col-lg-4">
                             <span class="label label-default" style="margin-bottom:4px;white-space: normal;">{{item.description}}</span>

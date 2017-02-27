@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angul
 import { Observable } from 'rxjs/Observable';
 
 import { ToasterService } from './toaster.service';
+import { LoaderService } from './loader.service';
 
 // Observable class extensions
 import 'rxjs/add/observable/of';
@@ -22,13 +23,16 @@ export class WebApiObservableService {
     headers: Headers;
     options: RequestOptions;
 
-    constructor(private http: Http,
+    constructor(
+        private http: Http,
+        private loaderService: LoaderService,
         private toasterService: ToasterService) {
         this.headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.options = new RequestOptions({ headers: this.headers });
     }
 
     getService(url: string): Observable<any> {
+        this.loaderService.display(true);
         return this.http
             .get(url, this.options)
             .map(this.extractData)
@@ -36,6 +40,7 @@ export class WebApiObservableService {
     }
 
     getServiceWithDynamicQueryTerm(url: string, key: string, val: string): Observable<any> {
+        this.loaderService.display(true);
         return this.http
             .get(url + "/?" + key + "=" + val, this.options)
             .map(this.extractData)
@@ -43,6 +48,7 @@ export class WebApiObservableService {
     }
 
     getServiceWithFixedQueryString(url: string, param: any): Observable<any> {
+        this.loaderService.display(true);
         this.options = new RequestOptions({ headers: this.headers, search: 'content=' + param });
         return this.http
             .get(url, this.options)
@@ -51,6 +57,7 @@ export class WebApiObservableService {
     }
 
     getServiceWithComplexObjectAsQueryString(url: string, param: any): Observable<any> {
+        this.loaderService.display(true);
         let params: URLSearchParams = new URLSearchParams();
         for (var key in param) {
             if (param.hasOwnProperty(key)) {
@@ -66,6 +73,7 @@ export class WebApiObservableService {
     }
 
     createService(url: string, param: any): Observable<any> {
+        this.loaderService.display(true);
         let body = JSON.stringify(param);
         return this.http
             .post(url, body, this.options)
@@ -74,6 +82,7 @@ export class WebApiObservableService {
     }
 
     updateService(url: string, param: any): Observable<any> {
+        this.loaderService.display(true);
         let body = JSON.stringify(param);
         return this.http
             .put(url, body, this.options)
@@ -82,6 +91,7 @@ export class WebApiObservableService {
     }
 
     patchService(url: string, param: any): Observable<any> {
+        this.loaderService.display(true);
         let body = JSON.stringify(param);
         return this.http
             .patch(url, body, this.options)
@@ -90,6 +100,7 @@ export class WebApiObservableService {
     }
 
     deleteService(url: string, param: any): Observable<any> {
+        this.loaderService.display(true);
         let params: URLSearchParams = new URLSearchParams();
         for (var key in param) {
             if (param.hasOwnProperty(key)) {
@@ -105,6 +116,7 @@ export class WebApiObservableService {
     }
 
     deleteServiceWithId(url: string, key: string, val: string): Observable<any> {
+        this.loaderService.display(true);
         return this.http
             .delete(url + "/?" + key + "=" + val, this.options)
             .map(this.extractData)
@@ -119,7 +131,6 @@ export class WebApiObservableService {
     private handleError(error: any) {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        this.toasterService.showToaster(errMsg);
         return Observable.throw(errMsg);
     }
 }

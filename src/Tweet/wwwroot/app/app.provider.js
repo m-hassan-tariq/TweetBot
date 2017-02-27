@@ -3,6 +3,7 @@ var web_api_observable_service_1 = require('./shared/service/web-api-observable.
 var web_api_promise_service_1 = require('./shared/service/web-api-promise.service');
 var tweet_service_1 = require('./shared/service/tweet.service');
 var toaster_service_1 = require('./shared/service/toaster.service');
+var loader_service_1 = require('./shared/service/loader.service');
 var dashboard_component_1 = require('./dashboard/dashboard.component');
 var tweet_component_1 = require('./tweet/tweet.component');
 var latest_news_component_1 = require('./news/latest-news.component');
@@ -13,7 +14,8 @@ exports.All_Services = [
     web_api_observable_service_1.WebApiObservableService,
     web_api_promise_service_1.WebApiPromiseService,
     tweet_service_1.TweetService,
-    toaster_service_1.ToasterService
+    toaster_service_1.ToasterService,
+    loader_service_1.LoaderService
 ];
 exports.All_Components = [
     dashboard_component_1.DashboardComponent,

@@ -12,14 +12,17 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
 var toaster_service_1 = require('./toaster.service');
+var loader_service_1 = require('./loader.service');
 var WebApiPromiseService = (function () {
-    function WebApiPromiseService(http, toasterService) {
+    function WebApiPromiseService(http, loaderService, toasterService) {
         this.http = http;
+        this.loaderService = loaderService;
         this.toasterService = toasterService;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.options = new http_1.RequestOptions({ headers: this.headers });
     }
     WebApiPromiseService.prototype.getService = function (url) {
+        this.loaderService.display(true);
         return this.http
             .get(url, this.options)
             .toPromise()
@@ -27,6 +30,7 @@ var WebApiPromiseService = (function () {
             .catch(this.handleError);
     };
     WebApiPromiseService.prototype.getServiceWithDynamicQueryTerm = function (url, key, val) {
+        this.loaderService.display(true);
         return this.http
             .get(url + "/?" + key + "=" + val, this.options)
             .toPromise()
@@ -34,6 +38,7 @@ var WebApiPromiseService = (function () {
             .catch(this.handleError);
     };
     WebApiPromiseService.prototype.getServiceWithFixedQueryString = function (url, param) {
+        this.loaderService.display(true);
         this.options = new http_1.RequestOptions({ headers: this.headers, search: 'query=' + param });
         return this.http
             .get(url, this.options)
@@ -42,6 +47,7 @@ var WebApiPromiseService = (function () {
             .catch(this.handleError);
     };
     WebApiPromiseService.prototype.getServiceWithComplexObjectAsQueryString = function (url, param) {
+        this.loaderService.display(true);
         var params = new http_1.URLSearchParams();
         for (var key in param) {
             if (param.hasOwnProperty(key)) {
@@ -57,6 +63,7 @@ var WebApiPromiseService = (function () {
             .catch(this.handleError);
     };
     WebApiPromiseService.prototype.createService = function (url, param) {
+        this.loaderService.display(true);
         var body = JSON.stringify(param);
         return this.http
             .post(url, body, this.options)
@@ -73,6 +80,7 @@ var WebApiPromiseService = (function () {
             .catch(this.handleError);
     };
     WebApiPromiseService.prototype.patchService = function (url, param) {
+        this.loaderService.display(true);
         var body = JSON.stringify(param);
         return this.http
             .patch(url, body, this.options)
@@ -81,6 +89,7 @@ var WebApiPromiseService = (function () {
             .catch(this.handleError);
     };
     WebApiPromiseService.prototype.deleteService = function (url, param) {
+        this.loaderService.display(true);
         var params = new http_1.URLSearchParams();
         for (var key in param) {
             if (param.hasOwnProperty(key)) {
@@ -96,6 +105,7 @@ var WebApiPromiseService = (function () {
             .catch(this.handleError);
     };
     WebApiPromiseService.prototype.deleteServiceWithId = function (url, key, val) {
+        this.loaderService.display(true);
         return this.http
             .delete(url + "/?" + key + "=" + val, this.options)
             .toPromise()
@@ -107,12 +117,11 @@ var WebApiPromiseService = (function () {
         return body || {};
     };
     WebApiPromiseService.prototype.handleError = function (error) {
-        this.toasterService.showToaster('An error occurred: ' + error);
         return Promise.reject(error.message || error);
     };
     WebApiPromiseService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, toaster_service_1.ToasterService])
+        __metadata('design:paramtypes', [http_1.Http, loader_service_1.LoaderService, toaster_service_1.ToasterService])
     ], WebApiPromiseService);
     return WebApiPromiseService;
 }());

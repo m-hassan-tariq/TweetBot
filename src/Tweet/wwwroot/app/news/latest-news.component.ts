@@ -2,6 +2,7 @@
 
 import { Article } from '../shared/model/article';
 import { TweetService } from '../shared/service/tweet.service';
+import { LoaderService } from '../shared/service/loader.service';
 import { WebApiObservableService } from '../shared/service/web-api-observable.service';
 import { WebApiPromiseService } from '../shared/service/web-api-promise.service';
 import { ToasterService } from '../shared/service/toaster.service';
@@ -18,32 +19,42 @@ export class LatestNewsComponent implements OnInit {
     sourceName: string;
 
     constructor(
+        private loaderService: LoaderService,
         private toasterService: ToasterService,
         private webApiObservableService: WebApiObservableService,
         private tweetService: TweetService) {
+        this.articleList = [];
         this.sourceList = [];
         this.sourceName = 'All';
 
     }
 
     ngOnInit() {
+        this.getAllTestNews();
+    }
+
+    getAllTestNews() {
+        this.articleList = [];
+        this.sourceList = [];
         this.webApiObservableService
             .getService('api/Tweet/AllLatestNews')
             .subscribe(
-            (result : Article[]) => {
+            (result: Article[]) => {
                 if (result) {
                     this.sourceList = result.map(item => item.source)
                         .filter((value, index, self) => self.indexOf(value) === index);
                     this.sourceList.push('All');
                     this.sourceList.sort();
                     this.articleList = result;
+                    this.loaderService.display(false);
                     this.toasterService.showToaster('Latest News have been loaded');
                 }
             },
             error => {
+                this.loaderService.display(false);
                 this.toasterService.showToaster(<any>error);
             }
-        );
+            );
     }
 
     sendTweet(item: Article) {

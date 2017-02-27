@@ -9,6 +9,7 @@
 /// <reference path="app/news/top-news.component.js" />
 /// <reference path="app/shared/model/article.js" />
 /// <reference path="app/shared/model/news.js" />
+/// <reference path="app/shared/service/loader.service.js" />
 /// <reference path="app/shared/service/searchfilter.pipe.js" />
 /// <reference path="app/shared/service/toaster.service.js" />
 /// <reference path="app/shared/service/tweet.service.js" />

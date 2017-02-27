@@ -4,7 +4,7 @@
             <button class="navbar-toggler hidden-sm-up pull-sm-right" type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 &#9776;
             </button>
-            <a class="navbar-brand" href="index.html">Tweet Deck</a>
+            <a class="navbar-brand" href="index.html">Tweet Bot</a>
         </div>
         <ul class="nav navbar-nav top-nav navbar-right pull-xs-right">
             <li class="dropdown nav-item active">
@@ -41,13 +41,19 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="label label-primary">
-                        <h1 class="page-header">
-                            {{pageTitle}} <small>Overview</small>
-                        </h1>
-                    </span>
-                    <br />
-                    <br />
+                    <md-toolbar color="primary">
+                        <md-toolbar-row>
+                            <h2>{{pageTitle}}</h2>
+                            <md-icon class="example-icon">map</md-icon>
+                            <span class="example-spacer"></span>
+                            <md-icon class="example-icon">dashboard</md-icon>
+                        </md-toolbar-row>
+                    </md-toolbar>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
                     <ol class="breadcrumb">
                         <li>
                             <i class="fa fa-dashboard"></i><a routerLink="dashboard">Dashboard</a>
@@ -59,7 +65,9 @@
                 </div>
             </div>
             <br />
-            <router-outlet></router-outlet>
+            <router-outlet>
+                <div *ngIf="showLoader" class="loading" ng>Loading&#8230;</div>
+            </router-outlet>
         </div>
     </div>
 </div>

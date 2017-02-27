@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
 var toaster_service_1 = require('./toaster.service');
+var loader_service_1 = require('./loader.service');
 // Observable class extensions
 require('rxjs/add/observable/of');
 require('rxjs/add/observable/throw');
@@ -24,25 +25,29 @@ require('rxjs/add/operator/filter');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/switchMap');
 var WebApiObservableService = (function () {
-    function WebApiObservableService(http, toasterService) {
+    function WebApiObservableService(http, loaderService, toasterService) {
         this.http = http;
+        this.loaderService = loaderService;
         this.toasterService = toasterService;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.options = new http_1.RequestOptions({ headers: this.headers });
     }
     WebApiObservableService.prototype.getService = function (url) {
+        this.loaderService.display(true);
         return this.http
             .get(url, this.options)
             .map(this.extractData)
             .catch(this.handleError);
     };
     WebApiObservableService.prototype.getServiceWithDynamicQueryTerm = function (url, key, val) {
+        this.loaderService.display(true);
         return this.http
             .get(url + "/?" + key + "=" + val, this.options)
             .map(this.extractData)
             .catch(this.handleError);
     };
     WebApiObservableService.prototype.getServiceWithFixedQueryString = function (url, param) {
+        this.loaderService.display(true);
         this.options = new http_1.RequestOptions({ headers: this.headers, search: 'content=' + param });
         return this.http
             .get(url, this.options)
@@ -50,6 +55,7 @@ var WebApiObservableService = (function () {
             .catch(this.handleError);
     };
     WebApiObservableService.prototype.getServiceWithComplexObjectAsQueryString = function (url, param) {
+        this.loaderService.display(true);
         var params = new http_1.URLSearchParams();
         for (var key in param) {
             if (param.hasOwnProperty(key)) {
@@ -64,6 +70,7 @@ var WebApiObservableService = (function () {
             .catch(this.handleError);
     };
     WebApiObservableService.prototype.createService = function (url, param) {
+        this.loaderService.display(true);
         var body = JSON.stringify(param);
         return this.http
             .post(url, body, this.options)
@@ -71,6 +78,7 @@ var WebApiObservableService = (function () {
             .catch(this.handleError);
     };
     WebApiObservableService.prototype.updateService = function (url, param) {
+        this.loaderService.display(true);
         var body = JSON.stringify(param);
         return this.http
             .put(url, body, this.options)
@@ -78,6 +86,7 @@ var WebApiObservableService = (function () {
             .catch(this.handleError);
     };
     WebApiObservableService.prototype.patchService = function (url, param) {
+        this.loaderService.display(true);
         var body = JSON.stringify(param);
         return this.http
             .patch(url, body, this.options)
@@ -85,6 +94,7 @@ var WebApiObservableService = (function () {
             .catch(this.handleError);
     };
     WebApiObservableService.prototype.deleteService = function (url, param) {
+        this.loaderService.display(true);
         var params = new http_1.URLSearchParams();
         for (var key in param) {
             if (param.hasOwnProperty(key)) {
@@ -99,6 +109,7 @@ var WebApiObservableService = (function () {
             .catch(this.handleError);
     };
     WebApiObservableService.prototype.deleteServiceWithId = function (url, key, val) {
+        this.loaderService.display(true);
         return this.http
             .delete(url + "/?" + key + "=" + val, this.options)
             .map(this.extractData)
@@ -111,12 +122,11 @@ var WebApiObservableService = (function () {
     WebApiObservableService.prototype.handleError = function (error) {
         var errMsg = (error.message) ? error.message :
             error.status ? error.status + " - " + error.statusText : 'Server error';
-        this.toasterService.showToaster(errMsg);
         return Observable_1.Observable.throw(errMsg);
     };
     WebApiObservableService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, toaster_service_1.ToasterService])
+        __metadata('design:paramtypes', [http_1.Http, loader_service_1.LoaderService, toaster_service_1.ToasterService])
     ], WebApiObservableService);
     return WebApiObservableService;
 }());

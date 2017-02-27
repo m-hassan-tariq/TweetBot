@@ -28,7 +28,6 @@ export class TweetService {
 
     postAllNewsTweet(sortBy: string) {
         let url: string = sortBy == 'latest' ? 'TweetAllLatestNews' : 'TweetAllTopNews'; 
-        console.log(url);
         this.webApiObservableService
             .getService('api/Tweet/' + url)
             .subscribe(

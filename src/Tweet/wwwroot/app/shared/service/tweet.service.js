@@ -30,7 +30,6 @@ var TweetService = (function () {
     TweetService.prototype.postAllNewsTweet = function (sortBy) {
         var _this = this;
         var url = sortBy == 'latest' ? 'TweetAllLatestNews' : 'TweetAllTopNews';
-        console.log(url);
         this.webApiObservableService
             .getService('api/Tweet/' + url)
             .subscribe(function (result) {

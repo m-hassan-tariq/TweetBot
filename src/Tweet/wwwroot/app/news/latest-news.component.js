@@ -10,19 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var tweet_service_1 = require('../shared/service/tweet.service');
+var loader_service_1 = require('../shared/service/loader.service');
 var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
 var toaster_service_1 = require('../shared/service/toaster.service');
 //import * as _ from "lodash";
 var LatestNewsComponent = (function () {
-    function LatestNewsComponent(toasterService, webApiObservableService, tweetService) {
+    function LatestNewsComponent(loaderService, toasterService, webApiObservableService, tweetService) {
+        this.loaderService = loaderService;
         this.toasterService = toasterService;
         this.webApiObservableService = webApiObservableService;
         this.tweetService = tweetService;
+        this.articleList = [];
         this.sourceList = [];
         this.sourceName = 'All';
     }
     LatestNewsComponent.prototype.ngOnInit = function () {
+        this.getAllTestNews();
+    };
+    LatestNewsComponent.prototype.getAllTestNews = function () {
         var _this = this;
+        this.articleList = [];
+        this.sourceList = [];
         this.webApiObservableService
             .getService('api/Tweet/AllLatestNews')
             .subscribe(function (result) {
@@ -32,9 +40,11 @@ var LatestNewsComponent = (function () {
                 _this.sourceList.push('All');
                 _this.sourceList.sort();
                 _this.articleList = result;
+                _this.loaderService.display(false);
                 _this.toasterService.showToaster('Latest News have been loaded');
             }
         }, function (error) {
+            _this.loaderService.display(false);
             _this.toasterService.showToaster(error);
         });
     };
@@ -56,7 +66,7 @@ var LatestNewsComponent = (function () {
             selector: 'latest-news',
             templateUrl: './app/news/latest-news.component.html'
         }), 
-        __metadata('design:paramtypes', [toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService, tweet_service_1.TweetService])
+        __metadata('design:paramtypes', [loader_service_1.LoaderService, toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService, tweet_service_1.TweetService])
     ], LatestNewsComponent);
     return LatestNewsComponent;
 }());

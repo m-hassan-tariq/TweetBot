@@ -10,8 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var loader_service_1 = require('./shared/service/loader.service');
 var AppComponent = (function () {
-    function AppComponent(router, route) {
+    function AppComponent(loaderService, router, route) {
+        this.loaderService = loaderService;
         this.router = router;
         this.route = route;
     }
@@ -34,6 +36,9 @@ var AppComponent = (function () {
                 }
             }
         });
+        this.loaderService.status.subscribe(function (val) {
+            _this.showLoader = val;
+        });
     };
     AppComponent.prototype.onCloseAlert = function (reason) {
     };
@@ -46,9 +51,10 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            templateUrl: './app/app.component.html'
+            templateUrl: './app/app.component.html',
+            styleUrls: ['./app/app.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [loader_service_1.LoaderService, router_1.Router, router_1.ActivatedRoute])
     ], AppComponent);
     return AppComponent;
 }());

@@ -1,20 +1,26 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+
 import 'rxjs/add/operator/toPromise';
+
 import { ToasterService } from './toaster.service';
+import { LoaderService } from './loader.service';
 
 @Injectable()
 export class WebApiPromiseService {
     headers: Headers;
     options: RequestOptions;
 
-    constructor(private http: Http,
+    constructor(
+        private http: Http,
+        private loaderService: LoaderService,
         private toasterService: ToasterService) {
         this.headers = new Headers({ 'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9' });
         this.options = new RequestOptions({ headers: this.headers });
     }
 
     getService(url: string): Promise<any> {
+        this.loaderService.display(true);
         return this.http
             .get(url, this.options)
             .toPromise()
@@ -23,6 +29,7 @@ export class WebApiPromiseService {
     }
 
     getServiceWithDynamicQueryTerm(url: string, key: string, val: string): Promise<any> {
+        this.loaderService.display(true);
         return this.http
             .get(url + "/?" + key + "=" + val, this.options)
             .toPromise()
@@ -31,6 +38,7 @@ export class WebApiPromiseService {
     }
 
     getServiceWithFixedQueryString(url: string, param: any): Promise<any> {
+        this.loaderService.display(true);
         this.options = new RequestOptions({ headers: this.headers, search: 'query=' + param });
         return this.http
             .get(url, this.options)
@@ -40,6 +48,7 @@ export class WebApiPromiseService {
     }
 
     getServiceWithComplexObjectAsQueryString(url: string, param: any): Promise<any> {
+        this.loaderService.display(true);
         let params: URLSearchParams = new URLSearchParams();
         for (var key in param) {
             if (param.hasOwnProperty(key)) {
@@ -56,6 +65,7 @@ export class WebApiPromiseService {
     }
 
     createService(url: string, param: any): Promise<any> {
+        this.loaderService.display(true);
         let body = JSON.stringify(param);
         return this.http
             .post(url, body, this.options)
@@ -74,6 +84,7 @@ export class WebApiPromiseService {
     }
 
     patchService(url: string, param: any): Promise<any> {
+        this.loaderService.display(true);
         let body = JSON.stringify(param);
         return this.http
             .patch(url, body, this.options)
@@ -83,6 +94,7 @@ export class WebApiPromiseService {
     }
 
     deleteService(url: string, param: any): Promise<any> {
+        this.loaderService.display(true);
         let params: URLSearchParams = new URLSearchParams();
         for (var key in param) {
             if (param.hasOwnProperty(key)) {
@@ -99,6 +111,7 @@ export class WebApiPromiseService {
     }
 
     deleteServiceWithId(url: string, key: string, val: string): Promise<any> {
+        this.loaderService.display(true);
         return this.http
             .delete(url + "/?" + key + "=" + val, this.options)
             .toPromise()
@@ -112,7 +125,6 @@ export class WebApiPromiseService {
     }
 
     private handleError(error: any): Promise<any> {
-        this.toasterService.showToaster('An error occurred: ' + error);
         return Promise.reject(error.message || error);
     }
 }
