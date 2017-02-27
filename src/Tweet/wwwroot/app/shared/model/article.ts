@@ -6,4 +6,5 @@
     urlToImage: string;
     publishedAt: Date;
     source: string;
+    selected: boolean;
 }

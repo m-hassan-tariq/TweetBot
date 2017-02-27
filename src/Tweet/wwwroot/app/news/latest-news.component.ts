@@ -17,6 +17,7 @@ export class LatestNewsComponent implements OnInit {
     articleList: Article[];
     sourceList: string[];
     sourceName: string;
+    selectAllStatus: boolean;
 
     constructor(
         private loaderService: LoaderService,
@@ -26,7 +27,7 @@ export class LatestNewsComponent implements OnInit {
         this.articleList = [];
         this.sourceList = [];
         this.sourceName = 'All';
-
+        this.selectAllStatus = false;
     }
 
     ngOnInit() {
@@ -41,8 +42,10 @@ export class LatestNewsComponent implements OnInit {
             .subscribe(
             (result: Article[]) => {
                 if (result) {
-                    this.sourceList = result.map(item => item.source)
-                        .filter((value, index, self) => self.indexOf(value) === index);
+                    this.sourceList =
+                        result
+                            .map(item => item.source)
+                            .filter((value, index, self) => self.indexOf(value) === index);
                     this.sourceList.push('All');
                     this.sourceList.sort();
                     this.articleList = result;
@@ -55,6 +58,13 @@ export class LatestNewsComponent implements OnInit {
                 this.toasterService.showToaster(<any>error);
             }
             );
+    }
+
+    selectAll() {
+        console.log('hassan');
+        this.articleList.forEach((v, i) => {
+            v.selected = this.selectAllStatus;
+        });
     }
 
     sendTweet(item: Article) {

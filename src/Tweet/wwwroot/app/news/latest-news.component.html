@@ -1,8 +1,13 @@
 ﻿<div class="row">
-    <div class="col-xl-3 col-lg-3">
+    <div class="col-xl-4 col-lg-4">
         <span mdTooltip="Click to update latest news" mdTooltipPosition="above">
             <button md-raised-button class="btn btn-info" (click)="getAllTestNews()">
                 <i class="fa fa-newspaper-o">&nbsp; Update News</i>
+            </button>
+        </span>
+        <span mdTooltip="Click to post selected latest news to twitter" mdTooltipPosition="above">
+            <button md-raised-button class="btn btn-info" (click)="sendSelectedTweet()">
+                <i class="fa fa-twitter">&nbsp; Tweet Selected News</i>
             </button>
         </span>
         <span mdTooltip="Click to post all latest news to twitter" mdTooltipPosition="above">
@@ -20,7 +25,7 @@
             </span>
         </span>
     </div>
-    <div class="col-xl-2 col-lg-2">
+    <div class="col-xl-1 col-lg-1">
     </div>
 </div>
 <br />
@@ -30,7 +35,11 @@
             <table class="table table-hover">
                 <thead class="thead-default">
                     <tr>
-                        <th class="col-xl-1 col-lg-1 text-md-center">Tweet</th>
+                        <th class="col-xl-1 col-lg-1">
+                            <span style="margin:0 45px;" mdTooltip="Click to select/unselect all news" mdTooltipPosition="above">
+                                <md-checkbox [(ngModel)]="selectAllStatus" (click)="selectAll()"></md-checkbox>
+                            </span>
+                        </th>
                         <th class="col-xl-3 col-lg-3">Title</th>
                         <th class="col-xl-4 col-lg-4">Description</th>
                         <th class="col-xl-1 col-lg-1">Image</th>
@@ -42,8 +51,12 @@
                 <tbody>
                     <tr *ngFor="let item of articleList | searchfilter: 'source' : sourceName">
                         <td class="col-xl-1 col-lg-1">
+                            <span mdTooltip="Select to add this news to tweet list" mdTooltipPosition="above">
+                                <md-checkbox  [(ngModel)]="item.selected"></md-checkbox>
+                            </span>
+                            &nbsp;&nbsp;
                             <span mdTooltip="Click to post this news to twitter" mdTooltipPosition="above">
-                                <button type="button" class="center-block btn-xs btn-info" (click)="sendTweet(item)">
+                                <button type="button" class="btn-xs btn-info" (click)="sendTweet(item)">
                                     <i class="fa fa-twitter"></i>
                                 </button>
                             </span>

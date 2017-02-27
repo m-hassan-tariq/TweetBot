@@ -23,6 +23,7 @@ var LatestNewsComponent = (function () {
         this.articleList = [];
         this.sourceList = [];
         this.sourceName = 'All';
+        this.selectAllStatus = false;
     }
     LatestNewsComponent.prototype.ngOnInit = function () {
         this.getAllTestNews();
@@ -35,8 +36,10 @@ var LatestNewsComponent = (function () {
             .getService('api/Tweet/AllLatestNews')
             .subscribe(function (result) {
             if (result) {
-                _this.sourceList = result.map(function (item) { return item.source; })
-                    .filter(function (value, index, self) { return self.indexOf(value) === index; });
+                _this.sourceList =
+                    result
+                        .map(function (item) { return item.source; })
+                        .filter(function (value, index, self) { return self.indexOf(value) === index; });
                 _this.sourceList.push('All');
                 _this.sourceList.sort();
                 _this.articleList = result;
@@ -46,6 +49,13 @@ var LatestNewsComponent = (function () {
         }, function (error) {
             _this.loaderService.display(false);
             _this.toasterService.showToaster(error);
+        });
+    };
+    LatestNewsComponent.prototype.selectAll = function () {
+        var _this = this;
+        console.log('hassan');
+        this.articleList.forEach(function (v, i) {
+            v.selected = _this.selectAllStatus;
         });
     };
     LatestNewsComponent.prototype.sendTweet = function (item) {
