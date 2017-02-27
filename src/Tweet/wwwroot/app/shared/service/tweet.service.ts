@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 
+import { LoaderService } from './loader.service';
 import { WebApiObservableService } from './web-api-observable.service';
 import { WebApiPromiseService } from './web-api-promise.service';
 import { ToasterService } from './toaster.service';
@@ -7,7 +8,9 @@ import { ToasterService } from './toaster.service';
 @Injectable()
 export class TweetService {
 
-    constructor(private toasterService: ToasterService,
+    constructor(
+        private loaderService: LoaderService,
+        private toasterService: ToasterService,
         private webApiObservableService: WebApiObservableService) {
 
     }
@@ -18,10 +21,11 @@ export class TweetService {
             .getServiceWithFixedQueryString('api/Tweet/PostTweet', content)
             .subscribe(
             (result: any) => {
+                this.loaderService.display(false);
                 this.toasterService.showToaster("Post with title: " + title + " is tweeted");
             },
             error => {
-                this.toasterService.showToaster(<any>error);
+                this.handleError(error);
             }
             );
     }
@@ -32,12 +36,18 @@ export class TweetService {
             .getService('api/Tweet/' + url)
             .subscribe(
             (result: any) => {
+                this.loaderService.display(false);
                 this.toasterService.showToaster("All latest news posts are tweeted");
             },
             error => {
-                this.toasterService.showToaster(<any>error);
+                this.handleError(error);
             }
             );
+    }
+
+    handleError(error) {
+        this.toasterService.showToaster(<any>error);
+        this.loaderService.display(false);
     }
 
 }
