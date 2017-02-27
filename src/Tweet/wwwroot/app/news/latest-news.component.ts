@@ -49,11 +49,7 @@ export class LatestNewsComponent implements OnInit {
                     this.sourceList = result.map(item => item.source).filter((value, index, self) => self.indexOf(value) === index);
                     this.sourceList.push('All');
                     this.sourceList.sort();
-
-                    result.forEach((v, i) => {
-                        v.selected = false;
-                    });
-
+                    this.resetGrid(result);
                     this.articleList = result;
                     this.loaderService.display(false);
                     this.toasterService.showToaster('Latest News have been loaded');
@@ -66,13 +62,23 @@ export class LatestNewsComponent implements OnInit {
             );
     }
 
+    filterGridBySource(source: string) {
+        this.sourceName = source;
+        this.resetGrid(this.articleList);
+    }
+
     selectAll() {
         this.selectCounter = 0;
         this.selectAllFlag = !this.selectAllFlag;
 
         this.articleList.forEach((v, i) => {
-            this.selectCounter = this.selectAllFlag == true ? this.selectCounter + 1 : 0;
-            v.selected = this.selectAllFlag;
+            if (v.source == this.sourceName || this.sourceName == 'All') {
+                this.selectCounter = this.selectAllFlag == true ? this.selectCounter + 1 : 0;
+                v.selected = this.selectAllFlag;
+            }
+            else {
+                v.selected = !this.selectAllFlag;
+            }
         });
     }
 
@@ -105,8 +111,16 @@ export class LatestNewsComponent implements OnInit {
 
         if (this.selectedArticleList.length > 0) {
             this.tweetService.postSelectedNewsTweet(this.selectedArticleList);
-            this.selectCounter = 0;
+            this.resetGrid(this.articleList);
         }
+    }
+
+    resetGrid(result: Article[]) {
+        this.selectCounter = 0;
+        this.selectAllFlag = false;
+        result.forEach((v, i) => {
+            v.selected = false;
+        });
     }
 
     get diagnostic(): string {

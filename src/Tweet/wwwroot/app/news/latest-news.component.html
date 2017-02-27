@@ -22,7 +22,7 @@
     <div class="col-xl-7 col-lg-7">
         <span *ngFor="let item of sourceList">
             <span class="example-tooltip-host" mdTooltip="Click to filter latest news to source: {{item}}" mdTooltipPosition="above">
-                <button type="button" class="btn-sm btn-success" (click)="sourceName = item;">
+                <button type="button" class="btn-sm btn-success" (click)="filterGridBySource(item)">
                     <i class="fa fa-database">&nbsp; {{item}}</i>
                 </button>&nbsp;&nbsp;&nbsp;
             </span>

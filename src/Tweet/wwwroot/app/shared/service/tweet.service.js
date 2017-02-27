@@ -37,7 +37,7 @@ var TweetService = (function () {
             .getService('api/Tweet/' + url)
             .subscribe(function (result) {
             _this.loaderService.display(false);
-            _this.toasterService.showToaster("All latest news posts are tweeted");
+            _this.toasterService.showToaster("All " + sortBy + " news posts are tweeted");
         }, function (error) {
             _this.handleError(error);
         });

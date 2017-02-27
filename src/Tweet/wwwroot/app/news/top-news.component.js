@@ -41,9 +41,7 @@ var TopNewsComponent = (function () {
                 _this.sourceList = result.map(function (item) { return item.source; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
                 _this.sourceList.push('All');
                 _this.sourceList.sort();
-                result.forEach(function (v, i) {
-                    v.selected = false;
-                });
+                _this.resetGrid(result);
                 _this.articleList = result;
                 _this.loaderService.display(false);
                 _this.toasterService.showToaster('Top News have been loaded');
@@ -53,13 +51,22 @@ var TopNewsComponent = (function () {
             _this.toasterService.showToaster(error);
         });
     };
+    TopNewsComponent.prototype.filterGridBySource = function (source) {
+        this.sourceName = source;
+        this.resetGrid(this.articleList);
+    };
     TopNewsComponent.prototype.selectAll = function () {
         var _this = this;
         this.selectCounter = 0;
         this.selectAllFlag = !this.selectAllFlag;
         this.articleList.forEach(function (v, i) {
-            _this.selectCounter = _this.selectAllFlag == true ? _this.selectCounter + 1 : 0;
-            v.selected = _this.selectAllFlag;
+            if (v.source == _this.sourceName || _this.sourceName == 'All') {
+                _this.selectCounter = _this.selectAllFlag == true ? _this.selectCounter + 1 : 0;
+                v.selected = _this.selectAllFlag;
+            }
+            else {
+                v.selected = !_this.selectAllFlag;
+            }
         });
     };
     TopNewsComponent.prototype.selectOneItem = function (item) {
@@ -90,8 +97,15 @@ var TopNewsComponent = (function () {
         });
         if (this.selectedArticleList.length > 0) {
             this.tweetService.postSelectedNewsTweet(this.selectedArticleList);
-            this.selectCounter = 0;
+            this.resetGrid(this.articleList);
         }
+    };
+    TopNewsComponent.prototype.resetGrid = function (result) {
+        this.selectCounter = 0;
+        this.selectAllFlag = false;
+        result.forEach(function (v, i) {
+            v.selected = false;
+        });
     };
     Object.defineProperty(TopNewsComponent.prototype, "diagnostic", {
         get: function () {

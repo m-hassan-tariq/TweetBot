@@ -38,7 +38,7 @@ export class TweetService {
             .subscribe(
             (result: any) => {
                 this.loaderService.display(false);
-                this.toasterService.showToaster("All latest news posts are tweeted");
+                this.toasterService.showToaster("All " + sortBy + " news posts are tweeted");
             },
             error => {
                 this.handleError(error);
