@@ -11,7 +11,7 @@ namespace Tweet.BAL
     {
         Task<TwitterResponse> PostTweetAsync(string tweet);
 
-        Task<TwitterResponse> PostSelectedTweetAsync(List<Article> articleList);
+        Task<TwitterResponse> PostSelectedNewsAsync(List<Article> articleList);
 
         Task<TwitterResponse> PostNewsTweetAsync(string source, string sortBy);
 
@@ -20,5 +20,7 @@ namespace Tweet.BAL
         Task<TwitterResponse> PostAllBlogTweetAsync();
 
         Task<TwitterResponse> PostBlogTweetByCategoryAsync(string category);
+
+        Task<TwitterResponse> PostSelectedBlogTweetAsync(List<BlogPost> blogList);
     }
 }

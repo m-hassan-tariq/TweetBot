@@ -1,4 +1,4 @@
-﻿export class Blog {
+﻿export class BlogPost {
     header: string;
     url: string;
     category: string;

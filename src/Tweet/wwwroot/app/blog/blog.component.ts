@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { Blog } from '../shared/model/blog';
+import { BlogPost } from '../shared/model/blogpost';
 import { TweetService } from '../shared/service/tweet.service';
 import { LoaderService } from '../shared/service/loader.service';
 import { WebApiObservableService } from '../shared/service/web-api-observable.service';
@@ -14,8 +14,8 @@ import { ToasterService } from '../shared/service/toaster.service';
 })
 
 export class BlogComponent implements OnInit {
-    blogList: Blog[];
-    selectedBlogList: Blog[];
+    blogList: BlogPost[];
+    selectedBlogList: BlogPost[];
     categoryList: string[];
     categoryName: string;
     selectAllFlag: boolean;
@@ -42,9 +42,9 @@ export class BlogComponent implements OnInit {
         this.blogList = [];
         this.categoryList = [];
         this.webApiObservableService
-            .getService('api/Tweet/AllLatestNews')
+            .getService('api/Tweet/AllBlog')
             .subscribe(
-            (result: Blog[]) => {
+            (result: BlogPost[]) => {
                 if (result) {
                     this.categoryList = result.map(item => item.category).filter((value, index, self) => self.indexOf(value) === index);
                     this.categoryList.push('All');
@@ -82,7 +82,7 @@ export class BlogComponent implements OnInit {
         });
     }
 
-    selectOneItem(item: Blog) {
+    selectOneItem(item: BlogPost) {
         item.selected = !item.selected;
         if (item.selected == true) {
             this.selectCounter = this.selectCounter + 1
@@ -92,8 +92,8 @@ export class BlogComponent implements OnInit {
         };
     }
 
-    sendTweet(item: Blog) {
-        this.tweetService.postNewsTweet(item.header, item.url);
+    sendTweet(item: BlogPost) {
+        this.tweetService.postTweet(item.header, item.url);
     }
 
     sendAllTweet() {
@@ -110,12 +110,12 @@ export class BlogComponent implements OnInit {
         });
 
         if (this.selectedBlogList.length > 0) {
-            this.tweetService.postSelectedNewsTweet(this.selectedBlogList);
+            this.tweetService.postSelectedBlogTweet(this.selectedBlogList);
             this.resetGrid(this.blogList);
         }
     }
 
-    resetGrid(result: Blog[]) {
+    resetGrid(result: BlogPost[]) {
         this.selectCounter = 0;
         this.selectAllFlag = false;
         result.forEach((v, i) => {

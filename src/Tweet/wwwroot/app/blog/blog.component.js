@@ -35,7 +35,7 @@ var BlogComponent = (function () {
         this.blogList = [];
         this.categoryList = [];
         this.webApiObservableService
-            .getService('api/Tweet/AllLatestNews')
+            .getService('api/Tweet/AllBlog')
             .subscribe(function (result) {
             if (result) {
                 _this.categoryList = result.map(function (item) { return item.category; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
@@ -81,7 +81,7 @@ var BlogComponent = (function () {
         ;
     };
     BlogComponent.prototype.sendTweet = function (item) {
-        this.tweetService.postNewsTweet(item.header, item.url);
+        this.tweetService.postTweet(item.header, item.url);
     };
     BlogComponent.prototype.sendAllTweet = function () {
         this.tweetService.postAllBlogTweet();
@@ -96,7 +96,7 @@ var BlogComponent = (function () {
             }
         });
         if (this.selectedBlogList.length > 0) {
-            this.tweetService.postSelectedNewsTweet(this.selectedBlogList);
+            this.tweetService.postSelectedBlogTweet(this.selectedBlogList);
             this.resetGrid(this.blogList);
         }
     };

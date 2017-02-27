@@ -31,7 +31,7 @@ namespace Tweet.BAL
             return await _twitterService.Tweet(tweet);
         }
 
-        public async Task<TwitterResponse> PostSelectedTweetAsync(List<Article> articleList)
+        public async Task<TwitterResponse> PostSelectedNewsAsync(List<Article> articleList)
         {
             if (articleList != null)
             {
@@ -91,6 +91,15 @@ namespace Tweet.BAL
                                     .ToList();
 
             return await PostBlogTweetAsync(result);
+        }
+
+        public async Task<TwitterResponse> PostSelectedBlogTweetAsync(List<BlogPost> blogList)
+        {
+            if (blogList != null)
+            {
+                return await PostBlogTweetAsync(blogList);
+            }
+            return new TwitterResponse();
         }
 
         public async Task<TwitterResponse> PostBlogTweetAsync(List<BlogPost> result)

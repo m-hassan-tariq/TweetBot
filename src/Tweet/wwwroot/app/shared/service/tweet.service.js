@@ -18,7 +18,7 @@ var TweetService = (function () {
         this.toasterService = toasterService;
         this.webApiObservableService = webApiObservableService;
     }
-    TweetService.prototype.postNewsTweet = function (title, url) {
+    TweetService.prototype.postTweet = function (title, url) {
         var _this = this;
         var content = title.substring(0, 100) + ' ' + url;
         this.webApiObservableService
@@ -32,12 +32,12 @@ var TweetService = (function () {
     };
     TweetService.prototype.postAllNewsTweet = function (sortBy) {
         var _this = this;
-        var url = sortBy == 'latest' ? 'TweetAllLatestNews' : 'TweetAllTopNews';
+        var url = sortBy == 'latest' ? 'PostAllLatestNews' : 'PostAllTopNews';
         this.webApiObservableService
             .getService('api/Tweet/' + url)
             .subscribe(function (result) {
             _this.loaderService.display(false);
-            _this.toasterService.showToaster("All " + sortBy + " news posts are tweeted");
+            _this.toasterService.showToaster("All " + sortBy + " news posts have been tweeted");
         }, function (error) {
             _this.handleError(error);
         });
@@ -45,10 +45,32 @@ var TweetService = (function () {
     TweetService.prototype.postSelectedNewsTweet = function (articleList) {
         var _this = this;
         this.webApiObservableService
-            .createService('api/Tweet/PostSelectedTweets', articleList)
+            .createService('api/Tweet/PostSelectedNews', articleList)
             .subscribe(function (result) {
             _this.loaderService.display(false);
-            _this.toasterService.showToaster("All latest news posts are tweeted");
+            _this.toasterService.showToaster("All selected news posts have been tweeted");
+        }, function (error) {
+            _this.handleError(error);
+        });
+    };
+    TweetService.prototype.postAllBlogTweet = function () {
+        var _this = this;
+        this.webApiObservableService
+            .getService('api/Tweet/PostAllBlog')
+            .subscribe(function (result) {
+            _this.loaderService.display(false);
+            _this.toasterService.showToaster("All blog posts are tweeted");
+        }, function (error) {
+            _this.handleError(error);
+        });
+    };
+    TweetService.prototype.postSelectedBlogTweet = function (blogList) {
+        var _this = this;
+        this.webApiObservableService
+            .createService('api/Tweet/PostSelectedBlog', blogList)
+            .subscribe(function (result) {
+            _this.loaderService.display(false);
+            _this.toasterService.showToaster("All selected blog posts have been tweeted");
         }, function (error) {
             _this.handleError(error);
         });

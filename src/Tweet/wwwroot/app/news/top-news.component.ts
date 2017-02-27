@@ -93,7 +93,7 @@ export class TopNewsComponent implements OnInit {
     }
 
     sendTweet(item: Article) {
-        this.tweetService.postNewsTweet(item.title, item.url);
+        this.tweetService.postTweet(item.title, item.url);
     }
 
     sendAllTweet() {

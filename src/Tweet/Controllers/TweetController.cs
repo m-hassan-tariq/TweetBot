@@ -56,52 +56,66 @@ namespace Tweet.Controllers
         }
 
         [HttpPost]
-        [Route("PostSelectedTweets")]
-        public async Task<TwitterResponse> PostAllSelectedTweets([FromBodyAttribute] List<Article> articleList)
+        [Route("PostSelectedNews")]
+        public async Task<TwitterResponse> PostAllSelectedNews([FromBodyAttribute] List<Article> articleList)
         {
-            return await _twitter.PostSelectedTweetAsync(articleList);
+            return await _twitter.PostSelectedNewsAsync(articleList);
         }
 
         [HttpGet]
-        [Route("TweetLatestNews")]
+        [Route("PostLatestNews")]
         public async Task<TwitterResponse> PostLatestNewsTweet(string source)
         {
             return await _twitter.PostNewsTweetAsync(source, "latest");
         }
 
         [HttpGet]
-        [Route("TweetTopNews")]
+        [Route("PostTopNews")]
         public async Task<TwitterResponse> PostTopNewsTweet(string source)
         {
             return await _twitter.PostNewsTweetAsync(source, "top");
         }
 
         [HttpGet]
-        [Route("TweetAllLatestNews")]
+        [Route("PostAllLatestNews")]
         public async Task<TwitterResponse> PostAllLatestNewsTweet()
         {
             return await _twitter.PostAllNewsTweetAsync("latest");
         }
 
         [HttpGet]
-        [Route("TweetAllTopNews")]
+        [Route("PostAllTopNews")]
         public async Task<TwitterResponse> PostAllTopNewsTweet()
         {
             return await _twitter.PostAllNewsTweetAsync("top");
         }
 
         [HttpGet]
-        [Route("TweetAllPost")]
+        [Route("PostAllBlog")]
         public async Task<TwitterResponse> PostAllBlogTweet()
         {
             return await _twitter.PostAllBlogTweetAsync();
         }
 
         [HttpGet]
-        [Route("TweetPostByCategory")]
+        [Route("AllBlog")]
+        public IEnumerable<BlogPost> GetAllBlogPosts()
+        {
+            return _newsData.LoadBlogPostsData();
+        }
+
+        [HttpGet]
+        [Route("PostBlogByCategory")]
         public async Task<TwitterResponse> PostBlogTweetByCategoryAsync(string category)
         {
             return await _twitter.PostBlogTweetByCategoryAsync(category);
+        }
+
+        [HttpPost]
+        [Route("PostSelectedBlog")]
+        public async Task<TwitterResponse> PostAllSelectedBlogTweets([FromBodyAttribute] List<BlogPost> blogList)
+        {
+            return await _twitter.PostSelectedBlogTweetAsync(blogList);
         }
     }
 }

@@ -81,7 +81,7 @@ var LatestNewsComponent = (function () {
         ;
     };
     LatestNewsComponent.prototype.sendTweet = function (item) {
-        this.tweetService.postNewsTweet(item.title, item.url);
+        this.tweetService.postTweet(item.title, item.url);
     };
     LatestNewsComponent.prototype.sendAllTweet = function () {
         this.tweetService.postAllNewsTweet('latest');

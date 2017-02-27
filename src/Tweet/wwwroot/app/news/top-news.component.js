@@ -81,7 +81,7 @@ var TopNewsComponent = (function () {
         ;
     };
     TopNewsComponent.prototype.sendTweet = function (item) {
-        this.tweetService.postNewsTweet(item.title, item.url);
+        this.tweetService.postTweet(item.title, item.url);
     };
     TopNewsComponent.prototype.sendAllTweet = function () {
         this.tweetService.postAllNewsTweet('top');

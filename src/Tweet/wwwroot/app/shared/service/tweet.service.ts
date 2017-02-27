@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 
+import { BlogPost } from '../model/blogpost';
 import { Article } from '../model/article';
 import { LoaderService } from './loader.service';
 import { WebApiObservableService } from './web-api-observable.service';
@@ -16,7 +17,7 @@ export class TweetService {
 
     }
 
-    postNewsTweet(title: string, url: string) {
+    postTweet(title: string, url: string) {
         let content: string = title.substring(0, 100) + ' ' + url;
         this.webApiObservableService
             .getServiceWithFixedQueryString('api/Tweet/PostTweet', content)
@@ -32,7 +33,7 @@ export class TweetService {
     }
 
     postAllNewsTweet(sortBy: string) {
-        let url: string = sortBy == 'latest' ? 'TweetAllLatestNews' : 'TweetAllTopNews'; 
+        let url: string = sortBy == 'latest' ? 'PostAllLatestNews' : 'PostAllTopNews'; 
         this.webApiObservableService
             .getService('api/Tweet/' + url)
             .subscribe(
@@ -48,7 +49,7 @@ export class TweetService {
 
     postSelectedNewsTweet(articleList: Article[]) {
         this.webApiObservableService
-            .createService('api/Tweet/PostSelectedTweets', articleList)
+            .createService('api/Tweet/PostSelectedNews', articleList)
             .subscribe(
             (result: any) => {
                 this.loaderService.display(false);
@@ -62,11 +63,25 @@ export class TweetService {
 
     postAllBlogTweet() {
         this.webApiObservableService
-            .getService('api/Tweet/TweetAllPost')
+            .getService('api/Tweet/PostAllBlog')
             .subscribe(
             (result: any) => {
                 this.loaderService.display(false);
-                this.toasterService.showToaster("All latest news posts are tweeted");
+                this.toasterService.showToaster("All blog posts are tweeted");
+            },
+            error => {
+                this.handleError(error);
+            }
+            );
+    }
+
+    postSelectedBlogTweet(blogList: BlogPost[]) {
+        this.webApiObservableService
+            .createService('api/Tweet/PostSelectedBlog', blogList)
+            .subscribe(
+            (result: any) => {
+                this.loaderService.display(false);
+                this.toasterService.showToaster("All selected blog posts have been tweeted");
             },
             error => {
                 this.handleError(error);
