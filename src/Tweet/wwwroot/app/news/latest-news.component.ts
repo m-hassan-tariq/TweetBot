@@ -15,6 +15,7 @@ import { ToasterService } from '../shared/service/toaster.service';
 
 export class LatestNewsComponent implements OnInit {
     articleList: Article[];
+    selectedArticleList: Article[];
     sourceList: string[];
     sourceName: string;
     selectAllFlag: boolean;
@@ -26,6 +27,7 @@ export class LatestNewsComponent implements OnInit {
         private webApiObservableService: WebApiObservableService,
         private tweetService: TweetService) {
         this.articleList = [];
+        this.selectedArticleList = [];
         this.sourceList = [];
         this.sourceName = 'All';
         this.selectAllFlag = false;
@@ -67,7 +69,7 @@ export class LatestNewsComponent implements OnInit {
     selectAll() {
         this.selectCounter = 0;
         this.selectAllFlag = !this.selectAllFlag;
-        
+
         this.articleList.forEach((v, i) => {
             this.selectCounter = this.selectAllFlag == true ? this.selectCounter + 1 : 0;
             v.selected = this.selectAllFlag;
@@ -75,7 +77,6 @@ export class LatestNewsComponent implements OnInit {
     }
 
     selectOneItem(item: Article) {
-        console.log(item.selected);
         item.selected = !item.selected;
         if (item.selected == true) {
             this.selectCounter = this.selectCounter + 1
@@ -91,6 +92,21 @@ export class LatestNewsComponent implements OnInit {
 
     sendAllTweet() {
         this.tweetService.postAllNewsTweet('latest');
+    }
+
+    sendSelectedTweet() {
+        this.selectedArticleList = [];
+        this.articleList.forEach((v, i) => {
+            if (v.selected == true) {
+                this.selectedArticleList.push(this.articleList[i]);
+                v.selected = false;
+            }
+        });
+
+        if (this.selectedArticleList.length > 0) {
+            this.tweetService.postSelectedNewsTweet(this.selectedArticleList);
+            this.selectCounter = 0;
+        }
     }
 
     get diagnostic(): string {

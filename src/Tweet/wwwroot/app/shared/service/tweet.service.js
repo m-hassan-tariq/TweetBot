@@ -42,6 +42,17 @@ var TweetService = (function () {
             _this.handleError(error);
         });
     };
+    TweetService.prototype.postSelectedNewsTweet = function (articleList) {
+        var _this = this;
+        this.webApiObservableService
+            .createService('api/Tweet/PostSelectedTweets', articleList)
+            .subscribe(function (result) {
+            _this.loaderService.display(false);
+            _this.toasterService.showToaster("All latest news posts are tweeted");
+        }, function (error) {
+            _this.handleError(error);
+        });
+    };
     TweetService.prototype.handleError = function (error) {
         this.toasterService.showToaster(error);
         this.loaderService.display(false);

@@ -31,40 +31,48 @@ namespace Tweet.BAL
             return await _twitterService.Tweet(tweet);
         }
 
+        public async Task<TwitterResponse> PostSelectedTweetAsync(List<Article> articleList)
+        {
+            if (articleList != null)
+            {
+                return await FormatFilterTweet(articleList);
+            }
+            return new TwitterResponse();
+        }
+
         public async Task<TwitterResponse> PostNewsTweetAsync(string source, string sortBy)
         {
             var result = await _newsData.GetNewsAsync(source, sortBy);
-            var response = new TwitterResponse();
 
             if (result != null)
             {
-                foreach(var articleEntity in result.articles)
-                {
-                    if (!articleEntity.title.ContainsAny(filterTerms))
-                    {
-                        response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags(hashtagTerms).LimitTo(100) + " " + articleEntity.url);
-                    }
-
-                }
+                return await FormatFilterTweet(result.articles);
             }
-            return response;
+            return new TwitterResponse();
         }
 
         public async Task<TwitterResponse> PostAllNewsTweetAsync(string sortBy)
         {
             var result = await _newsData.GetAllNewsAsync(sortBy);
-            var response = new TwitterResponse();
 
             if (result != null)
             {
-                foreach (var articleEntity in result)
-                {
-                    if (!articleEntity.title.ContainsAny(filterTerms))
-                    {
-                        response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags(hashtagTerms).LimitTo(100) + " " + articleEntity.url);
-                    }
+                return await FormatFilterTweet(result);
+            }
+            return new TwitterResponse();
+        }
 
+        public async Task<TwitterResponse> FormatFilterTweet(List<Article> result)
+        {
+            var response = new TwitterResponse();
+
+            foreach (var articleEntity in result)
+            {
+                if (!articleEntity.title.ContainsAny(filterTerms))
+                {
+                    response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags(hashtagTerms).LimitTo(100) + " " + articleEntity.url);
                 }
+
             }
             return response;
         }

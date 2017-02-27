@@ -21,6 +21,7 @@ var LatestNewsComponent = (function () {
         this.webApiObservableService = webApiObservableService;
         this.tweetService = tweetService;
         this.articleList = [];
+        this.selectedArticleList = [];
         this.sourceList = [];
         this.sourceName = 'All';
         this.selectAllFlag = false;
@@ -62,7 +63,6 @@ var LatestNewsComponent = (function () {
         });
     };
     LatestNewsComponent.prototype.selectOneItem = function (item) {
-        console.log(item.selected);
         item.selected = !item.selected;
         if (item.selected == true) {
             this.selectCounter = this.selectCounter + 1;
@@ -78,6 +78,20 @@ var LatestNewsComponent = (function () {
     };
     LatestNewsComponent.prototype.sendAllTweet = function () {
         this.tweetService.postAllNewsTweet('latest');
+    };
+    LatestNewsComponent.prototype.sendSelectedTweet = function () {
+        var _this = this;
+        this.selectedArticleList = [];
+        this.articleList.forEach(function (v, i) {
+            if (v.selected == true) {
+                _this.selectedArticleList.push(_this.articleList[i]);
+                v.selected = false;
+            }
+        });
+        if (this.selectedArticleList.length > 0) {
+            this.tweetService.postSelectedNewsTweet(this.selectedArticleList);
+            this.selectCounter = 0;
+        }
     };
     Object.defineProperty(LatestNewsComponent.prototype, "diagnostic", {
         get: function () {

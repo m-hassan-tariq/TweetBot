@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 
+import { Article } from '../model/article';
 import { LoaderService } from './loader.service';
 import { WebApiObservableService } from './web-api-observable.service';
 import { WebApiPromiseService } from './web-api-promise.service';
@@ -34,6 +35,20 @@ export class TweetService {
         let url: string = sortBy == 'latest' ? 'TweetAllLatestNews' : 'TweetAllTopNews'; 
         this.webApiObservableService
             .getService('api/Tweet/' + url)
+            .subscribe(
+            (result: any) => {
+                this.loaderService.display(false);
+                this.toasterService.showToaster("All latest news posts are tweeted");
+            },
+            error => {
+                this.handleError(error);
+            }
+            );
+    }
+
+    postSelectedNewsTweet(articleList: Article[]) {
+        this.webApiObservableService
+            .createService('api/Tweet/PostSelectedTweets', articleList)
             .subscribe(
             (result: any) => {
                 this.loaderService.display(false);

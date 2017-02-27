@@ -75,6 +75,7 @@ export class WebApiObservableService {
     createService(url: string, param: any): Observable<any> {
         this.loaderService.display(true);
         let body = JSON.stringify(param);
+        console.log(body);
         return this.http
             .post(url, body, this.options)
             .map(this.extractData)

@@ -11,6 +11,8 @@ namespace Tweet.BAL
     {
         Task<TwitterResponse> PostTweetAsync(string tweet);
 
+        Task<TwitterResponse> PostSelectedTweetAsync(List<Article> articleList);
+
         Task<TwitterResponse> PostNewsTweetAsync(string source, string sortBy);
 
         Task<TwitterResponse> PostAllNewsTweetAsync(string sortBy);

@@ -55,6 +55,13 @@ namespace Tweet.Controllers
             return await _twitter.PostTweetAsync(content);
         }
 
+        [HttpPost]
+        [Route("PostSelectedTweets")]
+        public async Task<TwitterResponse> PostAllSelectedTweets([FromBodyAttribute] List<Article> articleList)
+        {
+            return await _twitter.PostSelectedTweetAsync(articleList);
+        }
+
         [HttpGet]
         [Route("TweetLatestNews")]
         public async Task<TwitterResponse> PostLatestNewsTweet(string source)

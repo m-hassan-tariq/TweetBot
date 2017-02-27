@@ -72,6 +72,7 @@ var WebApiObservableService = (function () {
     WebApiObservableService.prototype.createService = function (url, param) {
         this.loaderService.display(true);
         var body = JSON.stringify(param);
+        console.log(body);
         return this.http
             .post(url, body, this.options)
             .map(this.extractData)
