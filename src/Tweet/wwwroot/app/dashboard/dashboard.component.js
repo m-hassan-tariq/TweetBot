@@ -23,10 +23,31 @@ var DashboardComponent = (function () {
         this.topArticleList = [];
         this.topSecondaryArticleList = [];
         this.sourceList = [];
-        this.sourceName = 'All';
+        this.blogList = [];
+        this.categoryList = [];
+        this.categoryValue = "";
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        this.getAllLatestNews();
+        this.getAllBlogPosts();
+    };
+    DashboardComponent.prototype.getAllBlogPosts = function () {
+        var _this = this;
+        this.blogList = [];
+        this.categoryList = [];
+        this.webApiObservableService
+            .getService('api/Tweet/AllBlog')
+            .subscribe(function (result) {
+            if (result) {
+                _this.categoryList = result.map(function (item) { return item.category; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
+                _this.categoryList.sort();
+                //this.categoryValue = this.categoryList ? this.categoryList[0] : '';
+                _this.blogList = result;
+                _this.getAllLatestNews();
+            }
+        }, function (error) {
+            _this.loaderService.display(false);
+            _this.toasterService.showToaster(error);
+        });
     };
     DashboardComponent.prototype.getAllLatestNews = function () {
         var _this = this;
@@ -37,7 +58,6 @@ var DashboardComponent = (function () {
             .subscribe(function (result) {
             if (result) {
                 _this.sourceList = result.map(function (item) { return item.source; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
-                _this.sourceList.push('All');
                 _this.sourceList.sort();
                 _this.lastestArticleList = result;
                 _this.getAllTopNews();
@@ -83,6 +103,22 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.tweetNewsBySource = function (sortBy, source) {
         this.tweetService.postNewsBySource(sortBy, source);
+    };
+    DashboardComponent.prototype.tweetAllNews = function (sortBy) {
+        this.tweetService.postAllNewsTweet(sortBy);
+    };
+    DashboardComponent.prototype.tweetAllBlogPosts = function () {
+        this.tweetService.postAllBlogTweet();
+    };
+    DashboardComponent.prototype.tweetAllBlogPostsByCategory = function () {
+        console.log(this.categoryValue);
+        //if (this.categoryValue) {
+        //    this.tweetService.postBlogByCategoryTweet(this.categoryValue);
+        //    this.categoryValue = '';
+        //}
+        //else {
+        //    this.toasterService.showToaster('Choose blog posts category!!');
+        //}
     };
     Object.defineProperty(DashboardComponent.prototype, "diagnostic", {
         get: function () {

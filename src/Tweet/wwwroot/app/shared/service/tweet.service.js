@@ -37,7 +37,7 @@ var TweetService = (function () {
             .getServiceWithDynamicQueryTerm('api/Tweet/' + url, 'source', source)
             .subscribe(function (result) {
             _this.loaderService.display(false);
-            _this.toasterService.showToaster("All " + sortBy + " news posts have been tweeted");
+            _this.toasterService.showToaster("All news posts of " + source + "have been tweeted");
         }, function (error) {
             _this.handleError(error);
         });
@@ -72,6 +72,17 @@ var TweetService = (function () {
             .subscribe(function (result) {
             _this.loaderService.display(false);
             _this.toasterService.showToaster("All blog posts are tweeted");
+        }, function (error) {
+            _this.handleError(error);
+        });
+    };
+    TweetService.prototype.postBlogByCategoryTweet = function (category) {
+        var _this = this;
+        this.webApiObservableService
+            .getServiceWithDynamicQueryTerm('api/Tweet/PostBlogByCategory', 'category', category)
+            .subscribe(function (result) {
+            _this.loaderService.display(false);
+            _this.toasterService.showToaster("All blog posts of " + category + " are tweeted");
         }, function (error) {
             _this.handleError(error);
         });

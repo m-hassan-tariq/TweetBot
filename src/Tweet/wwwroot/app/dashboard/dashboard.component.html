@@ -4,20 +4,25 @@
             <div class="card-header card-primary">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-comments fa-5x"></i>
+                        <i class="fa fa-newspaper-o fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="huge">26</div>
-                        <div>New Comments!</div>
+                        <div class="huge">{{lastestArticleList.length}}</div>
+                        <div>Latest News</div>
                     </div>
                 </div>
             </div>
             <div class="card-footer card-default">
-                <a href="javascript:;">
-                    <span class="pull-xs-left">View Details</span>
-                    <span class="pull-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
+                <br />
+                <span class="pull-xs-left">
+                    <button type="button" class="btn btn-sm btn-info" (click)="tweetAllNews('latest')">
+                        <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Tweet Latest News
+                    </button>
+                </span>
+                <a>
+                    <span class="pull-xs-right"><i class="fa fa-arrow-circle-left"></i></span>
                 </a>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
@@ -29,17 +34,22 @@
                         <i class="fa fa-tasks fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="huge">12</div>
-                        <div>New Tasks!</div>
+                        <div class="huge">{{topArticleList.length}}</div>
+                        <div>Top News</div>
                     </div>
                 </div>
             </div>
             <div class="card-footer card-green">
-                <a href="javascript:;">
-                    <span class="pull-xs-left">View Details</span>
-                    <span class="pull-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
+                <br />
+                <span class="pull-xs-left">
+                    <button type="button" class="btn btn-sm btn-info" (click)="tweetAllNews('top')">
+                        <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Tweet Top News
+                    </button>
+                </span>
+                <a>
+                    <span class="pull-xs-right"><i class="fa fa-arrow-circle-left"></i></span>
                 </a>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
@@ -48,20 +58,25 @@
             <div class="card-header card-yellow">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-shopping-cart fa-5x"></i>
+                        <i class="fa fa-wordpress fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="huge">124</div>
-                        <div>New Orders!</div>
+                        <div class="huge">{{blogList.length}}</div>
+                        <div>Blog Posts</div>
                     </div>
                 </div>
             </div>
             <div class="card-footer card-yellow">
-                <a href="javascript:;">
-                    <span class="pull-xs-left">View Details</span>
-                    <span class="pull-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
+                <br />
+                <span class="pull-xs-left">
+                    <button type="button" class="btn btn-sm btn-info" (click)="tweetAllBlogPosts()">
+                        <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Tweet Blog Posts
+                    </button>
+                </span>
+                <a>
+                    <span class="pull-xs-right"><i class="fa fa-arrow-circle-left"></i></span>
                 </a>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
@@ -73,17 +88,24 @@
                         <i class="fa fa-support fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="huge">13</div>
-                        <div>Support Tickets!</div>
+                        <div class="huge">{{categoryList.length}}</div>
+                        <div>Blog Category</div>
                     </div>
                 </div>
             </div>
             <div class="card-footer card-red">
-                <a href="javascript:;">
-                    <span class="pull-xs-left">View Details</span>
-                    <span class="pull-xs-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </a>
+                <br />
+                <span class="pull-xs-left">
+                    <button type="button" class="btn btn-sm btn-info" (click)="tweetAllBlogPostsByCategory()">
+                        <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Tweet Category
+                    </button>
+                </span>
+                <md-select class="pull-xs-right" placeholder="Blog Categories" [(ngModel)]="categoryValue" name="blogCategory" id="blogCategory">
+                    <md-option *ngFor="let item of categoryList" [value]="item">
+                        {{item}}
+                    </md-option>
+                </md-select>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>

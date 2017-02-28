@@ -39,7 +39,7 @@ export class TweetService {
             .subscribe(
             (result: any) => {
                 this.loaderService.display(false);
-                this.toasterService.showToaster("All " + sortBy + " news posts have been tweeted");
+                this.toasterService.showToaster("All news posts of " + source +  "have been tweeted");
             },
             error => {
                 this.handleError(error);
@@ -83,6 +83,20 @@ export class TweetService {
             (result: any) => {
                 this.loaderService.display(false);
                 this.toasterService.showToaster("All blog posts are tweeted");
+            },
+            error => {
+                this.handleError(error);
+            }
+            );
+    }
+
+    postBlogByCategoryTweet(category: string) {
+        this.webApiObservableService
+            .getServiceWithDynamicQueryTerm('api/Tweet/PostBlogByCategory', 'category', category)
+            .subscribe(
+            (result: any) => {
+                this.loaderService.display(false);
+                this.toasterService.showToaster("All blog posts of " + category + " are tweeted");
             },
             error => {
                 this.handleError(error);
