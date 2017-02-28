@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
     categoryValue: string;
     sourceValue: string;
     newsTypeValue: string;
+    content: string;
 
     constructor(
         private loaderService: LoaderService,
@@ -42,6 +43,7 @@ export class DashboardComponent implements OnInit {
         this.categoryValue = '';
         this.sourceValue = '';
         this.newsTypeValue = '';
+        this.content = '';
     }
 
     ngOnInit() {
@@ -56,8 +58,7 @@ export class DashboardComponent implements OnInit {
             .subscribe(
             (result: BlogPost[]) => {
                 if (result) {
-                    this.categoryList = result.map(item => item.category).filter((value, index, self) => self.indexOf(value) === index);
-                    this.categoryList.sort();
+                    this.categoryList = result.map(item => item.category).filter((value, index, self) => self.indexOf(value) === index).sort();
                     //this.categoryValue = this.categoryList ? this.categoryList[0] : '';
                     this.blogList = result;
                     this.getAllLatestNews();
@@ -78,8 +79,7 @@ export class DashboardComponent implements OnInit {
             .subscribe(
             (result: Article[]) => {
                 if (result) {
-                    this.sourceList = result.map(item => item.source).filter((value, index, self) => self.indexOf(value) === index);
-                    this.sourceList.sort();
+                    this.sourceList = result.map(item => item.source).filter((value, index, self) => self.indexOf(value) === index).sort();
                     this.lastestArticleList = result;
                     this.getAllTopNews();
                 }
@@ -116,9 +116,8 @@ export class DashboardComponent implements OnInit {
             .subscribe(
             (result: Article[]) => {
                 if (result) {
-                    this.secondarySourceList = result.map(item => item.source).filter((value, index, self) => self.indexOf(value) === index);
+                    this.secondarySourceList = result.map(item => item.source).filter((value, index, self) => self.indexOf(value) === index).sort();
                     this.sourceList = this.sourceList.concat(this.secondarySourceList).sort();
-                    this.secondarySourceList.sort();
                     this.topSecondaryArticleList = result;
                     this.loaderService.display(false);
                     this.toasterService.showToaster('Dashboard have been loaded');
@@ -131,17 +130,25 @@ export class DashboardComponent implements OnInit {
             );
     }
 
+    sendContent() {
+        if (this.content) {
+            this.tweetService.postContent(this.content);
+            this.content = '';
+        }
+        else {
+            this.toasterService.showToaster('Content is missing!!');
+        }
+    }
+
     sendTweet(item: Article) {
         this.tweetService.postTweet(item.title, item.url);
     }
 
     tweetNewsBySource(sortBy: string, source: string) {
         if (sortBy && source) {
-            console.log(sortBy);
-            console.log(source);
-            //this.tweetService.postNewsBySource(sortBy, source);
-            //this.sourceValue = '';
-            //this.newsTypeValue = '';
+            this.tweetService.postNewsBySource(sortBy, source);
+            this.sourceValue = '';
+            this.newsTypeValue = '';
         }
         else {
             this.toasterService.showToaster('News type or Source is missing!!');

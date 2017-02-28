@@ -113,8 +113,8 @@
 <br />
 <div class="row">
     <div class="col-xl-6 col-lg-6">
-        <div class="card card-primary card-inverse">
-            <div class="card-header card-primary">
+        <div class="card card-yellow card-inverse">
+            <div class="card-header card-yellow">
                 <div class="row">
                     <div class="col-xs-3">
                         <i class="fa fa-cloud-upload fa-5x"></i>
@@ -125,50 +125,57 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer card-default">
+            <div class="card-footer card-yellow">
                 <br />
+                
                 <span class="pull-xs-left">
                     <button type="button" class="btn btn-sm btn-info" (click)="tweetNewsBySource(newsTypeValue, sourceValue)">
                         <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Tweet Sources
                     </button>
                 </span>
-                <md-select class="pull-xs-right" placeholder="News Type" [(ngModel)]="newsTypeValue" name="newsType">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <md-select placeholder="select News Type" [(ngModel)]="newsTypeValue" name="newsType">
                     <md-option *ngFor="let item of newsTypeList" [value]="item">
                         {{item}}
                     </md-option>
-                </md-select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <md-select class="pull-xs-right" placeholder="News Source" [(ngModel)]="sourceValue" name="newsSource">
+                </md-select>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <md-select placeholder="select News Source" [(ngModel)]="sourceValue" name="newsSource">
                     <md-option *ngFor="let item of sourceList" [value]="item">
                         {{item}}
                     </md-option>
                 </md-select>
+                <a>
+                    <span class="pull-xs-right"><i class="fa fa-arrow-circle-left"></i></span>
+                </a>
                 <div class="clearfix"></div>
+                <br />
+                <br />
             </div>
         </div>
     </div>
     <div class="col-xl-6 col-lg-6">
-        <div class="card card-primary card-inverse">
-            <div class="card-header card-primary">
+        <div class="card card-green card-inverse">
+            <div class="card-header card-green">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-newspaper-o fa-5x"></i>
+                        <i class="fa fa-twitch fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="huge">{{lastestArticleList.length}}</div>
-                        <div>Latest News</div>
+                        <div class="huge">{{140 - content.length }}</div>
+                        <div>Tweet Content</div>
                     </div>
                 </div>
             </div>
-            <div class="card-footer card-default">
-                <br />
-                <span class="pull-xs-left">
-                    <button type="button" class="btn btn-sm btn-info" (click)="tweetAllNews('latest')">
-                        <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Tweet Latest News
+            <div class="card-footer card-green">
+                <md-input-container style="color: black;" class="pull-xs-left">
+                    <textarea [(ngModel)]="content" maxlength="140" rows="2" cols="100" md-input placeholder="Share thought !!!"></textarea>
+                </md-input-container>
+                <span class="pull-xs-right">
+                    <button type="button" class="btn btn-sm btn-info" (click)="sendContent()">
+                        <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Click to Tweet !!
                     </button>
                 </span>
-                <a>
-                    <span class="pull-xs-right"><i class="fa fa-arrow-circle-left"></i></span>
-                </a>
                 <div class="clearfix"></div>
             </div>
         </div>

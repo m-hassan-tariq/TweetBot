@@ -18,6 +18,18 @@ var TweetService = (function () {
         this.toasterService = toasterService;
         this.webApiObservableService = webApiObservableService;
     }
+    TweetService.prototype.postContent = function (text) {
+        var _this = this;
+        var content = text.substring(0, 140);
+        this.webApiObservableService
+            .getServiceWithFixedQueryString('api/Tweet/PostTweet', content)
+            .subscribe(function (result) {
+            _this.loaderService.display(false);
+            _this.toasterService.showToaster("Content is tweeted");
+        }, function (error) {
+            _this.handleError(error);
+        });
+    };
     TweetService.prototype.postTweet = function (title, url) {
         var _this = this;
         var content = title.substring(0, 100) + ' ' + url;

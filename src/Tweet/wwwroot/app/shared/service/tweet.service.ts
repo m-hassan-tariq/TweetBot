@@ -17,6 +17,21 @@ export class TweetService {
 
     }
 
+    postContent(text: string) {
+        let content: string = text.substring(0, 140);
+        this.webApiObservableService
+            .getServiceWithFixedQueryString('api/Tweet/PostTweet', content)
+            .subscribe(
+            (result: any) => {
+                this.loaderService.display(false);
+                this.toasterService.showToaster("Content is tweeted");
+            },
+            error => {
+                this.handleError(error);
+            }
+            );
+    }
+
     postTweet(title: string, url: string) {
         let content: string = title.substring(0, 100) + ' ' + url;
         this.webApiObservableService
@@ -39,7 +54,7 @@ export class TweetService {
             .subscribe(
             (result: any) => {
                 this.loaderService.display(false);
-                this.toasterService.showToaster("All news posts of " + source +  "have been tweeted");
+                this.toasterService.showToaster("All news posts of " + source + "have been tweeted");
             },
             error => {
                 this.handleError(error);
@@ -48,7 +63,7 @@ export class TweetService {
     }
 
     postAllNewsTweet(sortBy: string) {
-        let url: string = sortBy == 'latest' ? 'PostAllLatestNews' : 'PostAllTopNews'; 
+        let url: string = sortBy == 'latest' ? 'PostAllLatestNews' : 'PostAllTopNews';
         this.webApiObservableService
             .getService('api/Tweet/' + url)
             .subscribe(

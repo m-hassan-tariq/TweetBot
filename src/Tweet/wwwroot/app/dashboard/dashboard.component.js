@@ -30,6 +30,7 @@ var DashboardComponent = (function () {
         this.categoryValue = '';
         this.sourceValue = '';
         this.newsTypeValue = '';
+        this.content = '';
     }
     DashboardComponent.prototype.ngOnInit = function () {
         this.getAllBlogPosts();
@@ -42,8 +43,7 @@ var DashboardComponent = (function () {
             .getService('api/Tweet/AllBlog')
             .subscribe(function (result) {
             if (result) {
-                _this.categoryList = result.map(function (item) { return item.category; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
-                _this.categoryList.sort();
+                _this.categoryList = result.map(function (item) { return item.category; }).filter(function (value, index, self) { return self.indexOf(value) === index; }).sort();
                 //this.categoryValue = this.categoryList ? this.categoryList[0] : '';
                 _this.blogList = result;
                 _this.getAllLatestNews();
@@ -61,8 +61,7 @@ var DashboardComponent = (function () {
             .getService('api/Tweet/AllLatestNews')
             .subscribe(function (result) {
             if (result) {
-                _this.sourceList = result.map(function (item) { return item.source; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
-                _this.sourceList.sort();
+                _this.sourceList = result.map(function (item) { return item.source; }).filter(function (value, index, self) { return self.indexOf(value) === index; }).sort();
                 _this.lastestArticleList = result;
                 _this.getAllTopNews();
             }
@@ -93,9 +92,8 @@ var DashboardComponent = (function () {
             .getService('api/Tweet/AllSecondaryTopNews')
             .subscribe(function (result) {
             if (result) {
-                _this.secondarySourceList = result.map(function (item) { return item.source; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
+                _this.secondarySourceList = result.map(function (item) { return item.source; }).filter(function (value, index, self) { return self.indexOf(value) === index; }).sort();
                 _this.sourceList = _this.sourceList.concat(_this.secondarySourceList).sort();
-                _this.secondarySourceList.sort();
                 _this.topSecondaryArticleList = result;
                 _this.loaderService.display(false);
                 _this.toasterService.showToaster('Dashboard have been loaded');
@@ -105,13 +103,23 @@ var DashboardComponent = (function () {
             _this.toasterService.showToaster(error);
         });
     };
+    DashboardComponent.prototype.sendContent = function () {
+        if (this.content) {
+            this.tweetService.postContent(this.content);
+            this.content = '';
+        }
+        else {
+            this.toasterService.showToaster('Content is missing!!');
+        }
+    };
     DashboardComponent.prototype.sendTweet = function (item) {
         this.tweetService.postTweet(item.title, item.url);
     };
     DashboardComponent.prototype.tweetNewsBySource = function (sortBy, source) {
         if (sortBy && source) {
-            console.log(sortBy);
-            console.log(source);
+            this.tweetService.postNewsBySource(sortBy, source);
+            this.sourceValue = '';
+            this.newsTypeValue = '';
         }
         else {
             this.toasterService.showToaster('News type or Source is missing!!');
