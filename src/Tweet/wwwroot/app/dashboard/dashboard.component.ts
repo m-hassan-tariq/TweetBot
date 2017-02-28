@@ -20,7 +20,11 @@ export class DashboardComponent implements OnInit {
     blogList: BlogPost[];
     categoryList: string[];
     sourceList: string[];
+    secondarySourceList: string[];
+    newsTypeList: string[];
     categoryValue: string;
+    sourceValue: string;
+    newsTypeValue: string;
 
     constructor(
         private loaderService: LoaderService,
@@ -31,9 +35,13 @@ export class DashboardComponent implements OnInit {
         this.topArticleList = [];
         this.topSecondaryArticleList = [];
         this.sourceList = [];
+        this.secondarySourceList = [];
         this.blogList = [];
         this.categoryList = [];
-        this.categoryValue = "";
+        this.newsTypeList = ['top', 'latest'];
+        this.categoryValue = '';
+        this.sourceValue = '';
+        this.newsTypeValue = '';
     }
 
     ngOnInit() {
@@ -50,7 +58,7 @@ export class DashboardComponent implements OnInit {
                 if (result) {
                     this.categoryList = result.map(item => item.category).filter((value, index, self) => self.indexOf(value) === index);
                     this.categoryList.sort();
-                    this.categoryValue = this.categoryList ? this.categoryList[0] : '';
+                    //this.categoryValue = this.categoryList ? this.categoryList[0] : '';
                     this.blogList = result;
                     this.getAllLatestNews();
                 }
@@ -108,6 +116,9 @@ export class DashboardComponent implements OnInit {
             .subscribe(
             (result: Article[]) => {
                 if (result) {
+                    this.secondarySourceList = result.map(item => item.source).filter((value, index, self) => self.indexOf(value) === index);
+                    this.sourceList = this.sourceList.concat(this.secondarySourceList).sort();
+                    this.secondarySourceList.sort();
                     this.topSecondaryArticleList = result;
                     this.loaderService.display(false);
                     this.toasterService.showToaster('Dashboard have been loaded');
@@ -125,7 +136,16 @@ export class DashboardComponent implements OnInit {
     }
 
     tweetNewsBySource(sortBy: string, source: string) {
-        this.tweetService.postNewsBySource(sortBy, source);
+        if (sortBy && source) {
+            console.log(sortBy);
+            console.log(source);
+            //this.tweetService.postNewsBySource(sortBy, source);
+            //this.sourceValue = '';
+            //this.newsTypeValue = '';
+        }
+        else {
+            this.toasterService.showToaster('News type or Source is missing!!');
+        }
     }
 
     tweetAllNews(sortBy: string) {
@@ -137,7 +157,6 @@ export class DashboardComponent implements OnInit {
     }
 
     tweetAllBlogPostsByCategory() {
-        console.log(this.categoryValue);
         if (this.categoryValue) {
             this.tweetService.postBlogByCategoryTweet(this.categoryValue);
             this.categoryValue = '';

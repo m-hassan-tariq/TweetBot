@@ -23,9 +23,13 @@ var DashboardComponent = (function () {
         this.topArticleList = [];
         this.topSecondaryArticleList = [];
         this.sourceList = [];
+        this.secondarySourceList = [];
         this.blogList = [];
         this.categoryList = [];
-        this.categoryValue = "";
+        this.newsTypeList = ['top', 'latest'];
+        this.categoryValue = '';
+        this.sourceValue = '';
+        this.newsTypeValue = '';
     }
     DashboardComponent.prototype.ngOnInit = function () {
         this.getAllBlogPosts();
@@ -40,7 +44,7 @@ var DashboardComponent = (function () {
             if (result) {
                 _this.categoryList = result.map(function (item) { return item.category; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
                 _this.categoryList.sort();
-                _this.categoryValue = _this.categoryList ? _this.categoryList[0] : '';
+                //this.categoryValue = this.categoryList ? this.categoryList[0] : '';
                 _this.blogList = result;
                 _this.getAllLatestNews();
             }
@@ -89,6 +93,9 @@ var DashboardComponent = (function () {
             .getService('api/Tweet/AllSecondaryTopNews')
             .subscribe(function (result) {
             if (result) {
+                _this.secondarySourceList = result.map(function (item) { return item.source; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
+                _this.sourceList = _this.sourceList.concat(_this.secondarySourceList).sort();
+                _this.secondarySourceList.sort();
                 _this.topSecondaryArticleList = result;
                 _this.loaderService.display(false);
                 _this.toasterService.showToaster('Dashboard have been loaded');
@@ -102,7 +109,13 @@ var DashboardComponent = (function () {
         this.tweetService.postTweet(item.title, item.url);
     };
     DashboardComponent.prototype.tweetNewsBySource = function (sortBy, source) {
-        this.tweetService.postNewsBySource(sortBy, source);
+        if (sortBy && source) {
+            console.log(sortBy);
+            console.log(source);
+        }
+        else {
+            this.toasterService.showToaster('News type or Source is missing!!');
+        }
     };
     DashboardComponent.prototype.tweetAllNews = function (sortBy) {
         this.tweetService.postAllNewsTweet(sortBy);
@@ -111,7 +124,6 @@ var DashboardComponent = (function () {
         this.tweetService.postAllBlogTweet();
     };
     DashboardComponent.prototype.tweetAllBlogPostsByCategory = function () {
-        console.log(this.categoryValue);
         if (this.categoryValue) {
             this.tweetService.postBlogByCategoryTweet(this.categoryValue);
             this.categoryValue = '';
