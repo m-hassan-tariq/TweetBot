@@ -9,12 +9,75 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var tweet_service_1 = require('../shared/service/tweet.service');
+var loader_service_1 = require('../shared/service/loader.service');
 var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
+var toaster_service_1 = require('../shared/service/toaster.service');
 var DashboardComponent = (function () {
-    function DashboardComponent(webApiObservableService) {
+    function DashboardComponent(loaderService, toasterService, webApiObservableService, tweetService) {
+        this.loaderService = loaderService;
+        this.toasterService = toasterService;
         this.webApiObservableService = webApiObservableService;
+        this.tweetService = tweetService;
+        this.lastestArticleList = [];
+        this.topArticleList = [];
+        this.sourceList = [];
+        this.sourceName = 'All';
     }
     DashboardComponent.prototype.ngOnInit = function () {
+        this.getAllLatestNews();
+    };
+    DashboardComponent.prototype.getAllLatestNews = function () {
+        var _this = this;
+        this.lastestArticleList = [];
+        this.sourceList = [];
+        this.webApiObservableService
+            .getService('api/Tweet/AllLatestNews')
+            .subscribe(function (result) {
+            if (result) {
+                _this.sourceList = result.map(function (item) { return item.source; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
+                _this.sourceList.push('All');
+                _this.sourceList.sort();
+                _this.lastestArticleList = result;
+                _this.getAllTopNews();
+            }
+        }, function (error) {
+            _this.loaderService.display(false);
+            _this.toasterService.showToaster(error);
+        });
+    };
+    DashboardComponent.prototype.getAllTopNews = function () {
+        var _this = this;
+        this.topArticleList = [];
+        this.webApiObservableService
+            .getService('api/Tweet/AllTopNews')
+            .subscribe(function (result) {
+            if (result) {
+                _this.topArticleList = result;
+                _this.getAllSecondaryTopNews();
+            }
+        }, function (error) {
+            _this.loaderService.display(false);
+            _this.toasterService.showToaster(error);
+        });
+    };
+    DashboardComponent.prototype.getAllSecondaryTopNews = function () {
+        var _this = this;
+        this.webApiObservableService
+            .getService('api/Tweet/AllSecondaryTopNews')
+            .subscribe(function (result) {
+            if (result) {
+                _this.topArticleList = _this.topArticleList.concat(result);
+                _this.loaderService.display(false);
+                _this.toasterService.showToaster('Dashboard have been loaded');
+            }
+        }, function (error) {
+            _this.loaderService.display(false);
+            _this.toasterService.showToaster(error);
+        });
+    };
+    DashboardComponent.prototype.sendTweet = function (item) {
+        this.tweetService.postTweet(item.title, item.url);
     };
     Object.defineProperty(DashboardComponent.prototype, "diagnostic", {
         get: function () {
@@ -28,7 +91,7 @@ var DashboardComponent = (function () {
             selector: 'dashboard',
             templateUrl: './app/dashboard/dashboard.component.html'
         }), 
-        __metadata('design:paramtypes', [web_api_observable_service_1.WebApiObservableService])
+        __metadata('design:paramtypes', [loader_service_1.LoaderService, toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService, tweet_service_1.TweetService])
     ], DashboardComponent);
     return DashboardComponent;
 }());

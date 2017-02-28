@@ -11,6 +11,7 @@ import { TopNewsComponent } from './news/top-news.component';
 import { BlogComponent } from './blog/blog.component';
 
 import { SearchFilterPipe } from './shared/service/searchfilter.pipe';
+import { SortGridPipe } from './shared/service/sortgrid.pipe';
 
 export const All_Services = [
     WebApiObservableService,
@@ -29,5 +30,6 @@ export const All_Components = [
 ]
 
 export const All_Filters = [
-    SearchFilterPipe
+    SearchFilterPipe,
+    SortGridPipe
 ]

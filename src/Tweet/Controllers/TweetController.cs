@@ -24,14 +24,28 @@ namespace Tweet.Controllers
         [Route("AllTopNews")]
         public async Task<IEnumerable<Article>> GetAllTopNews()
         {
-            return await _newsData.GetAllNewsAsync("top");
+            return await _newsData.GetAllNewsAsync("top", true);
         }
 
         [HttpGet]
         [Route("AllLatestNews")]
         public async Task<IEnumerable<Article>> GetAllLatestNews()
         {
-            return await _newsData.GetAllNewsAsync("latest");
+            return await _newsData.GetAllNewsAsync("latest", true);
+        }
+
+        [HttpGet]
+        [Route("AllSecondaryTopNews")]
+        public async Task<IEnumerable<Article>> GetAllSecondaryTopNews()
+        {
+            return await _newsData.GetAllNewsAsync("top", false);
+        }
+
+        [HttpGet]
+        [Route("AllSecondaryLatestNews")]
+        public async Task<IEnumerable<Article>> GetAllSecondaryLatestNews()
+        {
+            return await _newsData.GetAllNewsAsync("latest", false);
         }
 
         [HttpGet]

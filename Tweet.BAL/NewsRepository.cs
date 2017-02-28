@@ -28,11 +28,13 @@ namespace Tweet.BAL
             return await _newsService.GetNewsAsync(source, sortBy);
         }
 
-        public async Task<List<Article>> GetAllNewsAsync(string sortBy)
+        public async Task<List<Article>> GetAllNewsAsync(string sortBy, bool isPrimarySource)
         {
             List<Article> newsItem = new List<Article>();
 
-            foreach (var sourceEntity in _balSettings.Value.Source.Split(';'))
+            var source = isPrimarySource == true ? _balSettings.Value.Source : _balSettings.Value.SecondarySource;
+
+            foreach (var sourceEntity in source.Split(';'))
             {
                 News result = await _newsService.GetNewsAsync(sourceEntity.Trim(), sortBy);
                                

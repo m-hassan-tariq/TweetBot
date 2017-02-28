@@ -89,13 +89,372 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <div class="card">
             <div class="card-header card-default">
-                <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Latest CricInfo News</b>
             </div>
             <div class="card-block">
-                
+                <div class="list-group">
+                    <span *ngFor="let item of lastestArticleList | searchfilter: 'source' : 'espn-cric-info' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                        <!--<button type="button" class="btn-xs btn-info" (click)="sendTweet(item)">
+                            <i class="fa fa-twitter"></i>
+                        </button>-->
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/latest-news">View All Latest News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top CricInfo News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'espn-cric-info' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/top-news">View All Top News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Latest TechCrunch News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of lastestArticleList | searchfilter: 'source' : 'techcrunch' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/latest-news">View All Latest News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top TechCrunch News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'techcrunch' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/top-news">View All Top News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Latest Verge News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of lastestArticleList | searchfilter: 'source' : 'the-verge' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/latest-news">View All Latest News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top Verge News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'the-verge' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/top-news">View All Top News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Latest Engadget News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of lastestArticleList | searchfilter: 'source' : 'engadget' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/latest-news">View All Latest News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top Engadget News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'engadget' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/top-news">View All Top News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Latest Mashable News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of lastestArticleList | searchfilter: 'source' : 'mashable' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/latest-news">View All Latest News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top Mashable News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'mashable' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/top-news">View All Top News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top CNN News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'cnn' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/latest-news">View All Latest News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top BBC News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'bbc-news' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/top-news">View All Top News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top Times Of India News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'the-times-of-india' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/latest-news">View All Latest News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top The Hindu News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'the-hindu' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/top-news">View All Top News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top The NewYork Times News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'the-new-york-times' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/latest-news">View All Latest News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header card-default">
+                <i class="fa fa-bar-chart-o fa-fw"></i> <b>Top The Washington Post News</b>
+            </div>
+            <div class="card-block">
+                <div class="list-group">
+                    <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'the-washington-post' | sortgrid: '-publishedAt'">
+                        <a href="{{item.url}}" target="_blank" class="list-group-item">
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
+                            <br />
+                            <span style="font-size:x-small">{{item.description}}</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="text-xs-right">
+                    <a routerLink="/top-news">View All Top News <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
             </div>
         </div>
     </div>

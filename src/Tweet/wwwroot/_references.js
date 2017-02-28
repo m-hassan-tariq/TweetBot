@@ -12,6 +12,7 @@
 /// <reference path="app/shared/model/news.js" />
 /// <reference path="app/shared/service/loader.service.js" />
 /// <reference path="app/shared/service/searchfilter.pipe.js" />
+/// <reference path="app/shared/service/sortgrid.pipe.js" />
 /// <reference path="app/shared/service/toaster.service.js" />
 /// <reference path="app/shared/service/tweet.service.js" />
 /// <reference path="app/shared/service/web-api-observable.service.js" />

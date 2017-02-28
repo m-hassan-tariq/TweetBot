@@ -53,7 +53,7 @@ namespace Tweet.BAL
 
         public async Task<TwitterResponse> PostAllNewsTweetAsync(string sortBy)
         {
-            var result = await _newsData.GetAllNewsAsync(sortBy);
+            var result = await _newsData.GetAllNewsAsync(sortBy, true);
 
             if (result != null)
             {

@@ -11,7 +11,7 @@ namespace Tweet.BAL
     {
         Task<News> GetNewsAsync(string source, string sortBy);
 
-        Task<List<Article>> GetAllNewsAsync(string mode);
+        Task<List<Article>> GetAllNewsAsync(string mode, bool isPrimarySource);
 
         List<BlogPost> LoadBlogPostsData();
     }
