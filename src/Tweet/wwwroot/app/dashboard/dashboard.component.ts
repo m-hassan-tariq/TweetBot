@@ -15,6 +15,7 @@ import { ToasterService } from '../shared/service/toaster.service';
 export class DashboardComponent implements OnInit {
     lastestArticleList: Article[];
     topArticleList: Article[];
+    topSecondaryArticleList: Article[];
     sourceList: string[];
     sourceName: string;
 
@@ -25,6 +26,7 @@ export class DashboardComponent implements OnInit {
         private tweetService: TweetService) {
         this.lastestArticleList = [];
         this.topArticleList = [];
+        this.topSecondaryArticleList = [];
         this.sourceList = [];
         this.sourceName = 'All';
     }
@@ -74,12 +76,13 @@ export class DashboardComponent implements OnInit {
     }
 
     getAllSecondaryTopNews() {
+        this.topSecondaryArticleList = [];
         this.webApiObservableService
             .getService('api/Tweet/AllSecondaryTopNews')
             .subscribe(
             (result: Article[]) => {
                 if (result) {
-                    this.topArticleList = this.topArticleList.concat(result);
+                    this.topSecondaryArticleList = result;
                     this.loaderService.display(false);
                     this.toasterService.showToaster('Dashboard have been loaded');
                 }
@@ -93,6 +96,10 @@ export class DashboardComponent implements OnInit {
 
     sendTweet(item: Article) {
         this.tweetService.postTweet(item.title, item.url);
+    }
+
+    tweetNewsBySource(sortBy: string, source: string) {
+        this.tweetService.postNewsBySource(sortBy, source);
     }
 
     get diagnostic(): string {

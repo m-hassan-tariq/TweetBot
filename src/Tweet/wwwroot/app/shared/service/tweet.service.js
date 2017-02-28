@@ -30,6 +30,18 @@ var TweetService = (function () {
             _this.handleError(error);
         });
     };
+    TweetService.prototype.postNewsBySource = function (sortBy, source) {
+        var _this = this;
+        var url = sortBy == 'latest' ? 'PostLatestNews' : 'PostTopNews';
+        this.webApiObservableService
+            .getServiceWithDynamicQueryTerm('api/Tweet/' + url, 'source', source)
+            .subscribe(function (result) {
+            _this.loaderService.display(false);
+            _this.toasterService.showToaster("All " + sortBy + " news posts have been tweeted");
+        }, function (error) {
+            _this.handleError(error);
+        });
+    };
     TweetService.prototype.postAllNewsTweet = function (sortBy) {
         var _this = this;
         var url = sortBy == 'latest' ? 'PostAllLatestNews' : 'PostAllTopNews';

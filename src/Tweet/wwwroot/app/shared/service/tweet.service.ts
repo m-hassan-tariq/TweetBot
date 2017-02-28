@@ -32,6 +32,21 @@ export class TweetService {
             );
     }
 
+    postNewsBySource(sortBy: string, source: string) {
+        let url: string = sortBy == 'latest' ? 'PostLatestNews' : 'PostTopNews';
+        this.webApiObservableService
+            .getServiceWithDynamicQueryTerm('api/Tweet/' + url, 'source', source)
+            .subscribe(
+            (result: any) => {
+                this.loaderService.display(false);
+                this.toasterService.showToaster("All " + sortBy + " news posts have been tweeted");
+            },
+            error => {
+                this.handleError(error);
+            }
+            );
+    }
+
     postAllNewsTweet(sortBy: string) {
         let url: string = sortBy == 'latest' ? 'PostAllLatestNews' : 'PostAllTopNews'; 
         this.webApiObservableService

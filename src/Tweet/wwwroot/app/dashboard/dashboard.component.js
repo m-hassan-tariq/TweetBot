@@ -21,6 +21,7 @@ var DashboardComponent = (function () {
         this.tweetService = tweetService;
         this.lastestArticleList = [];
         this.topArticleList = [];
+        this.topSecondaryArticleList = [];
         this.sourceList = [];
         this.sourceName = 'All';
     }
@@ -63,11 +64,12 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.getAllSecondaryTopNews = function () {
         var _this = this;
+        this.topSecondaryArticleList = [];
         this.webApiObservableService
             .getService('api/Tweet/AllSecondaryTopNews')
             .subscribe(function (result) {
             if (result) {
-                _this.topArticleList = _this.topArticleList.concat(result);
+                _this.topSecondaryArticleList = result;
                 _this.loaderService.display(false);
                 _this.toasterService.showToaster('Dashboard have been loaded');
             }
@@ -78,6 +80,9 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.sendTweet = function (item) {
         this.tweetService.postTweet(item.title, item.url);
+    };
+    DashboardComponent.prototype.tweetNewsBySource = function (sortBy, source) {
+        this.tweetService.postNewsBySource(sortBy, source);
     };
     Object.defineProperty(DashboardComponent.prototype, "diagnostic", {
         get: function () {
