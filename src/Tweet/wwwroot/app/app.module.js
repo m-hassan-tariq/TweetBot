@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var platform_browser_1 = require('@angular/platform-browser');
 var material_1 = require('@angular/material');
@@ -25,6 +26,7 @@ var AppModule = (function () {
                 //angular builtin module
                 platform_browser_1.BrowserModule,
                 http_1.HttpModule,
+                forms_1.FormsModule,
                 //ui module
                 material_1.MaterialModule.forRoot(),
                 //application feature module

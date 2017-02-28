@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
                 if (result) {
                     this.categoryList = result.map(item => item.category).filter((value, index, self) => self.indexOf(value) === index);
                     this.categoryList.sort();
-                    //this.categoryValue = this.categoryList ? this.categoryList[0] : '';
+                    this.categoryValue = this.categoryList ? this.categoryList[0] : '';
                     this.blogList = result;
                     this.getAllLatestNews();
                 }
@@ -138,13 +138,13 @@ export class DashboardComponent implements OnInit {
 
     tweetAllBlogPostsByCategory() {
         console.log(this.categoryValue);
-        //if (this.categoryValue) {
-        //    this.tweetService.postBlogByCategoryTweet(this.categoryValue);
-        //    this.categoryValue = '';
-        //}
-        //else {
-        //    this.toasterService.showToaster('Choose blog posts category!!');
-        //}
+        if (this.categoryValue) {
+            this.tweetService.postBlogByCategoryTweet(this.categoryValue);
+            this.categoryValue = '';
+        }
+        else {
+            this.toasterService.showToaster('Choose blog posts category!!');
+        }
     }
 
     get diagnostic(): string {

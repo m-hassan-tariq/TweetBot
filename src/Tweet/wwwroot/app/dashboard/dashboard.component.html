@@ -100,7 +100,7 @@
                         <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Tweet Category
                     </button>
                 </span>
-                <md-select class="pull-xs-right" placeholder="Blog Categories" [(ngModel)]="categoryValue" name="blogCategory" id="blogCategory">
+                <md-select class="pull-xs-right" placeholder="Blog Categories" [(ngModel)]="categoryValue" name="blogCategory">
                     <md-option *ngFor="let item of categoryList" [value]="item">
                         {{item}}
                     </md-option>

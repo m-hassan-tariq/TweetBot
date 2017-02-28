@@ -40,7 +40,7 @@ var DashboardComponent = (function () {
             if (result) {
                 _this.categoryList = result.map(function (item) { return item.category; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
                 _this.categoryList.sort();
-                //this.categoryValue = this.categoryList ? this.categoryList[0] : '';
+                _this.categoryValue = _this.categoryList ? _this.categoryList[0] : '';
                 _this.blogList = result;
                 _this.getAllLatestNews();
             }
@@ -112,13 +112,13 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.tweetAllBlogPostsByCategory = function () {
         console.log(this.categoryValue);
-        //if (this.categoryValue) {
-        //    this.tweetService.postBlogByCategoryTweet(this.categoryValue);
-        //    this.categoryValue = '';
-        //}
-        //else {
-        //    this.toasterService.showToaster('Choose blog posts category!!');
-        //}
+        if (this.categoryValue) {
+            this.tweetService.postBlogByCategoryTweet(this.categoryValue);
+            this.categoryValue = '';
+        }
+        else {
+            this.toasterService.showToaster('Choose blog posts category!!');
+        }
     };
     Object.defineProperty(DashboardComponent.prototype, "diagnostic", {
         get: function () {
