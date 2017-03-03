@@ -21,5 +21,6 @@
 /// <reference path="js/bootstrap.js" />
 /// <reference path="js/jquery.js" />
 /// <reference path="js/tether.min.js" />
+/// <reference path="js/twitterwidgets.js" />
 /// <reference path="main.js" />
 /// <reference path="systemjs.config.js" />

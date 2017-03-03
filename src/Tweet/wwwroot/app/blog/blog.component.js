@@ -38,7 +38,7 @@ var BlogComponent = (function () {
             .getService('api/Tweet/AllBlog')
             .subscribe(function (result) {
             if (result) {
-                _this.categoryList = result.map(function (item) { return item.category; }).filter(function (value, index, self) { return self.indexOf(value) === index; });
+                _this.categoryList = result.map(function (item) { return item.category.toUpperCase(); }).filter(function (value, index, self) { return self.indexOf(value) === index; });
                 _this.categoryList.push('All');
                 _this.categoryList.sort();
                 _this.resetGrid(result);

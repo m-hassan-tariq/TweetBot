@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tweet.BAL;
 using Tweet.Entities;
+using System.Net;
+using System.IO;
 
 namespace Tweet.Controllers
 {
@@ -131,5 +133,24 @@ namespace Tweet.Controllers
         {
             return await _twitter.PostSelectedBlogTweetAsync(blogList);
         }
+
+        //public void hello()
+        //{
+        //    var timelineFormat = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name={0}&include_rts=1&exclude_replies=1&count=5";
+        //    var timelineUrl = string.Format(timelineFormat, 'hasan_tariq');
+        //    HttpWebRequest timeLineRequest = (HttpWebRequest)WebRequest.Create(timelineUrl);
+        //    var timelineHeaderFormat = "{0} {1}";
+        //    timeLineRequest.Headers.Add("Authorization", string.Format(timelineHeaderFormat, twitAuthResponse.token_type, twitAuthResponse.access_token));
+        //    timeLineRequest.Method = "Get";
+        //    WebResponse timeLineResponse = timeLineRequest.GetResponse();
+        //    var timeLineJson = string.Empty;
+        //    using (timeLineResponse)
+        //    {
+        //        using (var reader = new StreamReader(timeLineResponse.GetResponseStream()))
+        //        {
+        //            timeLineJson = reader.ReadToEnd();
+        //        }
+        //    }
+        //}
     }
 }

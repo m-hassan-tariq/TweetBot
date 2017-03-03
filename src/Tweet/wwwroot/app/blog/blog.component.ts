@@ -46,7 +46,7 @@ export class BlogComponent implements OnInit {
             .subscribe(
             (result: BlogPost[]) => {
                 if (result) {
-                    this.categoryList = result.map(item => item.category).filter((value, index, self) => self.indexOf(value) === index);
+                    this.categoryList = result.map(item => item.category.toUpperCase()).filter((value, index, self) => self.indexOf(value) === index);
                     this.categoryList.push('All');
                     this.categoryList.sort();
                     this.resetGrid(result);

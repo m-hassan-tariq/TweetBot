@@ -16,6 +16,9 @@
           "lib/net452/dotnet-bundle.exe": {}
         }
       },
+      "jQuery/1.6.4": {
+        "type": "package"
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -54,6 +57,12 @@
             "assetType": "native",
             "rid": "win7-x86"
           }
+        }
+      },
+      "Microsoft.AspNet.SignalR.JS/2.2.1": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.6.4"
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.3": {
@@ -2020,6 +2029,21 @@
         "lib/netcoreapp1.0/dotnet-bundle.runtimeconfig.json"
       ]
     },
+    "jQuery/1.6.4": {
+      "sha512": "8RzoZQFeFYL/cINRXksLWyl8D5TKctZ/2G8hrlOLLM5OgFNI9h3t3l5tB+BBbsBUxaPUageVe0p9ruU5jrFeow==",
+      "type": "package",
+      "path": "jQuery/1.6.4",
+      "files": [
+        "Content/Scripts/jquery-1.6.4-vsdoc.js",
+        "Content/Scripts/jquery-1.6.4.js",
+        "Content/Scripts/jquery-1.6.4.min.js",
+        "Tools/install.ps1",
+        "Tools/jquery-1.6.4-vsdoc-para.js",
+        "Tools/uninstall.ps1",
+        "jQuery.1.6.4.nupkg.sha512",
+        "jQuery.nuspec"
+      ]
+    },
     "Libuv/1.9.1": {
       "sha512": "uqX2Frwf9PW8MaY7PRNY6HM5BpW1D8oj1EdqzrmbEFD5nH63Yat3aEjN/tws6Tw6Fk7LwmLBvtUh32tTeTaHiA==",
       "type": "package",
@@ -2036,6 +2060,17 @@
         "runtimes/win7-arm/native/libuv.dll",
         "runtimes/win7-x64/native/libuv.dll",
         "runtimes/win7-x86/native/libuv.dll"
+      ]
+    },
+    "Microsoft.AspNet.SignalR.JS/2.2.1": {
+      "sha512": "IKzTOfXjhN7kaGX47BATuTqP/mjVCDb9ivAVvBBrJoaomLT0Puj4f7fnHepByRkT7IGpm6hLbPO3afws5rlFdw==",
+      "type": "package",
+      "path": "Microsoft.AspNet.SignalR.JS/2.2.1",
+      "files": [
+        "Microsoft.AspNet.SignalR.JS.2.2.1.nupkg.sha512",
+        "Microsoft.AspNet.SignalR.JS.nuspec",
+        "content/Scripts/jquery.signalR-2.2.1.js",
+        "content/Scripts/jquery.signalR-2.2.1.min.js"
       ]
     },
     "Microsoft.AspNet.WebApi.Client/5.2.3": {
@@ -5757,6 +5792,7 @@
   "projectFileDependencyGroups": {
     "": [
       "BundlerMinifier.Core >= 2.3.327",
+      "Microsoft.AspNet.SignalR.JS >= 2.2.1",
       "Microsoft.AspNet.WebApi.Client >= 5.2.3",
       "Microsoft.AspNetCore.Diagnostics >= 1.1.0",
       "Microsoft.AspNetCore.Mvc >= 1.1.1",
