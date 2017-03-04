@@ -112,9 +112,6 @@ var DashboardComponent = (function () {
             this.toasterService.showToaster('Content is missing!!');
         }
     };
-    DashboardComponent.prototype.sendTweet = function (item) {
-        this.tweetService.postTweet(item.title, item.url);
-    };
     DashboardComponent.prototype.tweetNewsBySource = function (sortBy, source) {
         if (sortBy && source) {
             this.tweetService.postNewsBySource(sortBy, source);

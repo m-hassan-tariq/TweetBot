@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var dashboard_component_1 = require('./dashboard/dashboard.component');
+var profile_component_1 = require('./profile/profile.component');
 var tweet_component_1 = require('./tweet/tweet.component');
 var latest_news_component_1 = require('./news/latest-news.component');
 var top_news_component_1 = require('./news/top-news.component');
@@ -33,6 +34,12 @@ var AppRoutingModule = (function () {
                         component: dashboard_component_1.DashboardComponent,
                         pathMatch: 'full',
                         data: { title: 'Dashboard' }
+                    },
+                    {
+                        path: 'profile',
+                        component: profile_component_1.ProfileComponent,
+                        pathMatch: 'full',
+                        data: { title: 'Twitter Profile' }
                     },
                     {
                         path: 'tweet',

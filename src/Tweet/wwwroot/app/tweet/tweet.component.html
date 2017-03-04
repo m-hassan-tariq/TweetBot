@@ -1,1 +1,57 @@
-﻿Tweet
+﻿<div class="row">
+    <div class="col-lg-4">
+        <button type="button" class="btn btn-md btn-info center-block" (click)="refreshPage()">
+            <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Refresh Tweet Lists
+        </button>
+    </div>
+    <div class="col-lg-8">
+        <div class="card card-green card-inverse">
+            <div class="card-footer card-green">
+                <md-input-container style="color: black;" class="pull-xs-left">
+                    <textarea [(ngModel)]="title" maxlength="140" rows="2" cols="100" md-input placeholder="Enter text !!!"></textarea>
+                </md-input-container>
+                <br />
+                <md-input-container style="color: black;" class="pull-xs-left">
+                    <input [(ngModel)]="url" maxlength="500" type="url" reg md-input placeholder="Enter URL !!!" />
+                </md-input-container>
+                <br />
+                <span class="pull-xs-right">
+                    
+                    <button type="button" class="btn btn-sm btn-info" (click)="sendTweet()">
+                        {{140 - title.length }}&nbsp;&nbsp;&nbsp; <i class="fa fa-arrow-circle-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Click to Tweet !!
+                    </button>
+                </span>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-lg-3 table-bordered">
+        <a class="twitter-timeline" href="https://twitter.com/etribune">Tweets by etribune</a>
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/microsoft" data-widget-id="838121654211399680">#microsoft Tweets</a>
+        <a class="twitter-timeline" href="https://twitter.com/search?q=%23Amazon%20%23Microsoft%20%23Google" data-widget-id="838123563072696320">Tweets about #Amazon #Microsoft #Google</a>
+    </div>
+    <div class="col-lg-3 table-bordered">
+        <a class="twitter-timeline" href="https://twitter.com/ESPNcricinfo">Tweets by ESPNcricinfo</a>
+        <a class="twitter-timeline" href="https://twitter.com/search?q=%40Saj_PakPassion" data-widget-id="838156407358676992">Tweets about @Saj_PakPassion</a>
+        <a class="twitter-timeline" href="https://twitter.com/search?q=%40MazherArshad" data-widget-id="838157746474110976">Tweets about @MazherArshad</a>
+
+    </div>
+    <div class="col-lg-3 table-bordered">
+        <a class="twitter-timeline" href="https://twitter.com/Bollyhungama">Tweets by Bollywood Hungama</a>
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/bollywood" data-widget-id="838125476644212736">#bollywood Tweets</a>
+    </div>
+    <div class="col-lg-3 table-bordered">
+        <a class="twitter-timeline" href="https://twitter.com/search?q=Angular2%20" data-widget-id="838120437724798976">Tweets about Angular2 </a>
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/TypeScript" data-widget-id="838123877356036096">#TypeScript Tweets</a>
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/AngularJS" data-widget-id="838124102724415488">#AngularJS Tweets</a>
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/AspNetCore" data-widget-id="838124264100253698">#AspNetCore Tweets</a>
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/AspNetMVC" data-widget-id="838124620125356032">#AspNetMVC Tweets</a>
+        <a class="twitter-timeline" href="https://twitter.com/hashtag/Azure" data-widget-id="838126177722085376">#Azure Tweets</a>
+    </div>
+</div>

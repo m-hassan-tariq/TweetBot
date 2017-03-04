@@ -3,6 +3,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
 import { TweetComponent } from './tweet/tweet.component';
 import { LatestNewsComponent } from './news/latest-news.component';
 import { TopNewsComponent } from './news/top-news.component';
@@ -22,6 +23,12 @@ import { BlogComponent } from './blog/blog.component';
                 component: DashboardComponent,
                 pathMatch: 'full',
                 data: { title: 'Dashboard' }
+            },
+            {
+                path: 'profile',
+                component: ProfileComponent,
+                pathMatch: 'full',
+                data: { title: 'Twitter Profile' }
             },
             {
                 path: 'tweet',

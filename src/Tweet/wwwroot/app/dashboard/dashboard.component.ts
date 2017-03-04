@@ -140,10 +140,6 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    sendTweet(item: Article) {
-        this.tweetService.postTweet(item.title, item.url);
-    }
-
     tweetNewsBySource(sortBy: string, source: string) {
         if (sortBy && source) {
             this.tweetService.postNewsBySource(sortBy, source);
