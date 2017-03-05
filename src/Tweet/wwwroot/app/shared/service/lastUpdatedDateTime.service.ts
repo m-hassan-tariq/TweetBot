@@ -21,7 +21,6 @@ export class LastUpdatedDateTimeService {
             .getService('api/Tweet/LastUpdatedDateTime')
             .subscribe(
             (result: string[]) => {
-                console.log(result);
                 this.lastTweetUpdatedTime.next(result[0]);
                 this.latestNewsUpdatedTime.next(result[1]);
                 this.topNewsUpdatedTime.next(result[2]);

@@ -212,7 +212,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of lastestArticleList | searchfilter: 'source' : 'espn-cric-info' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -237,7 +237,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'espn-cric-info' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-soccer-ball-o"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -264,7 +264,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of lastestArticleList | searchfilter: 'source' : 'techcrunch' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-laptop"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -289,7 +289,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'techcrunch' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-laptop"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -316,7 +316,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of lastestArticleList | searchfilter: 'source' : 'the-verge' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-windows"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -341,7 +341,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'the-verge' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-windows"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -368,7 +368,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of lastestArticleList | searchfilter: 'source' : 'engadget' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-linux"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -393,7 +393,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'engadget' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-linux"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -420,7 +420,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of lastestArticleList | searchfilter: 'source' : 'mashable' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-hacker-news"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -445,7 +445,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topArticleList | searchfilter: 'source' : 'mashable' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-hacker-news"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -472,7 +472,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topSecondaryArticleList | searchfilter: 'source' : 'cnn' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-newspaper-o"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -497,7 +497,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topSecondaryArticleList | searchfilter: 'source' : 'bbc-news' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-newspaper-o"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -524,7 +524,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topSecondaryArticleList | searchfilter: 'source' : 'the-times-of-india' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-newspaper-o"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -549,7 +549,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topSecondaryArticleList | searchfilter: 'source' : 'the-hindu' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-newspaper-o"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -576,7 +576,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topSecondaryArticleList | searchfilter: 'source' : 'the-new-york-times' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-newspaper-o"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>
@@ -601,7 +601,7 @@
                 <div class="list-group">
                     <span *ngFor="let item of topSecondaryArticleList | searchfilter: 'source' : 'the-washington-post' | sortgrid: '-publishedAt'">
                         <a href="{{item.url}}" target="_blank" class="list-group-item">
-                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'shortTime'}}</span>
+                            <span class="label label-pill label-default pull-xs-right">{{item.publishedAt | date: 'short'}}</span>
                             <i class="fa fa-fw fa-newspaper-o"></i> {{item.title}}
                             <br />
                             <span style="font-size:x-small">{{item.description}}</span>

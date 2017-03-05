@@ -62,8 +62,24 @@ namespace Tweet.BAL
 
             if (result != null)
             {
+                List<Article> lstUpdated = new List<Article>();
+                LastUpdatedDateTime lastDateTime = GetUpdatedDateTime();
+                DateTime lastUpdated = sortBy == "latest" ? DateTime.Parse(lastDateTime.LatestNewsUpdatedTime) : DateTime.Parse(lastDateTime.TopNewsUpdatedTime);
+
+                foreach (var item in result)
+                {
+                    DateTime publishedDate;
+                    if (!DateTime.TryParse(item.publishedAt, out publishedDate)){
+                        lstUpdated.Add(item);
+                    }
+                    else{
+                        if (publishedDate > lastUpdated)
+                            lstUpdated.Add(item);
+                    }
+                }
+
                 SetUpdatedDateTime(sortBy);
-                return await FormatFilterTweet(result);
+                return await FormatFilterTweet(lstUpdated);
             }
             return new TwitterResponse();
         }
@@ -76,7 +92,7 @@ namespace Tweet.BAL
             {
                 if (!articleEntity.title.ContainsAny(filterTerms))
                 {
-                    response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags(hashtagTerms).LimitTo(100) + " " + articleEntity.url);
+                    //response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags(hashtagTerms).LimitTo(100) + " " + articleEntity.url);
                 }
 
             }
@@ -129,8 +145,7 @@ namespace Tweet.BAL
             DateTime current = DateTime.UtcNow;
             current = current.AddHours(-8);
 
-            string fileData = File.ReadAllText("lastUpdatedDateTime.json");
-            LastUpdatedDateTime lastDateTime = JsonConvert.DeserializeObject<LastUpdatedDateTime>(fileData);
+            LastUpdatedDateTime lastDateTime = GetUpdatedDateTime();
 
             if (mode == "latest")
                 lastDateTime.LatestNewsUpdatedTime = lastDateTime.LastTweetUpdatedTime = current.ToString();
@@ -141,6 +156,12 @@ namespace Tweet.BAL
 
             string output = JsonConvert.SerializeObject(lastDateTime, Formatting.Indented);
             File.WriteAllText("lastUpdatedDateTime.json", output);
+        }
+
+        public LastUpdatedDateTime GetUpdatedDateTime()
+        {
+            string fileData = File.ReadAllText("lastUpdatedDateTime.json");
+            return JsonConvert.DeserializeObject<LastUpdatedDateTime>(fileData);
         }
     }
 }

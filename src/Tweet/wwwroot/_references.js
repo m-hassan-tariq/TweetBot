@@ -10,7 +10,6 @@
 /// <reference path="app/profile/profile.component.js" />
 /// <reference path="app/shared/model/article.js" />
 /// <reference path="app/shared/model/blogpost.js" />
-/// <reference path="app/shared/model/lastupdatedtime.js" />
 /// <reference path="app/shared/model/news.js" />
 /// <reference path="app/shared/service/lastupdateddatetime.service.js" />
 /// <reference path="app/shared/service/loader.service.js" />

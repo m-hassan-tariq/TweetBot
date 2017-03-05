@@ -23,7 +23,6 @@ var LastUpdatedDateTimeService = (function () {
         this.webApiObservableService
             .getService('api/Tweet/LastUpdatedDateTime')
             .subscribe(function (result) {
-            console.log(result);
             _this.lastTweetUpdatedTime.next(result[0]);
             _this.latestNewsUpdatedTime.next(result[1]);
             _this.topNewsUpdatedTime.next(result[2]);
