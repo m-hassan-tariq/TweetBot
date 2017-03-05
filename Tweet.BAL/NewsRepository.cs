@@ -43,6 +43,13 @@ namespace Tweet.BAL
                     foreach (var item in result.articles)
                     {
                         item.source = result.source;
+                        DateTime publishedDate;
+                        if (!DateTime.TryParse(item.publishedAt, out publishedDate)){
+                            // handle parse failure
+                        }
+                        else{
+                            item.publishedAt = publishedDate.AddHours(-8).ToString();
+                        }
                     }
                     newsItem.AddRange(result.articles);
                 }
