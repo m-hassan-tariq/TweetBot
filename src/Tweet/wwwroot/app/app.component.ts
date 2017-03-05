@@ -2,6 +2,7 @@
 import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
 
 import { LoaderService } from './shared/service/loader.service';
+import { LastUpdatedDateTimeService } from './shared/service/lastUpdatedDateTime.service';
 
 @Component({
     selector: 'my-app',
@@ -12,9 +13,13 @@ import { LoaderService } from './shared/service/loader.service';
 export class AppComponent implements OnInit, AfterViewChecked, AfterViewInit, AfterContentInit {
     pageTitle: string;
     showLoader: boolean;
+    latestNewsUpdatedTime: string;
+    topNewsUpdatedTime: string;
+    lastTweetUpdatedTime: string;
 
     constructor(
         private loaderService: LoaderService,
+        private lastUpdatedDateTimeService: LastUpdatedDateTimeService,
         private router: Router,
         private route: ActivatedRoute) {
     }
@@ -38,6 +43,20 @@ export class AppComponent implements OnInit, AfterViewChecked, AfterViewInit, Af
 
         this.loaderService.status.subscribe((val: boolean) => {
             this.showLoader = val;
+        });
+
+        this.lastUpdatedDateTimeService.getUpdatedTime();
+
+        this.lastUpdatedDateTimeService.latestNewsUpdatedTime.subscribe((val: string) => {
+            this.latestNewsUpdatedTime = val;
+        });
+
+        this.lastUpdatedDateTimeService.topNewsUpdatedTime.subscribe((val: string) => {
+            this.topNewsUpdatedTime = val;
+        });
+
+        this.lastUpdatedDateTimeService.lastTweetUpdatedTime.subscribe((val: string) => {
+            this.lastTweetUpdatedTime = val;
         });
     }
 

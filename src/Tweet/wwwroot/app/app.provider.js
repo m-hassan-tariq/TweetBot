@@ -5,6 +5,7 @@ var tweet_service_1 = require('./shared/service/tweet.service');
 var toaster_service_1 = require('./shared/service/toaster.service');
 var loader_service_1 = require('./shared/service/loader.service');
 var twitter_timeline_service_1 = require('./shared/service/twitter-timeline.service');
+var lastUpdatedDateTime_service_1 = require('./shared/service/lastUpdatedDateTime.service');
 var dashboard_component_1 = require('./dashboard/dashboard.component');
 var tweet_component_1 = require('./tweet/tweet.component');
 var profile_component_1 = require('./profile/profile.component');
@@ -19,7 +20,8 @@ exports.All_Services = [
     tweet_service_1.TweetService,
     toaster_service_1.ToasterService,
     loader_service_1.LoaderService,
-    twitter_timeline_service_1.TwitterTimelineService
+    twitter_timeline_service_1.TwitterTimelineService,
+    lastUpdatedDateTime_service_1.LastUpdatedDateTimeService
 ];
 exports.All_Components = [
     dashboard_component_1.DashboardComponent,

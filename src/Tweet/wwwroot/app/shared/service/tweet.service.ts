@@ -6,12 +6,14 @@ import { LoaderService } from './loader.service';
 import { WebApiObservableService } from './web-api-observable.service';
 import { WebApiPromiseService } from './web-api-promise.service';
 import { ToasterService } from './toaster.service';
+import { LastUpdatedDateTimeService } from './lastUpdatedDateTime.service';
 
 @Injectable()
 export class TweetService {
 
     constructor(
         private loaderService: LoaderService,
+        private lastUpdatedDateTimeService: LastUpdatedDateTimeService,
         private toasterService: ToasterService,
         private webApiObservableService: WebApiObservableService) {
 
@@ -23,8 +25,7 @@ export class TweetService {
             .getServiceWithFixedQueryString('api/Tweet/PostTweet', content)
             .subscribe(
             (result: any) => {
-                this.loaderService.display(false);
-                this.toasterService.showToaster("Content is tweeted");
+                this.successCB("Content is tweeted");
             },
             error => {
                 this.handleError(error);
@@ -38,8 +39,7 @@ export class TweetService {
             .getServiceWithFixedQueryString('api/Tweet/PostTweet', content)
             .subscribe(
             (result: any) => {
-                this.loaderService.display(false);
-                this.toasterService.showToaster("Post with title: " + title + " is tweeted");
+                this.successCB("Post with title: " + title + " is tweeted");
             },
             error => {
                 this.handleError(error);
@@ -53,8 +53,7 @@ export class TweetService {
             .getServiceWithDynamicQueryTerm('api/Tweet/' + url, 'source', source)
             .subscribe(
             (result: any) => {
-                this.loaderService.display(false);
-                this.toasterService.showToaster("All news posts of " + source + "have been tweeted");
+                this.successCB("All news posts of " + source + "have been tweeted");
             },
             error => {
                 this.handleError(error);
@@ -68,8 +67,7 @@ export class TweetService {
             .getService('api/Tweet/' + url)
             .subscribe(
             (result: any) => {
-                this.loaderService.display(false);
-                this.toasterService.showToaster("All " + sortBy + " news posts have been tweeted");
+                this.successCB("All " + sortBy + " news posts have been tweeted");
             },
             error => {
                 this.handleError(error);
@@ -82,8 +80,7 @@ export class TweetService {
             .createService('api/Tweet/PostSelectedNews', articleList)
             .subscribe(
             (result: any) => {
-                this.loaderService.display(false);
-                this.toasterService.showToaster("All selected news posts have been tweeted");
+                this.successCB("All selected news posts have been tweeted");
             },
             error => {
                 this.handleError(error);
@@ -96,8 +93,7 @@ export class TweetService {
             .getService('api/Tweet/PostAllBlog')
             .subscribe(
             (result: any) => {
-                this.loaderService.display(false);
-                this.toasterService.showToaster("All blog posts are tweeted");
+                this.successCB("All blog posts are tweeted");
             },
             error => {
                 this.handleError(error);
@@ -110,8 +106,7 @@ export class TweetService {
             .getServiceWithDynamicQueryTerm('api/Tweet/PostBlogByCategory', 'category', category)
             .subscribe(
             (result: any) => {
-                this.loaderService.display(false);
-                this.toasterService.showToaster("All blog posts of " + category + " are tweeted");
+                this.successCB("All blog posts of " + category + " are tweeted");
             },
             error => {
                 this.handleError(error);
@@ -124,13 +119,18 @@ export class TweetService {
             .createService('api/Tweet/PostSelectedBlog', blogList)
             .subscribe(
             (result: any) => {
-                this.loaderService.display(false);
-                this.toasterService.showToaster("All selected blog posts have been tweeted");
+                this.successCB("All selected blog posts have been tweeted");
             },
             error => {
                 this.handleError(error);
             }
             );
+    }
+
+    successCB(text: string) {
+        this.lastUpdatedDateTimeService.getUpdatedTime();
+        this.loaderService.display(false);
+        this.toasterService.showToaster(text);
     }
 
     handleError(error) {

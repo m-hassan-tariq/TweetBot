@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var loader_service_1 = require('./shared/service/loader.service');
+var lastUpdatedDateTime_service_1 = require('./shared/service/lastUpdatedDateTime.service');
 var AppComponent = (function () {
-    function AppComponent(loaderService, router, route) {
+    function AppComponent(loaderService, lastUpdatedDateTimeService, router, route) {
         this.loaderService = loaderService;
+        this.lastUpdatedDateTimeService = lastUpdatedDateTimeService;
         this.router = router;
         this.route = route;
     }
@@ -39,6 +41,16 @@ var AppComponent = (function () {
         this.loaderService.status.subscribe(function (val) {
             _this.showLoader = val;
         });
+        this.lastUpdatedDateTimeService.getUpdatedTime();
+        this.lastUpdatedDateTimeService.latestNewsUpdatedTime.subscribe(function (val) {
+            _this.latestNewsUpdatedTime = val;
+        });
+        this.lastUpdatedDateTimeService.topNewsUpdatedTime.subscribe(function (val) {
+            _this.topNewsUpdatedTime = val;
+        });
+        this.lastUpdatedDateTimeService.lastTweetUpdatedTime.subscribe(function (val) {
+            _this.lastTweetUpdatedTime = val;
+        });
     };
     AppComponent.prototype.onCloseAlert = function (reason) {
     };
@@ -54,7 +66,7 @@ var AppComponent = (function () {
             templateUrl: './app/app.component.html',
             styleUrls: ['./app/app.component.css']
         }), 
-        __metadata('design:paramtypes', [loader_service_1.LoaderService, router_1.Router, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [loader_service_1.LoaderService, lastUpdatedDateTime_service_1.LastUpdatedDateTimeService, router_1.Router, router_1.ActivatedRoute])
     ], AppComponent);
     return AppComponent;
 }());

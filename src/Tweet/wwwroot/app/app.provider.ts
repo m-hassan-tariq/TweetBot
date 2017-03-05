@@ -4,6 +4,7 @@ import { TweetService } from './shared/service/tweet.service';
 import { ToasterService } from './shared/service/toaster.service';
 import { LoaderService } from './shared/service/loader.service';
 import { TwitterTimelineService } from './shared/service/twitter-timeline.service';
+import { LastUpdatedDateTimeService } from './shared/service/lastUpdatedDateTime.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TweetComponent } from './tweet/tweet.component';
@@ -21,7 +22,8 @@ export const All_Services = [
     TweetService,
     ToasterService,
     LoaderService,
-    TwitterTimelineService
+    TwitterTimelineService,
+    LastUpdatedDateTimeService
 ]
 
 export const All_Components = [

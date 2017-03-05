@@ -7,6 +7,7 @@ using Tweet.BAL;
 using Tweet.Entities;
 using System.Net;
 using System.IO;
+using Microsoft.Extensions.Options;
 
 namespace Tweet.Controllers
 {
@@ -15,11 +16,24 @@ namespace Tweet.Controllers
     {
         private readonly INewsRepository _newsData;
         private readonly ITwitterRepository _twitter;
+        private readonly IOptions<BALSettings> _balSettings;
 
-        public TweetController(INewsRepository newsData, ITwitterRepository twitter)
+        public TweetController(INewsRepository newsData, ITwitterRepository twitter, IOptions<BALSettings> balSettings)
         {
             _newsData = newsData;
             _twitter = twitter;
+            _balSettings = balSettings;
+        }
+
+        [HttpGet]
+        [Route("LastUpdatedDateTime")]
+        public IList<string> GetLastUpdatedDateTime()
+        {
+            var lastUpdateTime = new List<string>();
+            lastUpdateTime.Add(_balSettings.Value.LastTweetUpdatedTime);
+            lastUpdateTime.Add(_balSettings.Value.LatestNewsUpdatedTime);
+            lastUpdateTime.Add(_balSettings.Value.TopNewsUpdatedTime);
+            return lastUpdateTime;
         }
 
         [HttpGet]

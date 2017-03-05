@@ -12,9 +12,11 @@ var core_1 = require('@angular/core');
 var loader_service_1 = require('./loader.service');
 var web_api_observable_service_1 = require('./web-api-observable.service');
 var toaster_service_1 = require('./toaster.service');
+var lastUpdatedDateTime_service_1 = require('./lastUpdatedDateTime.service');
 var TweetService = (function () {
-    function TweetService(loaderService, toasterService, webApiObservableService) {
+    function TweetService(loaderService, lastUpdatedDateTimeService, toasterService, webApiObservableService) {
         this.loaderService = loaderService;
+        this.lastUpdatedDateTimeService = lastUpdatedDateTimeService;
         this.toasterService = toasterService;
         this.webApiObservableService = webApiObservableService;
     }
@@ -24,8 +26,7 @@ var TweetService = (function () {
         this.webApiObservableService
             .getServiceWithFixedQueryString('api/Tweet/PostTweet', content)
             .subscribe(function (result) {
-            _this.loaderService.display(false);
-            _this.toasterService.showToaster("Content is tweeted");
+            _this.successCB("Content is tweeted");
         }, function (error) {
             _this.handleError(error);
         });
@@ -36,8 +37,7 @@ var TweetService = (function () {
         this.webApiObservableService
             .getServiceWithFixedQueryString('api/Tweet/PostTweet', content)
             .subscribe(function (result) {
-            _this.loaderService.display(false);
-            _this.toasterService.showToaster("Post with title: " + title + " is tweeted");
+            _this.successCB("Post with title: " + title + " is tweeted");
         }, function (error) {
             _this.handleError(error);
         });
@@ -48,8 +48,7 @@ var TweetService = (function () {
         this.webApiObservableService
             .getServiceWithDynamicQueryTerm('api/Tweet/' + url, 'source', source)
             .subscribe(function (result) {
-            _this.loaderService.display(false);
-            _this.toasterService.showToaster("All news posts of " + source + "have been tweeted");
+            _this.successCB("All news posts of " + source + "have been tweeted");
         }, function (error) {
             _this.handleError(error);
         });
@@ -60,8 +59,7 @@ var TweetService = (function () {
         this.webApiObservableService
             .getService('api/Tweet/' + url)
             .subscribe(function (result) {
-            _this.loaderService.display(false);
-            _this.toasterService.showToaster("All " + sortBy + " news posts have been tweeted");
+            _this.successCB("All " + sortBy + " news posts have been tweeted");
         }, function (error) {
             _this.handleError(error);
         });
@@ -71,8 +69,7 @@ var TweetService = (function () {
         this.webApiObservableService
             .createService('api/Tweet/PostSelectedNews', articleList)
             .subscribe(function (result) {
-            _this.loaderService.display(false);
-            _this.toasterService.showToaster("All selected news posts have been tweeted");
+            _this.successCB("All selected news posts have been tweeted");
         }, function (error) {
             _this.handleError(error);
         });
@@ -82,8 +79,7 @@ var TweetService = (function () {
         this.webApiObservableService
             .getService('api/Tweet/PostAllBlog')
             .subscribe(function (result) {
-            _this.loaderService.display(false);
-            _this.toasterService.showToaster("All blog posts are tweeted");
+            _this.successCB("All blog posts are tweeted");
         }, function (error) {
             _this.handleError(error);
         });
@@ -93,8 +89,7 @@ var TweetService = (function () {
         this.webApiObservableService
             .getServiceWithDynamicQueryTerm('api/Tweet/PostBlogByCategory', 'category', category)
             .subscribe(function (result) {
-            _this.loaderService.display(false);
-            _this.toasterService.showToaster("All blog posts of " + category + " are tweeted");
+            _this.successCB("All blog posts of " + category + " are tweeted");
         }, function (error) {
             _this.handleError(error);
         });
@@ -104,11 +99,15 @@ var TweetService = (function () {
         this.webApiObservableService
             .createService('api/Tweet/PostSelectedBlog', blogList)
             .subscribe(function (result) {
-            _this.loaderService.display(false);
-            _this.toasterService.showToaster("All selected blog posts have been tweeted");
+            _this.successCB("All selected blog posts have been tweeted");
         }, function (error) {
             _this.handleError(error);
         });
+    };
+    TweetService.prototype.successCB = function (text) {
+        this.lastUpdatedDateTimeService.getUpdatedTime();
+        this.loaderService.display(false);
+        this.toasterService.showToaster(text);
     };
     TweetService.prototype.handleError = function (error) {
         this.toasterService.showToaster(error);
@@ -116,7 +115,7 @@ var TweetService = (function () {
     };
     TweetService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [loader_service_1.LoaderService, toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService])
+        __metadata('design:paramtypes', [loader_service_1.LoaderService, lastUpdatedDateTime_service_1.LastUpdatedDateTimeService, toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService])
     ], TweetService);
     return TweetService;
 }());

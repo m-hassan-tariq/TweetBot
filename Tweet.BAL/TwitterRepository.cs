@@ -28,6 +28,7 @@ namespace Tweet.BAL
 
         public async Task<TwitterResponse> PostTweetAsync(string tweet)
         {
+            SetUpdatedDateTime("");
             return await _twitterService.Tweet(tweet);
         }
 
@@ -37,6 +38,7 @@ namespace Tweet.BAL
             {
                 return await FormatFilterTweet(articleList);
             }
+            SetUpdatedDateTime("");
             return new TwitterResponse();
         }
 
@@ -48,6 +50,7 @@ namespace Tweet.BAL
             {
                 return await FormatFilterTweet(result.articles);
             }
+            SetUpdatedDateTime("");
             return new TwitterResponse();
         }
 
@@ -59,6 +62,7 @@ namespace Tweet.BAL
             {
                 return await FormatFilterTweet(result);
             }
+            SetUpdatedDateTime(sortBy);
             return new TwitterResponse();
         }
 
@@ -114,7 +118,20 @@ namespace Tweet.BAL
                 }
 
             }
+            SetUpdatedDateTime("");
             return response;
+        }
+
+        public void SetUpdatedDateTime(string mode)
+        {
+            DateTime current = DateTime.UtcNow;
+            current = current.AddHours(-8);
+            if (mode == "latest")
+                _balSettings.Value.LatestNewsUpdatedTime = _balSettings.Value.LastTweetUpdatedTime  = current.ToString();
+            else if (mode == "top")
+                _balSettings.Value.TopNewsUpdatedTime = _balSettings.Value.LastTweetUpdatedTime = current.ToString();
+            else
+                _balSettings.Value.LastTweetUpdatedTime = current.ToString();
         }
     }
 }
