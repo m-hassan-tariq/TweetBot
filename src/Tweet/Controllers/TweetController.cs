@@ -8,6 +8,7 @@ using Tweet.Entities;
 using System.Net;
 using System.IO;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace Tweet.Controllers
 {
@@ -30,9 +31,11 @@ namespace Tweet.Controllers
         public IList<string> GetLastUpdatedDateTime()
         {
             var lastUpdateTime = new List<string>();
-            lastUpdateTime.Add(_balSettings.Value.LastTweetUpdatedTime);
-            lastUpdateTime.Add(_balSettings.Value.LatestNewsUpdatedTime);
-            lastUpdateTime.Add(_balSettings.Value.TopNewsUpdatedTime);
+            string fileData = System.IO.File.ReadAllText("lastUpdatedDateTime.json");
+            LastUpdatedDateTime lastDateTime = JsonConvert.DeserializeObject<LastUpdatedDateTime>(fileData);
+            lastUpdateTime.Add(lastDateTime.LastTweetUpdatedTime);
+            lastUpdateTime.Add(lastDateTime.LatestNewsUpdatedTime);
+            lastUpdateTime.Add(lastDateTime.TopNewsUpdatedTime);
             return lastUpdateTime;
         }
 

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,9 +38,9 @@ namespace Tweet.BAL
         {
             if (articleList != null)
             {
+                SetUpdatedDateTime("");
                 return await FormatFilterTweet(articleList);
             }
-            SetUpdatedDateTime("");
             return new TwitterResponse();
         }
 
@@ -48,9 +50,9 @@ namespace Tweet.BAL
 
             if (result != null)
             {
+                SetUpdatedDateTime("");
                 return await FormatFilterTweet(result.articles);
             }
-            SetUpdatedDateTime("");
             return new TwitterResponse();
         }
 
@@ -60,9 +62,9 @@ namespace Tweet.BAL
 
             if (result != null)
             {
+                SetUpdatedDateTime(sortBy);
                 return await FormatFilterTweet(result);
             }
-            SetUpdatedDateTime(sortBy);
             return new TwitterResponse();
         }
 
@@ -126,12 +128,19 @@ namespace Tweet.BAL
         {
             DateTime current = DateTime.UtcNow;
             current = current.AddHours(-8);
+
+            string fileData = File.ReadAllText("lastUpdatedDateTime.json");
+            LastUpdatedDateTime lastDateTime = JsonConvert.DeserializeObject<LastUpdatedDateTime>(fileData);
+
             if (mode == "latest")
-                _balSettings.Value.LatestNewsUpdatedTime = _balSettings.Value.LastTweetUpdatedTime  = current.ToString();
+                lastDateTime.LatestNewsUpdatedTime = lastDateTime.LastTweetUpdatedTime = current.ToString();
             else if (mode == "top")
-                _balSettings.Value.TopNewsUpdatedTime = _balSettings.Value.LastTweetUpdatedTime = current.ToString();
+                lastDateTime.TopNewsUpdatedTime = lastDateTime.LastTweetUpdatedTime = current.ToString();
             else
-                _balSettings.Value.LastTweetUpdatedTime = current.ToString();
+                lastDateTime.LastTweetUpdatedTime = current.ToString();
+
+            string output = JsonConvert.SerializeObject(lastDateTime, Formatting.Indented);
+            File.WriteAllText("lastUpdatedDateTime.json", output);
         }
     }
 }
