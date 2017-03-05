@@ -92,9 +92,8 @@ namespace Tweet.BAL
             {
                 if (!articleEntity.title.ContainsAny(filterTerms))
                 {
-                    //response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags(hashtagTerms).LimitTo(100) + " " + articleEntity.url);
+                    response = await _twitterService.Tweet(articleEntity.title.ReplaceKeywordsWithHashtags(hashtagTerms).LimitTo(100) + " " + articleEntity.url);
                 }
-
             }
             return response;
         }
