@@ -13,11 +13,13 @@ var tweet_service_1 = require('../shared/service/tweet.service');
 var loader_service_1 = require('../shared/service/loader.service');
 var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
 var toaster_service_1 = require('../shared/service/toaster.service');
+var lastUpdatedDateTime_service_1 = require('../shared/service/lastUpdatedDateTime.service');
 var DashboardComponent = (function () {
-    function DashboardComponent(loaderService, toasterService, webApiObservableService, tweetService) {
+    function DashboardComponent(loaderService, toasterService, webApiObservableService, lastUpdatedDateTimeService, tweetService) {
         this.loaderService = loaderService;
         this.toasterService = toasterService;
         this.webApiObservableService = webApiObservableService;
+        this.lastUpdatedDateTimeService = lastUpdatedDateTimeService;
         this.tweetService = tweetService;
         this.lastestArticleList = [];
         this.topArticleList = [];
@@ -33,6 +35,16 @@ var DashboardComponent = (function () {
         this.content = '';
     }
     DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.lastUpdatedDateTimeService.latestNewsUpdatedTime.subscribe(function (val) {
+            _this.latestNewsUpdatedTime = val;
+        });
+        this.lastUpdatedDateTimeService.topNewsUpdatedTime.subscribe(function (val) {
+            _this.topNewsUpdatedTime = val;
+        });
+        this.lastUpdatedDateTimeService.lastTweetUpdatedTime.subscribe(function (val) {
+            _this.lastTweetUpdatedTime = val;
+        });
         this.getAllBlogPosts();
     };
     DashboardComponent.prototype.getAllBlogPosts = function () {
@@ -44,7 +56,6 @@ var DashboardComponent = (function () {
             .subscribe(function (result) {
             if (result) {
                 _this.categoryList = result.map(function (item) { return item.category; }).filter(function (value, index, self) { return self.indexOf(value) === index; }).sort();
-                //this.categoryValue = this.categoryList ? this.categoryList[0] : '';
                 _this.blogList = result;
                 _this.getAllLatestNews();
             }
@@ -63,6 +74,7 @@ var DashboardComponent = (function () {
             if (result) {
                 _this.sourceList = result.map(function (item) { return item.source; }).filter(function (value, index, self) { return self.indexOf(value) === index; }).sort();
                 _this.lastestArticleList = result;
+                _this.newLatestNewsToPost = _this.lastestArticleList.filter(function (value, index, self) { return new Date(value.publishedAt) > new Date(_this.latestNewsUpdatedTime); }).length;
                 _this.getAllTopNews();
             }
         }, function (error) {
@@ -78,6 +90,7 @@ var DashboardComponent = (function () {
             .subscribe(function (result) {
             if (result) {
                 _this.topArticleList = result;
+                _this.newTopNewsToPost = _this.topArticleList.filter(function (value, index, self) { return new Date(value.publishedAt) > new Date(_this.topNewsUpdatedTime); }).length;
                 _this.getAllSecondaryTopNews();
             }
         }, function (error) {
@@ -124,6 +137,10 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.tweetAllNews = function (sortBy) {
         this.tweetService.postAllNewsTweet(sortBy);
+        if (sortBy == 'latest')
+            this.newLatestNewsToPost = 0;
+        else
+            this.newTopNewsToPost = 0;
     };
     DashboardComponent.prototype.tweetAllBlogPosts = function () {
         this.tweetService.postAllBlogTweet();
@@ -149,7 +166,7 @@ var DashboardComponent = (function () {
             selector: 'dashboard',
             templateUrl: './app/dashboard/dashboard.component.html'
         }), 
-        __metadata('design:paramtypes', [loader_service_1.LoaderService, toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService, tweet_service_1.TweetService])
+        __metadata('design:paramtypes', [loader_service_1.LoaderService, toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService, lastUpdatedDateTime_service_1.LastUpdatedDateTimeService, tweet_service_1.TweetService])
     ], DashboardComponent);
     return DashboardComponent;
 }());

@@ -37,24 +37,29 @@ namespace Tweet.BAL
             foreach (var sourceEntity in source.Split(';'))
             {
                 News result = await _newsService.GetNewsAsync(sourceEntity.Trim(), sortBy);
-                               
-                if(result != null)
+
+                if (result != null)
                 {
                     foreach (var item in result.articles)
                     {
                         item.source = result.source;
                         DateTime publishedDate;
-                        if (!DateTime.TryParse(item.publishedAt, out publishedDate)){
-                            // handle parse failure
+                        if (!DateTime.TryParse(item.publishedAt, out publishedDate))
+                        {
+                            item.publishedAt = DateTime.UtcNow.AddHours(-8).ToString();
                         }
-                        else{
-                            item.publishedAt = publishedDate.AddHours(-8).ToString();
+                        else
+                        {
+                            if (!publishedDate.ToString().Contains("1/1/0001"))
+                                item.publishedAt = publishedDate.AddHours(-8).ToString();
+                            else
+                                item.publishedAt = DateTime.UtcNow.AddHours(-8).ToString();
                         }
                     }
                     newsItem.AddRange(result.articles);
                 }
             }
-             
+
             return newsItem;
         }
 

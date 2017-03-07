@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/">
-    <title>@ViewData["Title"] - Tweet</title>
+    <title>Tweet Dashboard</title>
 
     @{ var lib = "@angular"; }
 
@@ -16,6 +16,11 @@
         <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     </environment>
     <environment names="Staging,Production">
+        <link href="~/node_modules/@lib/material/core/theming/prebuilt/deeppurple-amber.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/css/sb-admin.css" rel="stylesheet">
+        <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     </environment>
 </head>
 <body>
@@ -40,7 +45,22 @@
         </script>
     </environment>
     <environment names="Staging,Production">
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.js"></script>
+        <script src="~/js/tether.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/node_modules/zone.js/dist/zone.js"></script>
+        <script src="~/node_modules/reflect-metadata/Reflect.js"></script>
+        <script src="~/node_modules/systemjs/dist/system.src.js"></script>
+        <script src="~/node_modules/hammerjs/hammer.min.js"></script>
+        <script src="~/js/twitterWidgets.js"></script>
+
+        <!-- 2. Configure SystemJS -->
+        <script src="~/systemjs.config.js"></script>
+        <script>
+            System.import('./main.js').catch(function (err) {
+                console.error(err);
+            });
+        </script>
     </environment>
 
     @RenderBody()

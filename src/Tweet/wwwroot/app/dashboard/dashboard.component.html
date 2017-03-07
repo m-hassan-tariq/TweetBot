@@ -8,7 +8,7 @@
                     </div>
                     <div class="col-xs-9 text-xs-right">
                         <div class="huge">{{lastestArticleList.length}}</div>
-                        <div>Latest News</div>
+                        <div>Latest News <span class="label label-danger">{{newLatestNewsToPost}} new</span></div>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-xs-9 text-xs-right">
                         <div class="huge">{{topArticleList.length}}</div>
-                        <div>Top News</div>
+                        <div>Top News <span class="label label-danger">{{newTopNewsToPost}} new</span></div>
                     </div>
                 </div>
             </div>
@@ -169,7 +169,7 @@
             </div>
             <div class="card-footer card-green">
                 <md-input-container style="color: black;" class="pull-xs-left">
-                    <textarea [(ngModel)]="content" maxlength="140" rows="2" cols="100" md-input placeholder="Share thought !!!"></textarea>
+                    <textarea [(ngModel)]="content" maxlength="140" rows="2" cols="100" md-input mdInput placeholder="Share thought !!!"></textarea>
                 </md-input-container>
                 <span class="pull-xs-right">
                     <button type="button" class="btn btn-sm btn-info" (click)="sendContent()">

@@ -8,15 +8,14 @@
         <div class="card card-green card-inverse">
             <div class="card-footer card-green">
                 <md-input-container style="color: black;" class="pull-xs-left">
-                    <textarea [(ngModel)]="title" maxlength="140" rows="2" cols="100" md-input placeholder="Enter text !!!"></textarea>
+                    <textarea [(ngModel)]="title" maxlength="140" rows="2" cols="100" mdInput md-input placeholder="Enter text !!!"></textarea>
                 </md-input-container>
                 <br />
                 <md-input-container style="color: black;" class="pull-xs-left">
-                    <input [(ngModel)]="url" maxlength="500" type="url" reg md-input placeholder="Enter URL !!!" />
+                    <input [(ngModel)]="url" maxlength="500" type="url" mdInput md-input placeholder="Enter URL !!!" />
                 </md-input-container>
                 <br />
                 <span class="pull-xs-right">
-                    
                     <button type="button" class="btn btn-sm btn-info" (click)="sendTweet()">
                         {{140 - title.length }}&nbsp;&nbsp;&nbsp; <i class="fa fa-arrow-circle-up"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <i class="fa fa-twitter"></i>&nbsp;&nbsp;&nbsp; Click to Tweet !!

@@ -7,6 +7,7 @@ import { LoaderService } from '../shared/service/loader.service';
 import { WebApiObservableService } from '../shared/service/web-api-observable.service';
 import { WebApiPromiseService } from '../shared/service/web-api-promise.service';
 import { ToasterService } from '../shared/service/toaster.service';
+import { LastUpdatedDateTimeService } from '../shared/service/lastUpdatedDateTime.service';
 
 @Component({
     selector: 'dashboard',
@@ -26,11 +27,17 @@ export class DashboardComponent implements OnInit {
     sourceValue: string;
     newsTypeValue: string;
     content: string;
+    latestNewsUpdatedTime: string;
+    topNewsUpdatedTime: string;
+    lastTweetUpdatedTime: string;
+    newLatestNewsToPost: number;
+    newTopNewsToPost: number;
 
     constructor(
         private loaderService: LoaderService,
         private toasterService: ToasterService,
         private webApiObservableService: WebApiObservableService,
+        private lastUpdatedDateTimeService: LastUpdatedDateTimeService,
         private tweetService: TweetService) {
         this.lastestArticleList = [];
         this.topArticleList = [];
@@ -47,6 +54,19 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        this.lastUpdatedDateTimeService.latestNewsUpdatedTime.subscribe((val: string) => {
+            this.latestNewsUpdatedTime = val;
+        });
+
+        this.lastUpdatedDateTimeService.topNewsUpdatedTime.subscribe((val: string) => {
+            this.topNewsUpdatedTime = val;
+        });
+
+        this.lastUpdatedDateTimeService.lastTweetUpdatedTime.subscribe((val: string) => {
+            this.lastTweetUpdatedTime = val;
+        });
+
         this.getAllBlogPosts();
     }
 
@@ -59,7 +79,6 @@ export class DashboardComponent implements OnInit {
             (result: BlogPost[]) => {
                 if (result) {
                     this.categoryList = result.map(item => item.category).filter((value, index, self) => self.indexOf(value) === index).sort();
-                    //this.categoryValue = this.categoryList ? this.categoryList[0] : '';
                     this.blogList = result;
                     this.getAllLatestNews();
                 }
@@ -81,6 +100,7 @@ export class DashboardComponent implements OnInit {
                 if (result) {
                     this.sourceList = result.map(item => item.source).filter((value, index, self) => self.indexOf(value) === index).sort();
                     this.lastestArticleList = result;
+                    this.newLatestNewsToPost = this.lastestArticleList.filter((value, index, self) => new Date(value.publishedAt) > new Date(this.latestNewsUpdatedTime)).length;
                     this.getAllTopNews();
                 }
             },
@@ -99,6 +119,7 @@ export class DashboardComponent implements OnInit {
             (result: Article[]) => {
                 if (result) {
                     this.topArticleList = result;
+                    this.newTopNewsToPost = this.topArticleList.filter((value, index, self) => new Date(value.publishedAt) > new Date(this.topNewsUpdatedTime)).length;
                     this.getAllSecondaryTopNews();
                 }
             },
@@ -153,6 +174,10 @@ export class DashboardComponent implements OnInit {
 
     tweetAllNews(sortBy: string) {
         this.tweetService.postAllNewsTweet(sortBy);
+        if (sortBy == 'latest')
+            this.newLatestNewsToPost = 0;
+        else
+            this.newTopNewsToPost = 0;
     }
 
     tweetAllBlogPosts() {
