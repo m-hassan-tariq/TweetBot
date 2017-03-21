@@ -8,12 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var tweet_service_1 = require('../shared/service/tweet.service');
-var loader_service_1 = require('../shared/service/loader.service');
-var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
-var toaster_service_1 = require('../shared/service/toaster.service');
-var lastUpdatedDateTime_service_1 = require('../shared/service/lastUpdatedDateTime.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var tweet_service_1 = require("../shared/service/tweet.service");
+var loader_service_1 = require("../shared/service/loader.service");
+var web_api_observable_service_1 = require("../shared/service/web-api-observable.service");
+var toaster_service_1 = require("../shared/service/toaster.service");
+var lastUpdatedDateTime_service_1 = require("../shared/service/lastUpdatedDateTime.service");
 var DashboardComponent = (function () {
     function DashboardComponent(loaderService, toasterService, webApiObservableService, lastUpdatedDateTimeService, tweetService) {
         this.loaderService = loaderService;
@@ -161,14 +162,18 @@ var DashboardComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    DashboardComponent = __decorate([
-        core_1.Component({
-            selector: 'dashboard',
-            templateUrl: './app/dashboard/dashboard.component.html'
-        }), 
-        __metadata('design:paramtypes', [loader_service_1.LoaderService, toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService, lastUpdatedDateTime_service_1.LastUpdatedDateTimeService, tweet_service_1.TweetService])
-    ], DashboardComponent);
     return DashboardComponent;
 }());
+DashboardComponent = __decorate([
+    core_1.Component({
+        selector: 'dashboard',
+        templateUrl: './app/dashboard/dashboard.component.html'
+    }),
+    __metadata("design:paramtypes", [loader_service_1.LoaderService,
+        toaster_service_1.ToasterService,
+        web_api_observable_service_1.WebApiObservableService,
+        lastUpdatedDateTime_service_1.LastUpdatedDateTimeService,
+        tweet_service_1.TweetService])
+], DashboardComponent);
 exports.DashboardComponent = DashboardComponent;
 //# sourceMappingURL=dashboard.component.js.map

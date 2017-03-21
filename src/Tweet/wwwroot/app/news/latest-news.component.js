@@ -8,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var tweet_service_1 = require('../shared/service/tweet.service');
-var loader_service_1 = require('../shared/service/loader.service');
-var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
-var toaster_service_1 = require('../shared/service/toaster.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var tweet_service_1 = require("../shared/service/tweet.service");
+var loader_service_1 = require("../shared/service/loader.service");
+var web_api_observable_service_1 = require("../shared/service/web-api-observable.service");
+var toaster_service_1 = require("../shared/service/toaster.service");
 //import * as _ from "lodash";
 var LatestNewsComponent = (function () {
     function LatestNewsComponent(loaderService, toasterService, webApiObservableService, tweetService) {
@@ -114,14 +115,17 @@ var LatestNewsComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    LatestNewsComponent = __decorate([
-        core_1.Component({
-            selector: 'latest-news',
-            templateUrl: './app/news/latest-news.component.html'
-        }), 
-        __metadata('design:paramtypes', [loader_service_1.LoaderService, toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService, tweet_service_1.TweetService])
-    ], LatestNewsComponent);
     return LatestNewsComponent;
 }());
+LatestNewsComponent = __decorate([
+    core_1.Component({
+        selector: 'latest-news',
+        templateUrl: './app/news/latest-news.component.html'
+    }),
+    __metadata("design:paramtypes", [loader_service_1.LoaderService,
+        toaster_service_1.ToasterService,
+        web_api_observable_service_1.WebApiObservableService,
+        tweet_service_1.TweetService])
+], LatestNewsComponent);
 exports.LatestNewsComponent = LatestNewsComponent;
 //# sourceMappingURL=latest-news.component.js.map

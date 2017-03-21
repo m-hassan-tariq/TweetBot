@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var loader_service_1 = require('./shared/service/loader.service');
-var lastUpdatedDateTime_service_1 = require('./shared/service/lastUpdatedDateTime.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var loader_service_1 = require("./shared/service/loader.service");
+var lastUpdatedDateTime_service_1 = require("./shared/service/lastUpdatedDateTime.service");
 var AppComponent = (function () {
     function AppComponent(loaderService, lastUpdatedDateTimeService, router, route) {
         this.loaderService = loaderService;
@@ -60,15 +61,18 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.ngAfterViewInit = function () {
     };
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            templateUrl: './app/app.component.html',
-            styleUrls: ['./app/app.component.css']
-        }), 
-        __metadata('design:paramtypes', [loader_service_1.LoaderService, lastUpdatedDateTime_service_1.LastUpdatedDateTimeService, router_1.Router, router_1.ActivatedRoute])
-    ], AppComponent);
     return AppComponent;
 }());
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'my-app',
+        templateUrl: './app/app.component.html',
+        styleUrls: ['./app/app.component.css']
+    }),
+    __metadata("design:paramtypes", [loader_service_1.LoaderService,
+        lastUpdatedDateTime_service_1.LastUpdatedDateTimeService,
+        router_1.Router,
+        router_1.ActivatedRoute])
+], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

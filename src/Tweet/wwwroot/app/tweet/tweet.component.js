@@ -8,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var web_api_observable_service_1 = require('../shared/service/web-api-observable.service');
-var twitter_timeline_service_1 = require('../shared/service/twitter-timeline.service');
-var tweet_service_1 = require('../shared/service/tweet.service');
-var toaster_service_1 = require('../shared/service/toaster.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var web_api_observable_service_1 = require("../shared/service/web-api-observable.service");
+var twitter_timeline_service_1 = require("../shared/service/twitter-timeline.service");
+var tweet_service_1 = require("../shared/service/tweet.service");
+var toaster_service_1 = require("../shared/service/toaster.service");
 var TweetComponent = (function () {
     //@Input() tweetId: string;
     function TweetComponent(
@@ -74,14 +75,17 @@ var TweetComponent = (function () {
         enumerable: true,
         configurable: true
     });
-    TweetComponent = __decorate([
-        core_1.Component({
-            selector: 'tweet',
-            templateUrl: './app/tweet/tweet.component.html'
-        }), 
-        __metadata('design:paramtypes', [tweet_service_1.TweetService, toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService, twitter_timeline_service_1.TwitterTimelineService])
-    ], TweetComponent);
     return TweetComponent;
 }());
+TweetComponent = __decorate([
+    core_1.Component({
+        selector: 'tweet',
+        templateUrl: './app/tweet/tweet.component.html'
+    }),
+    __metadata("design:paramtypes", [tweet_service_1.TweetService,
+        toaster_service_1.ToasterService,
+        web_api_observable_service_1.WebApiObservableService,
+        twitter_timeline_service_1.TwitterTimelineService])
+], TweetComponent);
 exports.TweetComponent = TweetComponent;
 //# sourceMappingURL=tweet.component.js.map

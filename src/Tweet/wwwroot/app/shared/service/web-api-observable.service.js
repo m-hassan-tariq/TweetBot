@@ -8,22 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var Observable_1 = require('rxjs/Observable');
-var toaster_service_1 = require('./toaster.service');
-var loader_service_1 = require('./loader.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var Observable_1 = require("rxjs/Observable");
+var toaster_service_1 = require("./toaster.service");
+var loader_service_1 = require("./loader.service");
 // Observable class extensions
-require('rxjs/add/observable/of');
-require('rxjs/add/observable/throw');
+require("rxjs/add/observable/of");
+require("rxjs/add/observable/throw");
 // Observable operators
-require('rxjs/add/operator/catch');
-require('rxjs/add/operator/debounceTime');
-require('rxjs/add/operator/distinctUntilChanged');
-require('rxjs/add/operator/do');
-require('rxjs/add/operator/filter');
-require('rxjs/add/operator/map');
-require('rxjs/add/operator/switchMap');
+require("rxjs/add/operator/catch");
+require("rxjs/add/operator/debounceTime");
+require("rxjs/add/operator/distinctUntilChanged");
+require("rxjs/add/operator/do");
+require("rxjs/add/operator/filter");
+require("rxjs/add/operator/map");
+require("rxjs/add/operator/switchMap");
 var WebApiObservableService = (function () {
     function WebApiObservableService(http, loaderService, toasterService) {
         this.http = http;
@@ -124,11 +125,13 @@ var WebApiObservableService = (function () {
             error.status ? error.status + " - " + error.statusText : 'Server error';
         return Observable_1.Observable.throw(errMsg);
     };
-    WebApiObservableService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, loader_service_1.LoaderService, toaster_service_1.ToasterService])
-    ], WebApiObservableService);
     return WebApiObservableService;
 }());
+WebApiObservableService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http,
+        loader_service_1.LoaderService,
+        toaster_service_1.ToasterService])
+], WebApiObservableService);
 exports.WebApiObservableService = WebApiObservableService;
 //# sourceMappingURL=web-api-observable.service.js.map

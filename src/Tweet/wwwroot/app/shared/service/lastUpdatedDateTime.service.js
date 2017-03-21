@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var BehaviorSubject_1 = require('rxjs/BehaviorSubject');
-var web_api_observable_service_1 = require('./web-api-observable.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
+var web_api_observable_service_1 = require("./web-api-observable.service");
 var LastUpdatedDateTimeService = (function () {
     function LastUpdatedDateTimeService(webApiObservableService) {
         this.webApiObservableService = webApiObservableService;
@@ -30,11 +31,11 @@ var LastUpdatedDateTimeService = (function () {
             console.log(error);
         });
     };
-    LastUpdatedDateTimeService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [web_api_observable_service_1.WebApiObservableService])
-    ], LastUpdatedDateTimeService);
     return LastUpdatedDateTimeService;
 }());
+LastUpdatedDateTimeService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [web_api_observable_service_1.WebApiObservableService])
+], LastUpdatedDateTimeService);
 exports.LastUpdatedDateTimeService = LastUpdatedDateTimeService;
 //# sourceMappingURL=lastUpdatedDateTime.service.js.map

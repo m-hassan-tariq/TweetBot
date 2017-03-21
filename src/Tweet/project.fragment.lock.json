@@ -5,7 +5,7 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Release/Tweet.BAL.dll": {}
+        "bin/Debug/Tweet.BAL.dll": {}
       },
       "runtime": {
         "../packages/Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0/lib/netstandard1.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {},
@@ -14,10 +14,10 @@
         "../packages/Newtonsoft.Json.9.0.1/lib/net45/Newtonsoft.Json.dll": {},
         "../packages/System.Runtime.CompilerServices.Unsafe.4.3.0/lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll": {},
         "../packages/System.Runtime.InteropServices.RuntimeInformation.4.3.0/lib/net45/System.Runtime.InteropServices.RuntimeInformation.dll": {},
-        "bin/Release/Tweet.BAL.dll": {}
+        "bin/Debug/Tweet.BAL.dll": {}
       },
       "contentFiles": {
-        "bin/Release/Tweet.BAL.pdb": {
+        "bin/Debug/Tweet.BAL.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true
@@ -28,13 +28,13 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Release/Tweet.Entities.dll": {}
+        "bin/Debug/Tweet.Entities.dll": {}
       },
       "runtime": {
-        "bin/Release/Tweet.Entities.dll": {}
+        "bin/Debug/Tweet.Entities.dll": {}
       },
       "contentFiles": {
-        "bin/Release/Tweet.Entities.pdb": {
+        "bin/Debug/Tweet.Entities.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true
@@ -45,7 +45,7 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Release/Tweet.Service.dll": {}
+        "bin/Debug/Tweet.Service.dll": {}
       },
       "runtime": {
         "../packages/Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0/lib/netstandard1.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {},
@@ -53,10 +53,10 @@
         "../packages/Microsoft.Extensions.Primitives.1.1.0/lib/netstandard1.0/Microsoft.Extensions.Primitives.dll": {},
         "../packages/System.Runtime.CompilerServices.Unsafe.4.3.0/lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll": {},
         "../packages/System.Runtime.InteropServices.RuntimeInformation.4.3.0/lib/net45/System.Runtime.InteropServices.RuntimeInformation.dll": {},
-        "bin/Release/Tweet.Service.dll": {}
+        "bin/Debug/Tweet.Service.dll": {}
       },
       "contentFiles": {
-        "bin/Release/Tweet.Service.pdb": {
+        "bin/Debug/Tweet.Service.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true

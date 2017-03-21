@@ -8,8 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var Rx_1 = require('rxjs/Rx');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var Rx_1 = require("rxjs/Rx");
 var TwitterTimelineService = (function () {
     function TwitterTimelineService() {
         this.TWITTER_SCRIPT_ID = 'twitter-wjs';
@@ -57,11 +58,11 @@ var TwitterTimelineService = (function () {
             }
         }(document, "script", "twitter-wjs");
     };
-    TwitterTimelineService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], TwitterTimelineService);
     return TwitterTimelineService;
 }());
+TwitterTimelineService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], TwitterTimelineService);
 exports.TwitterTimelineService = TwitterTimelineService;
 //# sourceMappingURL=twitter-timeline.service.js.map

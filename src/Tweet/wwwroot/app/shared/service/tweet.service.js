@@ -8,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var loader_service_1 = require('./loader.service');
-var web_api_observable_service_1 = require('./web-api-observable.service');
-var toaster_service_1 = require('./toaster.service');
-var lastUpdatedDateTime_service_1 = require('./lastUpdatedDateTime.service');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var loader_service_1 = require("./loader.service");
+var web_api_observable_service_1 = require("./web-api-observable.service");
+var toaster_service_1 = require("./toaster.service");
+var lastUpdatedDateTime_service_1 = require("./lastUpdatedDateTime.service");
 var TweetService = (function () {
     function TweetService(loaderService, lastUpdatedDateTimeService, toasterService, webApiObservableService) {
         this.loaderService = loaderService;
@@ -113,11 +114,14 @@ var TweetService = (function () {
         this.toasterService.showToaster(error);
         this.loaderService.display(false);
     };
-    TweetService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [loader_service_1.LoaderService, lastUpdatedDateTime_service_1.LastUpdatedDateTimeService, toaster_service_1.ToasterService, web_api_observable_service_1.WebApiObservableService])
-    ], TweetService);
     return TweetService;
 }());
+TweetService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [loader_service_1.LoaderService,
+        lastUpdatedDateTime_service_1.LastUpdatedDateTimeService,
+        toaster_service_1.ToasterService,
+        web_api_observable_service_1.WebApiObservableService])
+], TweetService);
 exports.TweetService = TweetService;
 //# sourceMappingURL=tweet.service.js.map

@@ -8,8 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var material_1 = require('@angular/material');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var material_1 = require("@angular/material");
 var ToasterService = (function () {
     function ToasterService(snackBar) {
         this.snackBar = snackBar;
@@ -19,11 +20,11 @@ var ToasterService = (function () {
             duration: 3000,
         });
     };
-    ToasterService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [material_1.MdSnackBar])
-    ], ToasterService);
     return ToasterService;
 }());
+ToasterService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [material_1.MdSnackBar])
+], ToasterService);
 exports.ToasterService = ToasterService;
 //# sourceMappingURL=toaster.service.js.map
